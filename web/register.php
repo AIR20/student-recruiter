@@ -5,41 +5,138 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<title>StudentRecruiter - Main</title>
+		<title>Register—StudentRecruiter</title>
 		<link href="style.css" rel="stylesheet" type="text/css"/>
-		<link rel="shortcut icon" href="http://icons.iconseeker.com/ico/europe/scotland-2.ico"/>
+		<link rel="shortcut icon" href="http://www.liv.ac.uk/images/favicon.ico"/>
 		<link href="http://fonts.googleapis.com/css?family=.|Lato:light,normal,bold|Oswald:light,normal,bold|Oswald:light,normal,bold|Open+Sans:light,normal,bold" rel="stylesheet" type="text/css">
+		<style>.error{ color:#FF0000}</style>
 	</head>
 	
 	<body>
-	<?php require 'header.php';?>
-	<div id="navbar"><?php require 'navbar.php';?></div>	
 		
+		<!-- get navigation bar -->	
+		<div id="navbar"><?php require 'navbar.php';?></div>	
+	
+		<!-- get mysql connection -->		
+		<?php require 'header.php';?>
+		
+		<?php session_start();?>
+		
+		<!--input validation-->
+		<?php	$fnameErr = $lnameErr = $emailErr = $dobErr = $addr1Err = $townErr = $postcodeErr = '';
+			$fname = $lname = $email = $gender = $dob = $addr1 = $addr2 = $town = $postcode = '';
+			if($_SERVER['REQUEST_METHOD'] == 'POST') {
+				if(empty($_POST['fname']))
+					$fnameErr = 'First name required.';
+				if(!preg_match('/^[a-zA-Z]*$/', $_POST['fname']))
+					$fnameErr = 'Only letters allowed.';
+				if(empty($_POST['fname']))
+					$lnameErr = 'Surname required.';
+				if(!preg_match('/^[a-zA-Z]*$/', $_POST['lname']))
+					$lnameErr = 'Only letters allowed.';
+				if(empty($_POST['email']))
+					$emailErr = 'Email required.';
+				if(empty($_POST['dob']))
+					$dobErr = 'Date of birth required.';
+				if(empty($_POST['addr1']))
+					$addr1Err = 'Address line 1 required.';
+				if(empty($_POST['town']))
+					$townErr = 'Town required.';
+				if(!preg_match('/^[a-zA-Z]*$/', $_POST['town']))
+					$townErr = 'Only letters allowed.';
+				if(empty($_POST['postcode']))
+					$postcodeErr = 'Postcode required.';
+			}
+		?>
+	
+		<?php $_SESSION['year'] = $_POST['year']; ?>
+	
 		<!-- registration form -->
-	<div id="form" style="width:200px">
+		<div id="form" style="width:475px; position: relative; left: 50px; top: 150px">
+		<br><br>Register for an account.
+		<br>
+		<span class="error">* required</span>
 		<form action="" method="post">
-		Name: <input type="text" name="name"><br>
-		E-mail: <input type="text" name="email"><br>
-		<input type="submit">
-		</form>
-	</div>
-	
-	<!-- update database -->
-	<?php
-	  mysqli_select_db("x4ry", $con);
-		$users_name = $_POST['name'];
-		$users_email = $_POST['email'];
-	
-		if(isset($_POST['email'])){
-			$sql = "INSERT INTO user (`firstName`, `email`) VALUES('$users_name', '$users_email')";
-			if (mysqli_query($con, $sql)) {
-				echo "New record created successfully";
-			} else {
-					echo "Error: " . $sql . "<br>" . mysqli_error($con);
-		}
-	}
-	?>
-	</body>
+			
+			<!--first name-->
+			<div style="float:left;">First name: <span class="error">*<?php echo $fnameErr; ?></span> 
+			<input type="text" name="fname" value="<?php echo $fname;?>"></div>
+			
+			<!--last name-->
+			<div style="float:left;">Surname: <span class="error">*<?php echo $lnameErr; ?></span>
+			<input type="text" name="lname" value="<?php echo $lname;?>"></div>
+			
+			<!--line break-->
+			<div style="clear:both;"></div>
+			
+			<!--email-->
+			E-mail: <span class="error">*<?php echo $emailErr; ?></span>
+			<input type="text" name="email" value="<?php echo $email;?>">
 
+			<!--gender, drop down-->
+			Gender: <span class="error">*</span>
+			<select name="gender">
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select>
+
+			<!--date of birth-->
+			DOB: <span class="error">*<?php echo $dobErr?></span>
+			<div style="clear:both;"></div>
+			<div style="float:left;width:60px">YYYY: <input type="text" name="year" value="<?php echo $_SESSION['year'];?>"></div>
+			<div style="float:left;width:60px">MM: <input type="text" name="month" value="<?php echo $month;?>"></div>
+			<div style="float:left;width:60px">DD: <input type="text" name="day" value="<?php echo $day;?>"></div>
+			
+			<!--address-->
+			<div style="clear:both;"></div>
+			Address line 1: <span class="error">*<?php echo $addr1Err; ?></span>
+			<input type="text" name="addr1" value="<?php echo $addr1;?>">
+			Address line 2:
+			<input type="text" name="addr2" value="<?php echo $addr2;?>">
+			Town: <span class="error">*<?php echo $townErr; ?> </span>
+			<input type="text" name="town" value="<?php echo $town;?>">
+			Post code: <span class="error">*<?php echo $postcodeErr; ?></span>
+			<input type="text" name="postcode" value="<?php echo $postcode;?>">
+
+			<!--line break-->
+			<div style="clear:both;"></div>
+			
+			<!--submit form-->
+			<input type="submit">
+		</form>
+		</div>
+		
+		<div style="position:relative; top:300px;">
+		<!-- update the database -->
+		<?php 
+			$users_fname = $_POST['fname'];
+			$users_lname = $_POST['lname'];
+			$users_email = $_POST['email'];
+			$users_gender = $_POST['gender'];
+			
+			$arr = array($_POST['year'], $_POST['month'], $_POST['day']);
+			$users_dob = join("-", $arr);
+
+			$users_addr1 = $_POST['addr1'];
+			$users_addr2 = $_POST['addr2'];
+			$users_town = $_POST['town'];
+			$users_postcode= $_POST['postcode'];
+
+			date_default_timezone_set('Europe/London');
+			$users_join_date = date('Y/m/d h:i:s', time());
+			echo( "join date is ".$users_join_date);
+
+			/* check email is not duplicate */
+			if(isset($_POST['email']))
+				$sql = "INSERT INTO user (`firstname`, `lastname`, `email`, `gender`, `dob`, `address_line_1`, `address_line_2`, `town`, `postcode`, `join_date`) VALUES('$users_fname', '$users_lname', '$users_email', '$users_gender', '$users_dob', '$users_addr1', '$users_addr2', '$users_town', '$users_postcode', '$users_join_date')";
+			
+			/* success message */ 
+			if (mysqli_query($con, $sql))
+				echo "New record created successfully";
+			else
+				echo "Error: " . $sql . "<br>" . mysqli_error($con);?>
+		</div>	
+			
+	</body>
 	
 </html>
