@@ -1,5 +1,3 @@
-<?php echo '
-
 			<head>
 				<style>
 					body { background: url("banner.jpg");
@@ -19,5 +17,5 @@
 					<li><a href="register.php" class="top-link active"">Account</a></li>
 					<li><a href="register.php" class="top-link active"">Map</a></li>
 				</ul>
-			</div>'
-?>
+			</div>
+
