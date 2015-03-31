@@ -1,6 +1,4 @@
-<?php 
-
-echo '
+<?php echo '
 
 			<head>
 				<style>
