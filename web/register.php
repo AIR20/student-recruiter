@@ -49,7 +49,19 @@
 			}
 		?>
 	
-		<?php $_SESSION['year'] = $_POST['year']; ?>
+		<?php 
+			$_SESSION['fname'] = $_POST['fname']; 
+			$_SESSION['lname'] = $_POST['lname']; 
+			$_SESSION['email'] = $_POST['email']; 
+			$_SESSION['gender'] = $_POST['gender']; 
+			$_SESSION['year'] = $_POST['year']; 
+			$_SESSION['month'] = $_POST['month']; 
+			$_SESSION['day'] = $_POST['day']; 
+			$_SESSION['addr1'] = $_POST['addr1']; 
+			$_SESSION['addr2'] = $_POST['addr2']; 
+			$_SESSION['town'] = $_POST['town']; 
+			$_SESSION['postcode'] = $_POST['postcode']; 
+		?>
 	
 		<!-- registration form -->
 		<div id="form" style="width:475px; position: relative; left: 50px; top: 150px">
@@ -60,18 +72,18 @@
 			
 			<!--first name-->
 			<div style="float:left;">First name: <span class="error">*<?php echo $fnameErr; ?></span> 
-			<input type="text" name="fname" value="<?php echo $fname;?>"></div>
+			<input type="text" name="fname" value="<?php echo $_SESSION['fname'];?>"></div>
 			
 			<!--last name-->
 			<div style="float:left;">Surname: <span class="error">*<?php echo $lnameErr; ?></span>
-			<input type="text" name="lname" value="<?php echo $lname;?>"></div>
+			<input type="text" name="lname" value="<?php echo $_SESSION['lname'];?>"></div>
 			
 			<!--line break-->
 			<div style="clear:both;"></div>
 			
 			<!--email-->
 			E-mail: <span class="error">*<?php echo $emailErr; ?></span>
-			<input type="text" name="email" value="<?php echo $email;?>">
+			<input type="text" name="email" value="<?php echo $_SESSION['email'];?>">
 			
 			<!--password-->
 			Password: <span class="error">*<?php echo $passwErr; ?></span>
@@ -88,19 +100,19 @@
 			DOB: <span class="error">*<?php echo $dobErr?></span>
 			<div style="clear:both;"></div>
 			<div style="float:left;width:60px">YYYY: <input type="text" name="year" value="<?php echo $_SESSION['year'];?>"></div>
-			<div style="float:left;width:60px">MM: <input type="text" name="month" value="<?php echo $month;?>"></div>
-			<div style="float:left;width:60px">DD: <input type="text" name="day" value="<?php echo $day;?>"></div>
+			<div style="float:left;width:60px">MM: <input type="text" name="month" value="<?php echo $_SESSION['month'];?>"></div>
+			<div style="float:left;width:60px">DD: <input type="text" name="day" value="<?php echo $_SESSION['day'];?>"></div>
 			
 			<!--address-->
 			<div style="clear:both;"></div>
 			Address line 1: <span class="error">*<?php echo $addr1Err; ?></span>
-			<input type="text" name="addr1" value="<?php echo $addr1;?>">
+			<input type="text" name="addr1" value="<?php echo $_SESSION['addr1'];?>">
 			Address line 2:
-			<input type="text" name="addr2" value="<?php echo $addr2;?>">
+			<input type="text" name="addr2" value="<?php echo $_SESSION['addr2'];?>">
 			Town: <span class="error">*<?php echo $townErr; ?> </span>
-			<input type="text" name="town" value="<?php echo $town;?>">
+			<input type="text" name="town" value="<?php echo $_SESSION['town'];?>">
 			Post code: <span class="error">*<?php echo $postcodeErr; ?></span>
-			<input type="text" name="postcode" value="<?php echo $postcode;?>">
+			<input type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 
 			<!--line break-->
 			<div style="clear:both;"></div>
