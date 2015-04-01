@@ -5,3 +5,13 @@ This project is concerned with developing the StudentRecruiter System (SRS). Thi
 The stakeholders involved include: University Administrators, Academic Departments, Students, and Teachers.
 
 The SRS will provide facilities to enable the co-ordination of events organised by Academic Departments, from general university open days, large introductory sessions, individual department visits, and career services, to receptions, public lectures, speeches, and concerts. Centralising the organisation of all university events into a single system will make it easier for the university to manage and track what is happening on campus. It will also make it easier for prospective Students and Teachers who wish to attend events.
+
+# Installation
+
+1. Import SQL schema file `db/schema.sql` to your MySQL server.
+
+	```shell
+	mysql -h [hostname] -u [username] -p < db/schema.sql
+	```
+
+2. Copy all the PHP files and assets files to your web root directory.
