@@ -41,7 +41,7 @@ CREATE INDEX `users_email_idx` ON `srs`.`users` (`email` ASC);
 DROP TABLE IF EXISTS `srs`.`schools` ;
 
 CREATE TABLE IF NOT EXISTS `srs`.`schools` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `school_type` VARCHAR(45) NULL,
   `address_line1` VARCHAR(90) NULL,
@@ -120,7 +120,7 @@ CREATE INDEX `fk_students_teacher_id_idx` ON `srs`.`students` (`teacher_id` ASC)
 DROP TABLE IF EXISTS `srs`.`buildings` ;
 
 CREATE TABLE IF NOT EXISTS `srs`.`buildings` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `map_no` INT(11) NULL,
   PRIMARY KEY (`id`))
@@ -133,7 +133,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `srs`.`departments` ;
 
 CREATE TABLE IF NOT EXISTS `srs`.`departments` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `building_id` INT(11) NULL,
   `address_line1` VARCHAR(90) NULL,
@@ -200,7 +200,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `srs`.`rooms` ;
 
 CREATE TABLE IF NOT EXISTS `srs`.`rooms` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `room_name` VARCHAR(45) NOT NULL,
   `room_no` VARCHAR(45) NULL,
   `building_id` INT(11) NULL,
@@ -222,7 +222,7 @@ CREATE INDEX `fk_rooms_building_id_idx` ON `srs`.`rooms` (`building_id` ASC);
 DROP TABLE IF EXISTS `srs`.`events` ;
 
 CREATE TABLE IF NOT EXISTS `srs`.`events` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(180) NOT NULL,
   `description` TEXT NOT NULL,
   `tags` VARCHAR(180) NULL,
