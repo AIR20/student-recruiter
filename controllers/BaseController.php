@@ -169,26 +169,22 @@ class BaseController
 	 */
 	protected function loadBaseCss()
 	{
-		// $this->loadCss("bootstrap.min.css");
-		// $this->loadCss("font-awesome.min.css");
-		$this->loadCss("custom.css");
+		$this->loadCss("bootstrap.min.css");
 	}
 	/**
 	 * load base js for the template
 	 */
 	protected function loadBaseJs()
 	{
-		// $this->loadJs("jquery-1.10.2.js");
-		// $this->loadJs("bootstrap.min.js");
-		// $this->loadJs("plugins/metisMenu/jquery.metisMenu.js");
-		// $this->loadJs("sb-admin.js");
+		$this->loadJs("jquery-1.11.2.min.js");
+		$this->loadJs("bootstrap.min.js");
 	}
 	/**
 	 * generate base URL
 	 */
 	protected function baseUrl()
 	{
-		$baseUrl = $this->app->request->getResourceUri();
+		$baseUrl = dirname($_SERVER['SCRIPT_NAME']);
 		$baseUrl = rtrim($baseUrl, '/');
 		return $baseUrl;
 	}
