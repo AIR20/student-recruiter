@@ -23,6 +23,7 @@ class BaseController
 		);
 		/** base dir for asset file */
 		$this->data['assetUrl'] = $this->baseUrl() . '/assets/';
+		$this->data['app'] = $this->app;
 		$this->loadBaseCss();
 		$this->loadBaseJs();
 	}
@@ -170,6 +171,7 @@ class BaseController
 	protected function loadBaseCss()
 	{
 		$this->loadCss("bootstrap.min.css");
+		$this->loadCss("application.css");
 	}
 	/**
 	 * load base js for the template
