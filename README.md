@@ -13,7 +13,11 @@ The SRS will provide facilities to enable the co-ordination of events organised 
 	```shell
 	mysql -h [hostname] -u [username] -p < db/schema.sql
 	```
+2. Import sample data from `db/seeds.sql`.
 
+	```shell
+	mysql -h [hostname] -u [username] -p < db/seeds.sql
+	```
 2. Copy all the PHP files and assets files to your web root directory.
 
 3. Copy `default.config.php` to `config.php` and modify the database configuration.
