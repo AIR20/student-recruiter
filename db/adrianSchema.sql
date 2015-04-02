@@ -8,16 +8,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema srs
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `srs` ;
-CREATE SCHEMA IF NOT EXISTS `srs` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `srs` ;
+
+USE u3mk ;
 
 -- -----------------------------------------------------
--- Table `srs`.`users`
+-- Table `users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`users` ;
+DROP TABLE IF EXISTS `users` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(90) NOT NULL,
   `hashed_password` VARCHAR(90) NOT NULL,
@@ -26,21 +25,21 @@ CREATE TABLE IF NOT EXISTS `srs`.`users` (
   `gender` TINYINT NULL,
   `dob` DATE NULL,
   `avatar` VARCHAR(180) NULL,
-  `registered_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `registered_at` DATETIME NOT NULL ,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `email_UNIQUE` ON `srs`.`users` (`email` ASC);
+CREATE UNIQUE INDEX `email_UNIQUE` ON `users` (`email` ASC);
 
-CREATE INDEX `users_email_idx` ON `srs`.`users` (`email` ASC);
+CREATE INDEX `users_email_idx` ON `users` (`email` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`schools`
+-- Table `schools`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`schools` ;
+DROP TABLE IF EXISTS `schools` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`schools` (
+CREATE TABLE IF NOT EXISTS `schools` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `school_type` VARCHAR(45) NULL,
@@ -54,36 +53,36 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `srs`.`teachers`
+-- Table `teachers`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`teachers` ;
+DROP TABLE IF EXISTS `teachers` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`teachers` (
+CREATE TABLE IF NOT EXISTS `teachers` (
   `user_id` INT(11) NOT NULL,
   `school_id` INT(11) NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_teachers_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `srs`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_teachers_school_id`
     FOREIGN KEY (`school_id`)
-    REFERENCES `srs`.`schools` (`id`)
+    REFERENCES `schools` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_teachers_school_id_idx` ON `srs`.`teachers` (`school_id` ASC);
+CREATE INDEX `fk_teachers_school_id_idx` ON `teachers` (`school_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`students`
+-- Table `students`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`students` ;
+DROP TABLE IF EXISTS `students` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`students` (
+CREATE TABLE IF NOT EXISTS `students` (
   `user_id` INT(11) NOT NULL,
   `school_id` INT(11) NULL,
   `teacher_id` INT(11) NULL,
@@ -94,32 +93,32 @@ CREATE TABLE IF NOT EXISTS `srs`.`students` (
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_students_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `srs`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_students_school_id`
     FOREIGN KEY (`school_id`)
-    REFERENCES `srs`.`schools` (`id`)
+    REFERENCES `schools` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_students_teacher_id`
     FOREIGN KEY (`teacher_id`)
-    REFERENCES `srs`.`teachers` (`user_id`)
+    REFERENCES `teachers` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_students_school_id_idx` ON `srs`.`students` (`school_id` ASC);
+CREATE INDEX `fk_students_school_id_idx` ON `students` (`school_id` ASC);
 
-CREATE INDEX `fk_students_teacher_id_idx` ON `srs`.`students` (`teacher_id` ASC);
+CREATE INDEX `fk_students_teacher_id_idx` ON `students` (`teacher_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`buildings`
+-- Table `buildings`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`buildings` ;
+DROP TABLE IF EXISTS `buildings` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`buildings` (
+CREATE TABLE IF NOT EXISTS `buildings` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `map_no` INT(11) NULL,
@@ -128,11 +127,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `srs`.`departments`
+-- Table `departments`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`departments` ;
+DROP TABLE IF EXISTS `departments` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`departments` (
+CREATE TABLE IF NOT EXISTS `departments` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `building_id` INT(11) NULL,
@@ -144,62 +143,62 @@ CREATE TABLE IF NOT EXISTS `srs`.`departments` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_departments_building_id`
     FOREIGN KEY (`building_id`)
-    REFERENCES `srs`.`buildings` (`id`)
+    REFERENCES `buildings` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_departments_building_id_idx` ON `srs`.`departments` (`building_id` ASC);
+CREATE INDEX `fk_departments_building_id_idx` ON `departments` (`building_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`staff`
+-- Table `staff`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`staff` ;
+DROP TABLE IF EXISTS `staff` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`staff` (
+CREATE TABLE IF NOT EXISTS `staff` (
   `user_id` INT(11) NOT NULL,
   `department_id` INT(11) NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_staff_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `srs`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_staff_department_id`
     FOREIGN KEY (`department_id`)
-    REFERENCES `srs`.`departments` (`id`)
+    REFERENCES `departments` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_staff_department_id_idx` ON `srs`.`staff` (`department_id` ASC);
+CREATE INDEX `fk_staff_department_id_idx` ON `staff` (`department_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`admins`
+-- Table `admins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`admins` ;
+DROP TABLE IF EXISTS `admins` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`admins` (
+CREATE TABLE IF NOT EXISTS `admins` (
   `user_id` INT(11) NOT NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_admins_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `srs`.`users` (`id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `srs`.`rooms`
+-- Table `rooms`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`rooms` ;
+DROP TABLE IF EXISTS `rooms` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`rooms` (
+CREATE TABLE IF NOT EXISTS `rooms` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `room_name` VARCHAR(45) NOT NULL,
   `room_no` VARCHAR(45) NULL,
@@ -208,20 +207,20 @@ CREATE TABLE IF NOT EXISTS `srs`.`rooms` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_rooms_building_id`
     FOREIGN KEY (`building_id`)
-    REFERENCES `srs`.`buildings` (`id`)
+    REFERENCES `buildings` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_rooms_building_id_idx` ON `srs`.`rooms` (`building_id` ASC);
+CREATE INDEX `fk_rooms_building_id_idx` ON `rooms` (`building_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`events`
+-- Table `events`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`events` ;
+DROP TABLE IF EXISTS `events` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`events` (
+CREATE TABLE IF NOT EXISTS `events` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(180) NOT NULL,
   `description` TEXT NOT NULL,
@@ -229,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `srs`.`events` (
   `room_id` INT(11) NULL,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
-  `proposed_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `proposed_at` DATETIME NOT NULL ,
   `proposed_by` INT(11) NULL,
   `approved_at` DATETIME NULL,
   `approved_by` INT(11) NULL,
@@ -240,67 +239,67 @@ CREATE TABLE IF NOT EXISTS `srs`.`events` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_events_room_id`
     FOREIGN KEY (`room_id`)
-    REFERENCES `srs`.`rooms` (`id`)
+    REFERENCES `rooms` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_events_proposed_by`
     FOREIGN KEY (`proposed_by`)
-    REFERENCES `srs`.`staff` (`user_id`)
+    REFERENCES `staff` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_events_approved_by`
     FOREIGN KEY (`approved_by`)
-    REFERENCES `srs`.`admins` (`user_id`)
+    REFERENCES `admins` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_events_room_id_idx` ON `srs`.`events` (`room_id` ASC);
+CREATE INDEX `fk_events_room_id_idx` ON `events` (`room_id` ASC);
 
-CREATE INDEX `fk_events_approved_by_idx` ON `srs`.`events` (`approved_by` ASC);
+CREATE INDEX `fk_events_approved_by_idx` ON `events` (`approved_by` ASC);
 
-CREATE INDEX `events_start_time_idx` ON `srs`.`events` (`start_time` ASC);
+CREATE INDEX `events_start_time_idx` ON `events` (`start_time` ASC);
 
-CREATE INDEX `events_proposed_at_idx` ON `srs`.`events` (`approved_at` ASC);
+CREATE INDEX `events_proposed_at_idx` ON `events` (`approved_at` ASC);
 
-CREATE INDEX `fk_events_proposed_by_idx` ON `srs`.`events` (`proposed_by` ASC);
+CREATE INDEX `fk_events_proposed_by_idx` ON `events` (`proposed_by` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`applications`
+-- Table `applications`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`applications` ;
+DROP TABLE IF EXISTS `applications` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`applications` (
+CREATE TABLE IF NOT EXISTS `applications` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `student_id` INT(11) NULL,
   `event_id` INT(11) NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'reserved',
-  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` DATETIME NOT NULL ,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_applications_student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `srs`.`students` (`user_id`)
+    REFERENCES `students` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_applications_event_id`
     FOREIGN KEY (`event_id`)
-    REFERENCES `srs`.`events` (`id`)
+    REFERENCES `events` (`id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_applications_student_id_idx` ON `srs`.`applications` (`student_id` ASC);
+CREATE INDEX `fk_applications_student_id_idx` ON `applications` (`student_id` ASC);
 
-CREATE INDEX `fk_applications_event_id_idx` ON `srs`.`applications` (`event_id` ASC);
+CREATE INDEX `fk_applications_event_id_idx` ON `applications` (`event_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `srs`.`feedbacks`
+-- Table `feedbacks`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `srs`.`feedbacks` ;
+DROP TABLE IF EXISTS `feedbacks` ;
 
-CREATE TABLE IF NOT EXISTS `srs`.`feedbacks` (
+CREATE TABLE IF NOT EXISTS `feedbacks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `student_id` INT(11) NULL,
   `comment` TEXT NULL,
@@ -308,12 +307,12 @@ CREATE TABLE IF NOT EXISTS `srs`.`feedbacks` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_feedbacks_student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `srs`.`students` (`user_id`)
+    REFERENCES `students` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_feedbacks_student_id_idx` ON `srs`.`feedbacks` (`student_id` ASC);
+CREATE INDEX `fk_feedbacks_student_id_idx` ON `feedbacks` (`student_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
