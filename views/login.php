@@ -6,7 +6,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="well login-panel">
+
+			<!-- start of login panel -->
+			<div class="login-panel">
+				<?php require 'shared/notice.php';?>
+			<div class="well">
 				<form method="post" class="form-horizontal" action="<?php echo $app->urlFor('auth'); ?>">
 					<fieldset>
 						<legend>Login</legend>
@@ -30,6 +34,9 @@
 					</fieldset>
 				</form>
 			</div>
+			</div>
+			<!-- end of login panel -->
+			
 		</div>
 	</div>
 </div>
