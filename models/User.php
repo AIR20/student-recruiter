@@ -8,7 +8,7 @@ class User extends Model {
 	public $lastname;
 	public $gender;
 	public $dob;
-	public $avator;
+	public $avatar;
 	public $registered_at;
 
 	public static function authenticate($email, $password){
