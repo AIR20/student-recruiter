@@ -22,7 +22,7 @@
                 Title: 
               </label>
               <div class="col-sm-10">
-                <select class="form-control" name="password">
+                <select class="form-control" name="title">
                   <option value="Mr">Mr</option>
                   <option value="Mrs">Mrs</option>
                   <option value="Ms">Ms</option>
@@ -59,6 +59,16 @@
               </label>
               <div class="col-sm-10">
                 <input class="form-control" type="text" name="email" value="<?php echo $_SESSION['email'];?>">
+              </div>
+            </div>
+
+             <!--phone-->
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                Phone: <span class="error">*<?php echo $phoneErr; ?></span>
+              </label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" name="phone" value="<?php echo $_SESSION['phone'];?>">
               </div>
             </div>
 
@@ -117,10 +127,15 @@
             <!--school-->
             <div class="form-group">
               <label class="col-sm-2 control-label">
-                Title: 
+                School: 
               </label>
               <div class="col-sm-10">
-                <select class="form-control" name="password">
+                <select class="form-control" name="school_id">
+                  <option value="00001">The City of Liverpool College</option>
+                  <option value="00121">The Academy of St Francis of Assisi</option>
+                  <option value="34234">Liverpool Blue Coat School</option>
+                  <option value="45435">University Academy Liverpool</option>
+                  <option value="56565">St Edward's College</option>
                </select>
               </div>
             </div>
@@ -135,4 +150,3 @@
   </div>
 </body>
 </html>
-
