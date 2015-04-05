@@ -40,6 +40,16 @@ $app->group(
 	}
 );
 
+$app->group(
+	'/staff',
+	function () use($app){
+		$app->get(
+			'/create_event',
+			'StaffController:create_event'
+		)->name('create_event');
+	}
+);
+
 
 $app->get(
 	'/login',
