@@ -15,11 +15,17 @@ class User extends Model {
 		User::db_init();
 		$result = User::$db->query("SELECT id, email, hashed_password, firstname, lastname FROM users WHERE email = '$email' LIMIT 1");
 		if( !$result ) {
+			// No matching email address
 			return false;
 		}
 		else {
-			// $result->fetch_object('User');
-			// TODO
+			// Email matched, check password
+			$user = $result->fetch_object('User');
+
+			// TODO: change to hashed password later
+			if ($user->hashed_password == $password) {
+				return $user;
+			}
 		}
 	}
 }
