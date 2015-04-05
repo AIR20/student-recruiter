@@ -20,6 +20,15 @@ $app->group(
 	}
 );
 
+$app->group(
+	'/teacher',
+	function () use($app){
+		$app->get(
+			'/register',
+			'TeacherController:register'
+		)->name('teacher_register');
+	}
+);
 $app->get(
 	'/login',
 	'SessionController:login'
