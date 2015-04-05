@@ -29,6 +29,18 @@ $app->group(
 		)->name('teacher_register');
 	}
 );
+
+$app->group(
+	'/admin',
+	function () use($app){
+		$app->get(
+			'/create_staff',
+			'AdminController:create_staff'
+		)->name('create_staff');
+	}
+);
+
+
 $app->get(
 	'/login',
 	'SessionController:login'
