@@ -23,3 +23,9 @@ The SRS will provide facilities to enable the co-ordination of events organised 
 3. Copy `default.config.php` to `config.php` and modify the database configuration.
 
 4. Copy `default.htaccess` to `.htaccess` to enable URL rewrite on Apache.
+
+	Note: To enable URL rewrite on department server, uncomment the line with `RewriteBase` and change it to the base URL after the hostname `cgi.csc.liv.ac.uk`.
+	
+	```htaccess
+	RewriteBase /~username/student-recruiter/
+	```
