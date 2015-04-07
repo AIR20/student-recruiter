@@ -12,9 +12,11 @@
 			<h1 class="page-header">Student Registration</h1>
 			<p>Register for an account. <span class="error">* required</span></p>
 
+			<?php require 'shared/notice.php'; ?>
+			
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="" method="post" class="form-horizontal">
+			<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal">
 				
 				<!--first name-->
 				<div class="form-group">
@@ -63,9 +65,9 @@
 						Gender: <span class="error">*</span>
 					</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="password">
-							<option value="M">Male</option>
-							<option value="F">Female</option>
+						<select class="form-control" name="gender">
+							<option value="0">Male</option>
+							<option value="1">Female</option>
 						</select>
 					</div>
 				</div>
@@ -76,7 +78,7 @@
 						DOB: <span class="error">*<?php echo $dobErr?></span>
 					</label>
           <div class="col-sm-10">
-            <input type="text" class="datepicker form-control" placeholder="DD/MM/YYYY">
+            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
             <script>
               $('.datepicker').datepicker({
                 format: "d M yyyy",
@@ -120,7 +122,7 @@
 						Address line 3: <span class="error">*<?php echo $townErr; ?></span>
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="town" value="<?php echo $_SESSION['town'];?>">
+						<input class="form-control" type="text" name="addr3" value="<?php echo $_SESSION['town'];?>">
 					</div>
 				</div>
 

@@ -1,12 +1,13 @@
 <?php
 
-Class SessionController extends BaseController {
-	// GET /login
+class SessionController extends BaseController {
+
+	# GET /login
 	function login(){
 		$this->app->render('login.php', $this->data);
 	}
 
-	// POST /authenticate
+	# POST /authenticate
 	function authenticate(){
 		$app = $this->app;
 
@@ -22,8 +23,9 @@ Class SessionController extends BaseController {
 		}
 	}
 	
-	// POST /logout
+	# POST /logout
 	function logout(){
-
+		// TODO: Logout
+		throw new Exception('Not implemented.');
 	}
 }

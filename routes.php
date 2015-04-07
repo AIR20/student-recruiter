@@ -17,6 +17,11 @@ $app->group(
 			'/register',
 			'StudentController:register'
 		)->name('student_register');
+
+		$app->post(
+			'',
+			'StudentController:store'
+		)->name('student_store');
 	}
 );
 

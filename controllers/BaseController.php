@@ -192,4 +192,27 @@ class BaseController
 		$baseUrl = rtrim($baseUrl, '/');
 		return $baseUrl;
 	}
+
+	/**
+	 * convert UK date to MySQL date
+	 */
+	protected function convertDate($date){
+		$date = DateTime::createFromFormat('d M Y', $date);
+		if($date){
+			return $date->format('Y-m-d');
+		}
+	}
+
+	/**
+	 * get POST params and convert empty string to null
+	 */
+	protected function getParams(){
+		$params = $this->app->request->post();
+		foreach ($params as $key => $value) {
+			if ($value === '') {
+				$params[$key] = null;
+			}
+		}
+		return $params;
+	}
 }
