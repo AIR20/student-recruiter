@@ -1,16 +1,22 @@
 <?php
 
 class User extends Model {
+	// mapped to database fields
 	public $id;
 	public $email;
 	public $hashed_password;
 	public $firstname;
 	public $lastname;
-	public $gender;
+	public $gender; // 0 => male, 1 => female
 	public $dob;
 	public $avatar;
 	public $registered_at;
 
+	/**
+	 * This class method authenticate the user using email and password.
+	 * @return	false if authentication fails
+	 * 			a user object if email and password matches
+	 */
 	public static function authenticate($email, $password){
 		User::db_init();
 		$result = User::$db->query("SELECT id, email, hashed_password, firstname, lastname FROM users WHERE email = '$email' LIMIT 1");
@@ -25,7 +31,35 @@ class User extends Model {
 			// TODO: change to hashed password later
 			if ($user->hashed_password == $password) {
 				return $user;
+			} else {
+				return false;
 			}
 		}
+	}
+
+	public function save() {
+		if (!parent::save()) return false;
+
+		if ($this->new_record) {
+			$stmt = User::$db->prepare(
+				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`) VALUES (?, ?, ?, ?, ?, ?, ?)"
+			);
+			if ($stmt) {
+				$stmt->bind_param("ssssiss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar);
+				if ( !$stmt->execute() ) return false;
+				$this->id = $stmt->insert_id;
+				return true;
+			}
+		}
+		else {
+			// TODO: Update record
+			throw new Exception('Update not implemented yet.');
+		}
+
+	}
+
+	public function validate() {
+		// TODO: Validate fields
+		return true;
 	}
 }
