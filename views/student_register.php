@@ -118,7 +118,35 @@
 						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 					</div>
 				</div>
-				
+	  
+        <!--Interests checkboxes-->
+				<div class="form-group">
+    		  <label class="col-sm-2 controll-label">
+            Interests:
+          </label>
+          <div class="col-sm-10"> 
+          <div class="checkbox">
+            <label><input class="form-control" type="checkbox" name="interest">Art</label>
+          </div>         
+         
+          <div class="checkbox">
+            <label><input class="form-control" type="checkbox" name="interest">Careers</label>
+          </div>
+          
+          <div class="checkbox">
+            <label><input class="form-control" type="checkbox" name="interest">Computer Science</label>
+          </div>
+  
+          <div class="checkbox">
+            <label><input class="form-control" type="checkbox" name="interest">Concerts</label>
+          </div>
+          
+          <div class="checkbox">
+            <label><input class="form-control" type="checkbox" name="interest">Open days</label>
+          </div>
+          </div>	
+        </div>
+
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">
 			</form>
