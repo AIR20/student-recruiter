@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <?php require 'shared/head.php'; ?>
-    <script type="text/javascript" src="http://cgi.csc.liv.ac.uk/~u3ac/student-recruiter/assets/js/bootstrap-datepicker.js" charset="UTF-8"> </script>
-    <link rel="stylesheet" href="http://cgi.csc.liv.ac.uk/~u3ac/student-recruiter/assets/css/datepicker.css"></link>
-</head>
-
+<?php require 'shared/head.php'; ?>
 <body>
 <?php require 'shared/navbar.php'; ?>
 <div class="container">
@@ -82,20 +76,27 @@
 						DOB: <span class="error">*<?php echo $dobErr?></span>
 					</label>
           <div class="col-sm-10">
-            <input type="text" class="datepicker" placeholder="Click me!">
+            <input type="text" class="datepicker form-control" placeholder="DD/MM/YYYY">
             <script>
-              var $j = jQuery.noConflict();
-              $j('.datepicker').datepicker();
+              $('.datepicker').datepicker({
+                format: "d M yyyy",
+                startView: 2,
+                defaultViewDate: {
+                  year: 1996,
+                  month: 1,
+                  day: 1
+                }
+              });
             </script>
           </div>
 
-<!--					<div class="form-inline">
+					<!-- <div class="form-inline">
 						<div class="col-sm-10">
 							<input class="form-control" placeholder="YYYY" type="text" name="year" value="<?php echo $_SESSION['year'];?>">
 							<input class="form-control" placeholder="MM" type="text" name="month" value="<?php echo $_SESSION['month'];?>">
 							<input class="form-control" placeholder="DD" type="text" name="day" value="<?php echo $_SESSION['day'];?>">
 						</div>
-					</div>-->
+					</div> -->
 				</div>
 				<!--address-->
 				<div class="form-group">
@@ -135,28 +136,28 @@
 	  
         <!--Interests checkboxes-->
 				<div class="form-group">
-    		  <label class="col-sm-2 controll-label">
+    		  <label class="col-sm-2 control-label">
             Interests:
           </label>
           <div class="col-sm-10"> 
           <div class="checkbox">
-            <label><input class="form-control" type="checkbox" name="interest">Art</label>
+            <label><input type="checkbox" name="interest">Art</label>
           </div>         
          
           <div class="checkbox">
-            <label><input class="form-control" type="checkbox" name="interest">Careers</label>
+            <label><input type="checkbox" name="interest">Careers</label>
           </div>
           
           <div class="checkbox">
-            <label><input class="form-control" type="checkbox" name="interest">Computer Science</label>
+            <label><input type="checkbox" name="interest">Computer Science</label>
           </div>
   
           <div class="checkbox">
-            <label><input class="form-control" type="checkbox" name="interest">Concerts</label>
+            <label><input type="checkbox" name="interest">Concerts</label>
           </div>
           
           <div class="checkbox">
-            <label><input class="form-control" type="checkbox" name="interest">Open days</label>
+            <label><input type="checkbox" name="interest">Open days</label>
           </div>
           </div>	
         </div>
