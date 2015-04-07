@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-<?php require 'shared/head.php'; ?>
+
+<head>
+    <?php require 'shared/head.php'; ?>
+    <script type="text/javascript" src="http://cgi.csc.liv.ac.uk/~u3ac/student-recruiter/assets/js/bootstrap-datepicker.js" charset="UTF-8"> </script>
+    <link rel="stylesheet" href="http://cgi.csc.liv.ac.uk/~u3ac/student-recruiter/assets/css/datepicker.css"></link>
+</head>
+
 <body>
 <?php require 'shared/navbar.php'; ?>
 <div class="container">
@@ -75,13 +81,21 @@
 					<label class="col-sm-2 control-label">
 						DOB: <span class="error">*<?php echo $dobErr?></span>
 					</label>
-					<div class="form-inline">
+          <div class="col-sm-10">
+            <input type="text" class="datepicker" placeholder="Click me!">
+            <script>
+              var $j = jQuery.noConflict();
+              $j('.datepicker').datepicker();
+            </script>
+          </div>
+
+<!--					<div class="form-inline">
 						<div class="col-sm-10">
 							<input class="form-control" placeholder="YYYY" type="text" name="year" value="<?php echo $_SESSION['year'];?>">
 							<input class="form-control" placeholder="MM" type="text" name="month" value="<?php echo $_SESSION['month'];?>">
 							<input class="form-control" placeholder="DD" type="text" name="day" value="<?php echo $_SESSION['day'];?>">
 						</div>
-					</div>
+					</div>-->
 				</div>
 				<!--address-->
 				<div class="form-group">
