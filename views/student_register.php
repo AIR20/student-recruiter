@@ -135,14 +135,29 @@
 						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 					</div>
 				</div>
-	  
+	      
+        <!--School-->
+        <div class="form-group"> 
+          <label class="col-sm-2 control-label">
+            School:        
+          </label>
+          <div class="col-sm-10">
+            <select class="form-control" name="school_id">
+              <option value="00001">The City of Liverpool College</option>
+              <option value="00121">The Academy of St Francis of Assisi</option>
+              <option value="34234">Liverpool Blue Coat School</option>
+              <option value="45435">University Academy Liverpool</option>
+              <option value="56565">St Edward's College</option>
+            </select>
+          </div>
+         
         <!--Interests checkboxes-->
 				<div class="form-group">
     		  <label class="col-sm-2 control-label">
             Interests:
           </label>
           <div class="col-sm-10"> 
-          <div class="checkbox">
+        <div class="checkbox">
             <label><input type="checkbox" name="interest">Art</label>
           </div>         
          
