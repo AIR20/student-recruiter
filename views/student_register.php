@@ -150,32 +150,29 @@
               <option value="56565">St Edward's College</option>
             </select>
           </div>
-         
+        </div>
+      
         <!--Interests checkboxes-->
 				<div class="form-group">
     		  <label class="col-sm-2 control-label">
             Interests:
           </label>
           <div class="col-sm-10"> 
-        <div class="checkbox">
-            <label><input type="checkbox" name="interest">Art</label>
-          </div>         
-         
-          <div class="checkbox">
-            <label><input type="checkbox" name="interest">Careers</label>
-          </div>
-          
-          <div class="checkbox">
-            <label><input type="checkbox" name="interest">Computer Science</label>
-          </div>
-  
-          <div class="checkbox">
-            <label><input type="checkbox" name="interest">Concerts</label>
-          </div>
-          
-          <div class="checkbox">
-            <label><input type="checkbox" name="interest">Open days</label>
-          </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Art</label>
+            </div>         
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Careers</label>
+            </div>  
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Computer Science</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Concerts</label>
+            </div>    
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Open days</label>
+            </div>
           </div>	
         </div>
 
