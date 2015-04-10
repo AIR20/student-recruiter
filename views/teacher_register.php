@@ -110,8 +110,9 @@
                 Address line 3: <span class="error">*<?php echo $townErr; ?></span>
               </label>
   
-            <div class="col-sm-10">
-              <input class="form-control" type="text" name="town" value="<?php echo $_SESSION['town'];?>">
+              <div class="col-sm-10">
+                <input class="form-control" type="text" name="town" value="<?php echo $_SESSION['town'];?>">
+              </div>
             </div>
   
             <!-- postcode -->
