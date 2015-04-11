@@ -22,6 +22,10 @@ $app->group(
 			'',
 			'StudentController:store'
 		)->name('student_store');
+    $app->get(
+      '/event',
+      'StudentController:event'
+    )->name('event');
 	}
 );
 

@@ -7,6 +7,10 @@ class StudentController extends BaseController {
 		$this->app->render('student_register.php', $this->data);
 	}
 
+  function event() {
+    $this->app->render('event.php', $this->data);
+  }
+
 	# POST /student
 	function store() {
 		$app = $this->app;
