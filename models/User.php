@@ -14,7 +14,7 @@ class User extends Model {
 
 	public function __construct() {
 		parent::__construct();
-		 $this->registered_at = $this->current_time()
+		$this->registered_at = $this->current_time();
 	}
 
 	/**
@@ -50,7 +50,7 @@ class User extends Model {
 				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("ssssisss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar, this->registered_at);
+				$stmt->bind_param("ssssisss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar, $this->registered_at);
 				if ( !$stmt->execute() ) return false;
 				$this->id = $stmt->insert_id;
 				return true;
