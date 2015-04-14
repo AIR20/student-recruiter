@@ -5,13 +5,12 @@ class Model {
 	protected static $db;
 
 	// new object or existing object in the database
-	protected $new_record;
+	protected $new_record = true;
 
-	public function __construct($new_record = false){
+	public function __construct(){
 		// get database connection
 		if( null === Model::$db )
 			Model::$db = Database::getInstance();
-		$this->new_record = $new_record;
 	}
 
 	// used in static methods
@@ -31,6 +30,10 @@ class Model {
 	// should be overriden in subclass
 	public function validate(){
 		return true;
+	}
+
+	protected function current_time(){
+		return date('Y-m-d H:i:s');
 	}
 }
 

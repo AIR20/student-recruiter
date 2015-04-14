@@ -12,6 +12,11 @@ class User extends Model {
 	public $avatar;
 	public $registered_at;
 
+	public function __construct() {
+		parent::__construct();
+		 $this->registered_at = $this->current_time()
+	}
+
 	/**
 	 * This class method authenticate the user using email and password.
 	 * @return	false if authentication fails
@@ -42,10 +47,10 @@ class User extends Model {
 
 		if ($this->new_record) {
 			$stmt = User::$db->prepare(
-				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`) VALUES (?, ?, ?, ?, ?, ?, ?)"
+				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("ssssiss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar);
+				$stmt->bind_param("ssssisss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar, this->registered_at);
 				if ( !$stmt->execute() ) return false;
 				$this->id = $stmt->insert_id;
 				return true;
