@@ -5,7 +5,7 @@ class Model {
 	protected static $db;
 
 	// new object or existing object in the database
-	protected $new_record = true;
+	public $new_record = true;
 
 	public function __construct(){
 		// get database connection
