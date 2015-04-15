@@ -75,17 +75,24 @@
             <!--date of birth-->
             <div class="form-group">
               <label class="col-sm-2 control-label">
-               DOB: <span class="error">*<?php echo $dobErr?></span>
+                DOB:
               </label>
-              <div class="form-inline">
-                <div class="col-sm-10">
-                  <input class="form-control" placeholder="YYYY" type="text" name="year" value="<?php echo $_SESSION['year'];?>">
-                  <input class="form-control" placeholder="MM" type="text" name="month" value="<?php echo $_SESSION['month'];?>">
-                  <input class="form-control" placeholder="DD" type="text" name="day" value="<?php echo $_SESSION['day'];?>">
-                </div>
-              </div>
+              <div class="col-sm-10">
+                <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
+                <script>
+                  $('.datepicker').datepicker({
+                    format: "d M yyyy",
+                    startView: 2,
+                    defaultViewDate: {
+                      year: 1996,
+                      month: 1,
+                      day: 1
+                    }
+                  });
+                </script>
+              </div> 
             </div>
-            
+
             <!--address-->
             <div class="form-group">
               <label class="col-sm-2 control-label">
