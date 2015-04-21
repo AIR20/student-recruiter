@@ -11,7 +11,7 @@ class Student extends User {
 
 
 	public function save() {
-		Student::$db->begin_transaction();
+		// Student::$db->begin_transaction();
 		if (!parent::save()) {
 			Student::$db->rollback();
 			return false;
@@ -24,10 +24,10 @@ class Student extends User {
 			if ($stmt) {
 				$stmt->bind_param("iiissss", $this->id, $this->school_id, $this->teacher_id, $this->address_line1, $this->address_line2, $this->address_line3, $this->postcode);
 				if ($stmt->execute()) {
-					Student::$db->commit();
+					// Student::$db->commit();
 					return true;
 				} else {
-					Student::$db->rollback();
+					// Student::$db->rollback();
 					return false;
 				}
 			}
