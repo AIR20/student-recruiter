@@ -23,3 +23,8 @@ The SRS will provide facilities to enable the co-ordination of events organised 
 3. Copy `default.config.php` to `config.php` and modify the database configuration.
 
 4. Copy `default.htaccess` to `.htaccess` to enable URL rewrite on Apache.
+    
+    And ensure you have correct permission for `.htaccess` file.
+    ```shell
+    chmod 755 .htaccess
+    ```
