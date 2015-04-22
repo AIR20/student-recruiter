@@ -77,7 +77,7 @@ class User extends Model {
 	public static function getUserById($id) {
 		User::db_init();
 		$result = User::$db->query("SELECT `id`, `email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at` FROM `users` WHERE id = $id");
-		if (!$result) {
+		if ( $result->num_rows == 0 ) {
 			throw new Exception('No such user.');
 		}
 		$user = $result->fetch_object('User');

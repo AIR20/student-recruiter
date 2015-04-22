@@ -52,7 +52,7 @@ class Event extends Model {
 	public static function getEventById($id) {
 		Event::db_init();
 		$result = Event::$db->query("SELECT `id`, `title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `id` = $id LIMIT 1");
-		if (!$result) {
+		if ($result->num_rows == 0) {
 			throw new Exception('No such event.');
 		}
 		$event = $result->fetch_object('Event');
