@@ -5,6 +5,10 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+
+DROP SCHEMA IF EXISTS `u3ac`;
+CREATE SCHEMA IF NOT EXISTS `u3ac` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 -- -----------------------------------------------------
 -- Schema srs
 -- -----------------------------------------------------
@@ -21,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `hashed_password` VARCHAR(90) NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
+  `role` INT NOT NULL,
   `gender` TINYINT NULL,
   `dob` DATE NULL,
   `avatar` VARCHAR(180) NULL,

@@ -52,6 +52,7 @@ class Database {
 	protected function __construct(){
 		global $config;
 		$this->connection = new mysqli($config['db']['hostname'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
+    $this->connection->query('SET NAMES utf8');
 		if($this->connect_error)
 			throw new Exception('Database connection failed.');
 	}
