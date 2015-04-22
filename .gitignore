@@ -17,6 +17,7 @@ hs_err_pid*
 # Ignore the configuration file
 config.php
 .htaccess
+Makefile
 
 # Ignore temporary file
 tmp/*
