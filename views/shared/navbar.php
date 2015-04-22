@@ -19,9 +19,6 @@
 					<a href="<?php echo $app->urlFor('list_event'); ?>">Events</a>
 				</li>
 				<li>
-					<a href="<?php echo $app->urlFor('event'); ?>">My Events</a>
-				</li>
-				<li>
 					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>
 				</li>
 				<li>
