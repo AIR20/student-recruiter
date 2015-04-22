@@ -13,9 +13,9 @@ if ($config['slim']['debug'] == true) {
 /**
  * Start native PHP session
  */
-//session_cache_limiter(false);
+session_cache_limiter(false);
 session_start();
-ini_set('display_errors', 'On');
+
 /**
  * Instantiate a Slim application
  */
