@@ -24,6 +24,9 @@
 				<li>
 					<a href="#">Map</a>
 				</li>
+				<li>
+					<a href = "#">Calendar</a>
+				</li>
 			</ul>
       
       <ul class="nav navbar-nav navbar-right">
