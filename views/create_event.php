@@ -71,12 +71,19 @@
 		          <label class="col-sm-2 control-label">
 		          	Date of event: <span class="error">*<?php echo $dobErr?></span>
 		          </label>
-		          <div class="form-inline">
-		            <div class="col-sm-10">
-		                <input class="form-control" placeholder="YYYY" type="text" name="year">
-		                <input class="form-control" placeholder="MM" type="text" name="month">
-		                <input class="form-control" placeholder="DD" type="text" name="day">
-		            </div>
+		          <div class="col-sm-10">
+		                <input type="text" class="datepicker form-control" name = "eventDate" placeholder="DD/MM/YYY">
+                    <script>
+                        var d = new Date();
+                        $('.datepicker').datepicker({
+                          format:"d M yyyy",
+                          defaultViewDate: {  
+                              year: d.getFullYear(),
+                              month: d.getMonth(),
+                              day: d.getDate(), 
+                          }
+                        });
+                    </script>
 		          </div>
 		        </div>
 
