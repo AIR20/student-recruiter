@@ -59,6 +59,11 @@ $app->group(
 	}
 );
 
+$app->get(
+	'/accountDetails',
+	'AccountController:display'
+)->name('account');
+
 
 $app->get(
 	'/login',

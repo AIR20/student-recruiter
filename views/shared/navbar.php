@@ -22,7 +22,7 @@
 					<a href="#">My Events</a>
 				</li>
 				<li>
-					<a href="#">Account</a>
+					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>
 				</li>
 				<li>
 					<a href="#">Map</a>

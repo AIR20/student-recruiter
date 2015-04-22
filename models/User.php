@@ -12,10 +12,7 @@ class User extends Model {
 	public $avatar;
 	public $registered_at;
 
-	public function __construct() {
-		parent::__construct();
-		$this->registered_at = $this->current_time();
-	}
+
 
 	/**
 	 * This class method authenticate the user using email and password.
@@ -24,7 +21,7 @@ class User extends Model {
 	 */
 	public static function authenticate($email, $password){
 		User::db_init();
-		$result = User::$db->query("SELECT id, email, hashed_password, firstname, lastname FROM users WHERE email = '$email' LIMIT 1");
+		$result = User::$db->query("SELECT id, email, hashed_password FROM users WHERE email = '$email' LIMIT 1");
 		
 		if( $result->num_rows == 0 ) {
 			// No matching email address
@@ -37,7 +34,7 @@ class User extends Model {
 			// TODO: change to hashed password later
 			if ($user->hashed_password == $password) {
 
-				$_SESSION['user'] = $user;
+				$_SESSION['user'] = $user->id;
 				return $user;
 				
 			} else {
@@ -51,6 +48,7 @@ class User extends Model {
 		if (!parent::save()) return false;
 
 		if ($this->new_record) {
+			$this->registered_at = $this->current_time();
 			$stmt = User::$db->prepare(
 				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 			);
