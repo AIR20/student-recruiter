@@ -7,6 +7,7 @@ define('VENDOR_PATH', __DIR__.'/vendor/');
 define('CONTROLLER_PATH', __DIR__.'/controllers/');
 define('MODEL_PATH', __DIR__.'/models/');
 define('VIEW_PATH', __DIR__.'/views/');
+define('TEST_PATH', __DIR__.'/test/');
 // define('LOG_PATH', __DIR__.'/log/');
 
 // Load Slim framework
