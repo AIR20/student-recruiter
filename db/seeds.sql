@@ -1,6 +1,6 @@
 -- Date: 2015-04-02 14:36
 
-USE `u3mk`;
+USE `srs`;
 
 -- Buildings
 -- ------------------------------------------------------
@@ -30,3 +30,4 @@ INSERT INTO `events` (`id`,`title`,`description`,`tags`,`room_id`,`start_time`,`
 
 -- Users
 -- ------------------------------------------------------
+INSERT INTO `users` (`id`,`email`,`hashed_password`,`firstname`,`lastname`,`role`,`gender`,`dob`,`avatar`,`registered_at`) VALUES (1,'test@example.com','123456','Alex','Fleming',3,NULL,NULL,NULL,'2015-04-03 16:05:01');

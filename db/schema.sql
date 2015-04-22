@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `srs`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(90) NOT NULL,
   `hashed_password` VARCHAR(90) NOT NULL,
+  `role` INTEGER NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
   `gender` TINYINT NULL,

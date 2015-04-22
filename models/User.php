@@ -5,6 +5,7 @@ class User extends Model {
 	public $id;
 	public $email;
 	public $hashed_password;
+	public $role; // 0 => Admin, 1 => Staff, 2 => Teacher, 3 => Student
 	public $firstname;
 	public $lastname;
 	public $gender; // 0 => male, 1 => female
@@ -50,10 +51,10 @@ class User extends Model {
 		if ($this->new_record) {
 			$this->registered_at = $this->current_time();
 			$stmt = User::$db->prepare(
-				"INSERT INTO `users` (`email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+				"INSERT INTO `users` (`email`, `hashed_password`, `role`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("ssssisss", $this->email, $this->hashed_password, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar, $this->registered_at);
+				$stmt->bind_param("ssississs", $this->email, $this->hashed_password, $this->role, $this->firstname, $this->lastname, $this->gender, $this->dob, $this->avatar, $this->registered_at);
 				if ( !$stmt->execute() ) return false;
 				$this->id = $stmt->insert_id;
 				return true;
@@ -76,7 +77,7 @@ class User extends Model {
 	 */
 	public static function getUserById($id) {
 		User::db_init();
-		$result = User::$db->query("SELECT `id`, `email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at` FROM `users` WHERE id = $id");
+		$result = User::$db->query("SELECT `id`, `email`, `hashed_password`, `role`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at` FROM `users` WHERE id = $id LIMIT 1");
 		if ( $result->num_rows == 0 ) {
 			throw new Exception('No such user.');
 		}
