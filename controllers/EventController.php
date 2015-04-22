@@ -15,12 +15,26 @@ class EventController extends BaseController {
 
 	# GET /event/create
 	public function create() {
-
+		$this->app->render('create_event.php', $this->data);
 	}
 
 	# POST /event
 	public function store(){
+		$app = $this->app;
+		$params = $this->getParams();
 
+		$event = new Event(true);
+		$event->id = $params['id'];
+		$event->title = $params['title'];
+		$event->description = $params['description'];
+
+		if($event->save()){
+			$app->flash('info', 'Request sent.');
+			$app->redirect($app->urlFor('home'));
+		} else {
+				$app->flash('warning', 'There was an error with the request');
+				$app->redirect($app->urlFor('create_event'));
+		}
 	}
 
 	# POST /event/1/approve
