@@ -7,9 +7,9 @@ class Teacher extends User {
 
 
 	public function save() {
-		Teacher::$db->begin_transaction();
+		// Teacher::$db->begin_transaction();
 		if (!parent::save()) {
-			Teacher::$db->rollback();
+			// Teacher::$db->rollback();
 			return false;
 		}
 
@@ -20,10 +20,10 @@ class Teacher extends User {
 			if ($stmt) {
 				$stmt->bind_param("iis", $this->id, $this->school_id, $this->phone);
 				if ($stmt->execute()) {
-					Teacher::$db->commit();
+					// Teacher::$db->commit();
 					return true;
 				} else {
-					Teacher::$db->rollback();
+					// Teacher::$db->rollback();
 					return false;
 				}
 			}

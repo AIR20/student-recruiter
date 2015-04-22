@@ -13,16 +13,15 @@ class Student extends User {
 	public function save() {
 		// Student::$db->begin_transaction();
 
+		$this->role = 3; // Role is student
+
+		// Save the parent
+		if (!parent::save()) {
+			// Student::$db->rollback();
+			return false;
+		}
 
 		if ($this->new_record) {
-
-			$this->role = 3; // Role is student
-
-			// Save the parent
-			if (!parent::save()) {
-				// Student::$db->rollback();
-				return false;
-			}
 
 			$stmt = Student::$db->prepare(
 				"INSERT INTO `students` (`user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode`) VALUES (?, ?, ?, ?, ?, ?, ?)"

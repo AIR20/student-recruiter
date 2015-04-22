@@ -13,8 +13,6 @@ class User extends Model {
 	public $avatar;
 	public $registered_at;
 
-
-
 	/**
 	 * This class method authenticate the user using email and password.
 	 * @return	false if authentication fails
