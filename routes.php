@@ -65,7 +65,7 @@ $app->get(
 	'SessionController:login'
 )->name('login');
 
-$app->post(
+$app->get(
 	'/logout',
 	'SessionController:logout'
 )->name('logout');

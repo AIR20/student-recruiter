@@ -30,12 +30,20 @@
 			</ul>
       
       <ul class="nav navbar-nav navbar-right">
+				<?php if(!isset($_SESSION['user'])): ?>
 				<li>
 					<a href="<?php echo $app->urlFor('student_register'); ?>">Register</a>
 				</li>
-        <li>
+				
+				
+				<li>
 					<a href="<?php echo $app->urlFor('login'); ?>">Login</a>
 				</li>
+				<?php else: ?>
+				<li>
+					<a href="<?php echo $app->urlFor('logout'); ?>">Logout</a>
+				</li>
+				<?php endif; ?>
         <li style="top:15px;"> 
           <a class="twitter-follow-button"
             href="https://twitter.com/StdntRecruiter"

@@ -25,7 +25,8 @@ class User extends Model {
 	public static function authenticate($email, $password){
 		User::db_init();
 		$result = User::$db->query("SELECT id, email, hashed_password, firstname, lastname FROM users WHERE email = '$email' LIMIT 1");
-		if( !$result ) {
+		
+		if( $result->num_rows == 0 ) {
 			// No matching email address
 			return false;
 		}
@@ -35,8 +36,12 @@ class User extends Model {
 
 			// TODO: change to hashed password later
 			if ($user->hashed_password == $password) {
+
+				$_SESSION['user'] = $user;
 				return $user;
+				
 			} else {
+
 				return false;
 			}
 		}
