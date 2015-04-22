@@ -17,15 +17,77 @@ $app->group(
 			'/register',
 			'StudentController:register'
 		)->name('student_register');
+
+		$app->post(
+			'',
+			'StudentController:store'
+		)->name('student_store');
+    $app->get(
+      '/event',
+      'StudentController:event'
+    )->name('event');
 	}
 );
+
+$app->group(
+	'/teacher',
+	function () use($app){
+		$app->get(
+			'/register',
+			'TeacherController:register'
+		)->name('teacher_register');
+	}
+);
+
+$app->group(
+	'/admin',
+	function () use($app){
+		$app->get(
+			'/create_staff',
+			'AdminController:create_staff'
+		)->name('create_staff');
+	}
+);
+
+$app->group(
+	'/staff',
+	function () use($app){
+		$app->get(
+			'/create_event',
+			'StaffController:create_event'
+		)->name('create_event');
+	}
+);
+
+$app->group(
+	'/event',
+	function () use($app){
+		$app->get(
+			'/list',
+			'EventController:index'
+		)->name('list_event');
+		
+		$app->get(
+			'/:id',
+			'EventController:view'
+		)->name('view_event');
+	}
+	
+);
+
+$app->get(
+	'/accountDetails',
+	'AccountController:display'
+)->name('account');
+
+
 
 $app->get(
 	'/login',
 	'SessionController:login'
 )->name('login');
 
-$app->post(
+$app->get(
 	'/logout',
 	'SessionController:logout'
 )->name('logout');

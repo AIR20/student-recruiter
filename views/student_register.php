@@ -12,9 +12,11 @@
 			<h1 class="page-header">Student Registration</h1>
 			<p>Register for an account. <span class="error">* required</span></p>
 
+			<?php require 'shared/notice.php'; ?>
+			
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="" method="post" class="form-horizontal">
+			<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal">
 				
 				<!--first name-->
 				<div class="form-group">
@@ -63,9 +65,9 @@
 						Gender: <span class="error">*</span>
 					</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="password">
-							<option value="M">Male</option>
-							<option value="F">Female</option>
+						<select class="form-control" name="gender">
+							<option value="0">Male</option>
+							<option value="1">Female</option>
 						</select>
 					</div>
 				</div>
@@ -75,13 +77,28 @@
 					<label class="col-sm-2 control-label">
 						DOB: <span class="error">*<?php echo $dobErr?></span>
 					</label>
-					<div class="form-inline">
+          <div class="col-sm-10">
+            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
+            <script>
+              $('.datepicker').datepicker({
+                format: "d M yyyy",
+                startView: 2,
+                defaultViewDate: {
+                  year: 1996,
+                  month: 1,
+                  day: 1
+                }
+              });
+            </script>
+          </div>
+
+					<!-- <div class="form-inline">
 						<div class="col-sm-10">
 							<input class="form-control" placeholder="YYYY" type="text" name="year" value="<?php echo $_SESSION['year'];?>">
 							<input class="form-control" placeholder="MM" type="text" name="month" value="<?php echo $_SESSION['month'];?>">
 							<input class="form-control" placeholder="DD" type="text" name="day" value="<?php echo $_SESSION['day'];?>">
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<!--address-->
 				<div class="form-group">
@@ -105,7 +122,7 @@
 						Address line 3: <span class="error">*<?php echo $townErr; ?></span>
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="town" value="<?php echo $_SESSION['town'];?>">
+						<input class="form-control" type="text" name="addr3" value="<?php echo $_SESSION['town'];?>">
 					</div>
 				</div>
 
@@ -118,7 +135,47 @@
 						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 					</div>
 				</div>
-				
+	      
+        <!--School-->
+        <div class="form-group"> 
+          <label class="col-sm-2 control-label">
+            School:        
+          </label>
+          <div class="col-sm-10">
+            <select class="form-control" name="school_id">
+              <option value="00001">The City of Liverpool College</option>
+              <option value="00121">The Academy of St Francis of Assisi</option>
+              <option value="34234">Liverpool Blue Coat School</option>
+              <option value="45435">University Academy Liverpool</option>
+              <option value="56565">St Edward's College</option>
+            </select>
+          </div>
+        </div>
+      
+        <!--Interests checkboxes-->
+				<div class="form-group">
+    		  <label class="col-sm-2 control-label">
+            Interests:
+          </label>
+          <div class="col-sm-10"> 
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Art</label>
+            </div>         
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Careers</label>
+            </div>  
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Computer Science</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Concerts</label>
+            </div>    
+            <div class="checkbox">
+              <label><input type="checkbox" name="interest">Open days</label>
+            </div>
+          </div>	
+        </div>
+
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">
 			</form>

@@ -64,3 +64,5 @@ $config['db'] = array(
 	'password'		=> '',
 	'database'		=> 'srs'
 );
+
+date_default_timezone_set('Europe/London');

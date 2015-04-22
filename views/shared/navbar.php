@@ -16,26 +16,45 @@
 					<a href="<?php echo $app->urlFor('home'); ?>">Home</a>
 				</li>
 				<li>
-					<a href="<?php echo $app->urlFor('student_register'); ?>">Register</a>
+					<a href="<?php echo $app->urlFor('list_event'); ?>">Events</a>
 				</li>
 				<li>
-					<a href="#">Events</a>
+					<a href="<?php echo $app->urlFor('event'); ?>">My Events</a>
 				</li>
 				<li>
-					<a href="#">My Events</a>
-				</li>
-				<li>
-					<a href="#">Account</a>
+					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>
 				</li>
 				<li>
 					<a href="#">Map</a>
 				</li>
 			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
+      
+      <ul class="nav navbar-nav navbar-right">
+				<?php if(!isset($_SESSION['user'])): ?>
+				<li>
+					<a href="<?php echo $app->urlFor('student_register'); ?>">Register</a>
+				</li>
+				
+				
 				<li>
 					<a href="<?php echo $app->urlFor('login'); ?>">Login</a>
 				</li>
+				<?php else: ?>
+				<li>
+					<a href="<?php echo $app->urlFor('logout'); ?>">Logout</a>
+				</li>
+				<?php endif; ?>
+        <li style="top:15px;"> 
+          <a class="twitter-follow-button"
+            href="https://twitter.com/StdntRecruiter"
+            data-show-count="false"
+            data-lang="en"
+            data-align="right">
+
+            Follow @StdntRecruiter
+          </a>
+          <script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
+        </li>
 			</ul>
 
 		</div>

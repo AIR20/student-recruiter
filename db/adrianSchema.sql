@@ -20,18 +20,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(90) NOT NULL,
   `hashed_password` VARCHAR(90) NOT NULL,
+  `role` INTEGER NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
   `gender` TINYINT NULL,
   `dob` DATE NULL,
   `avatar` VARCHAR(180) NULL,
-  `registered_at` DATETIME NOT NULL ,
+  `registered_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `email_UNIQUE` ON `users` (`email` ASC);
 
 CREATE INDEX `users_email_idx` ON `users` (`email` ASC);
+
 
 
 -- -----------------------------------------------------

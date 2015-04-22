@@ -1,29 +1,37 @@
 <?php
 
-Class SessionController extends BaseController {
-	// GET /login
+class SessionController extends BaseController {
+
+	# GET /login
 	function login(){
 		$this->app->render('login.php', $this->data);
 	}
 
-	// POST /authenticate
+	# POST /authenticate
 	function authenticate(){
 		$app = $this->app;
 
 		$email = $app->request->post('email');
 		$password = $app->request->post('password');
+		//$app->redirect($app->urlFor('home'));
 
 		if (User::authenticate($email, $password)) {
 			$app->flash('info', 'Successfully logged in.');
+			
 			$app->redirect($app->urlFor('home'));
 		} else {
 			$app->flash('error', 'Wrong email and password combination.');
+			
 			$app->redirect($app->urlFor('login'));
 		}
 	}
 	
-	// POST /logout
+	# POST /logout
 	function logout(){
-
+		// TODO: Logout
+		unset($_SESSION['user']);
+		$this->app->flash('error', 'You have successfully logged out!');
+		$this->app->redirect($this->app->urlFor('home'));
+		//throw new Exception('Not implemented.');
 	}
 }

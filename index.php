@@ -2,6 +2,14 @@
 
 require 'config.php';
 
+/** 
+ * Enable error display
+ */
+if ($config['slim']['debug'] == true) {
+    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+}
+
 /**
  * Start native PHP session
  */

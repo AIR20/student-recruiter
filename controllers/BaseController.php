@@ -171,6 +171,7 @@ class BaseController
 	protected function loadBaseCss()
 	{
 		$this->loadCss("bootstrap.min.css");
+		$this->loadCss("bootstrap-datepicker3.min.css");
 		$this->loadCss("application.css");
 	}
 	/**
@@ -180,6 +181,7 @@ class BaseController
 	{
 		$this->loadJs("jquery-1.11.2.min.js");
 		$this->loadJs("bootstrap.min.js");
+		$this->loadJs("bootstrap-datepicker.min.js");
 	}
 	/**
 	 * generate base URL
@@ -189,5 +191,28 @@ class BaseController
 		$baseUrl = dirname($_SERVER['SCRIPT_NAME']);
 		$baseUrl = rtrim($baseUrl, '/');
 		return $baseUrl;
+	}
+
+	/**
+	 * convert UK date to MySQL date
+	 */
+	protected function convertDate($date){
+		$date = DateTime::createFromFormat('d M Y', $date);
+		if($date){
+			return $date->format('Y-m-d');
+		}
+	}
+
+	/**
+	 * get POST params and convert empty string to null
+	 */
+	protected function getParams(){
+		$params = $this->app->request->post();
+		foreach ($params as $key => $value) {
+			if ($value === '') {
+				$params[$key] = null;
+			}
+		}
+		return $params;
 	}
 }

@@ -29,3 +29,9 @@ The SRS will provide facilities to enable the co-ordination of events organised 
 	```htaccess
 	RewriteBase /~username/student-recruiter/
 	```
+    
+    And ensure you have correct permission for `.htaccess` file.
+    ```shell
+    chmod 755 .htaccess
+    ```
+
