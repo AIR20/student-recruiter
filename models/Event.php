@@ -59,4 +59,15 @@ class Event extends Model {
 		$event->new_record = false;
 		return $event;
 	}
+
+	public static function getEventList(){
+		Event::db_init();
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events`");
+
+		$events = array();
+		while($event = $result->fetch_object('Event')){
+			$events[] = $event;
+		}
+		return $events;
+	}
 }
