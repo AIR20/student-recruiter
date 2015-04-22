@@ -59,10 +59,27 @@ $app->group(
 	}
 );
 
+$app->group(
+	'/event',
+	function () use($app){
+		$app->get(
+			'/list',
+			'EventController:index'
+		)->name('list_event');
+		
+		$app->get(
+			'/:id',
+			'EventController:view'
+		)->name('view_event');
+	}
+	
+);
+
 $app->get(
 	'/accountDetails',
 	'AccountController:display'
 )->name('account');
+
 
 
 $app->get(

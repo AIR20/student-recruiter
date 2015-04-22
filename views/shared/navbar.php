@@ -16,10 +16,10 @@
 					<a href="<?php echo $app->urlFor('home'); ?>">Home</a>
 				</li>
 				<li>
-					<a href="<?php echo $app->urlFor('event'); ?>">Events</a>
+					<a href="<?php echo $app->urlFor('list_event'); ?>">Events</a>
 				</li>
 				<li>
-					<a href="#">My Events</a>
+					<a href="<?php echo $app->urlFor('event'); ?>">My Events</a>
 				</li>
 				<li>
 					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>

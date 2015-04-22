@@ -5,6 +5,8 @@
   <body>
     <?php require 'shared/navbar.php';?>
 
+
+	
     <div class="container">
       <div class="well col-md-9 col-md-offset-1">
         <h1>Account Details</h1>
@@ -42,6 +44,8 @@
       </div>
 
     </div>
+
+	
   </body>
 </html>
 
