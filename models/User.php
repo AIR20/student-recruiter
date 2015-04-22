@@ -72,4 +72,18 @@ class User extends Model {
 		// TODO: Validate fields
 		return true;
 	}
+
+	/**
+	 * This class method returns a user object from a user id.
+	 */
+	public static function getUserById($id) {
+		User::db_init();
+		$result = User::$db->query("SELECT `id`, `email`, `hashed_password`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at` FROM `users` WHERE id = $id");
+		if (!$result) {
+			throw new Exception('No such user.');
+		}
+		$user = $result->fetch_object('User');
+		$user->new_record = false;
+		return $user;
+	}
 }
