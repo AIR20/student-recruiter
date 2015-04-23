@@ -58,6 +58,11 @@ $app->group(
 			'EventController:create'
 		)->name('create_event');
 		
+		$app->post(
+			'',
+			'EventController:store'
+		)->name('event_store');
+
 		$app->get(
 			'/:id',
 			'EventController:view'
