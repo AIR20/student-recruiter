@@ -24,9 +24,20 @@ class EventController extends BaseController {
 		$params = $this->getParams();
 
 		$event = new Event(true);
-		$event->id = $params['id'];
 		$event->title = $params['title'];
 		$event->description = $params['description'];
+		$event->tags = $params['tags'];
+		$event->room_id = $params['room_id'];
+		$event->start_time = $params['start_time'];
+		$event->end_time = $params['end_time'];
+		$event->proposed_at = $params['proposed_at'];
+		$event->proposed_by = $params['proposed_by'];
+		$event->approved_at = $params['approved_at'];
+		$event->approved_by = $params['approved_by'];
+		$event->status = $params['status'];
+		$event->applicants = $params['applicants'];
+		$event->facebook_link = $params['facebook_link'];
+		$event->twitter_link = $params['twitter_link'];
 
 		if($event->save()){
 			$app->flash('info', 'Request sent.');

@@ -19,7 +19,6 @@ class Event extends Model {
 	public $twitter_link;
 
 	public function save() {
-		echo 'eor';
 		if (!parent::save()) return false;
 
 		if ($this->new_record) {
