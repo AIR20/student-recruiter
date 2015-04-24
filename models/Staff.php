@@ -7,9 +7,9 @@ class Staff extends User {
 
 
 	public function save() {
-		Staff::$db->begin_transaction();
+		// Staff::$db->begin_transaction();
 		if (!parent::save()) {
-			Staff::$db->rollback();
+			// Staff::$db->rollback();
 			return false;
 		}
 
@@ -20,10 +20,10 @@ class Staff extends User {
 			if ($stmt) {
 				$stmt->bind_param("iis", $this->id, $this->department_id, $this->phone);
 				if ($stmt->execute()) {
-					Staff::$db->commit();
+					// Staff::$db->commit();
 					return true;
 				} else {
-					Staff::$db->rollback();
+					// Staff::$db->rollback();
 					return false;
 				}
 			}
