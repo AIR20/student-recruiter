@@ -15,7 +15,7 @@
 					<?php foreach($events as $event) : ?>
 						<div class="panel panel-primary">
 							<div class="panel-heading">
-			    			<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
+			    			<h3 class="panel-title"><a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 					  	</div>
 		
 						<div class="panel-body">
@@ -23,7 +23,7 @@
 		  	  			<?php echo $event->description ?>
 						</br>
 						<div style="float:right">
-						<a href="<?php echo $app->urlFor('home'); ?>" class="btn btn-primary">Book</a> 
+						<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-primary">Book</a> 
 						</div>
 					  	</div>
 						</div>

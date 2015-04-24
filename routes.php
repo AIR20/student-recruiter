@@ -67,6 +67,11 @@ $app->group(
 			'/:id',
 			'EventController:view'
 		)->name('view_event');
+		
+		$app->get(
+			'/book/:id',
+			'EventController:book'
+		)->name('book_event');
 	}
 
 );

@@ -15,7 +15,9 @@ class EventController extends BaseController {
 
 	# GET /event/create
 	public function create() {
+
 		$this->app->render('create_event.php', $this->data);
+
 	}
 
 	# POST /event
@@ -52,4 +54,21 @@ class EventController extends BaseController {
 	public function approve($id) {
 
 	}
+
+	
+	public function book($id){
+		$e = Event::getEventById($id);
+		if($e->bookEvent()==1){
+			$this->app->flash('info', 'Successfully Booked Event.');
+			$this->app->redirect($this->app->urlFor('home'));
+		} else if($e->bookEvent()==0){
+			$this->app->flash('error', 'BOOKING UNSUCCESSFUL BITCH');
+			$this->app->redirect($this->app->urlFor('home'));
+			} else {
+			$this->app->flash('error', 'U ALRDY BOOKED THIS EVENT BITCH');
+			$this->app->redirect($this->app->urlFor('home'));
+			}
+	}
+	
 }
+
