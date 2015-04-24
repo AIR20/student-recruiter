@@ -64,10 +64,13 @@ class EventController extends BaseController {
 		} else if($e->bookEvent()==0){
 			$this->app->flash('error', 'BOOKING UNSUCCESSFUL BITCH');
 			$this->app->redirect($this->app->urlFor('home'));
-			} else {
+		} else if($e->bookEvent()==2) {
 			$this->app->flash('error', 'U ALRDY BOOKED THIS EVENT BITCH');
 			$this->app->redirect($this->app->urlFor('home'));
-			}
+		} else {
+			$this->app->flash('error', 'U must be a student BIATCHHH');
+			$this->app->redirect($this->app->urlFor('home'));
+		}
 	}
 	
 }
