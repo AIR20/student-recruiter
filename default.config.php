@@ -8,7 +8,11 @@ define('CONTROLLER_PATH', __DIR__.'/controllers/');
 define('MODEL_PATH', __DIR__.'/models/');
 define('VIEW_PATH', __DIR__.'/views/');
 define('TEST_PATH', __DIR__.'/test/');
+define('SESSION_PATH', __DIR__.'/tmp/');
 // define('LOG_PATH', __DIR__.'/log/');
+
+// Set this to true if you are on a department server.
+define('DEPARTMENT_SERVER', true);
 
 // Load Slim framework
 
