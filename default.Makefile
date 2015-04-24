@@ -1,7 +1,7 @@
 all:
 test: db_reset db_seed
 #	Run unit tests, code coverage, and linters
-	phpunit --version
+	phpunit --bootstrap test/bootstrap.php test/
 db_init:
 #	Create the database and import the table
 	mysql -h [hostname] -u [username] -p < db/schema.sql
