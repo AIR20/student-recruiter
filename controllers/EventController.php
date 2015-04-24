@@ -28,8 +28,8 @@ class EventController extends BaseController {
 		$event->description = $params['description'];
 		$event->tags = $params['tags'];
 		$event->room_id = $params['room_id'];
-		$event->start_time = $params['start_time'];
-		$event->end_time = $params['end_time'];
+		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
+		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
 		$event->proposed_at = $params['proposed_at'];
 		$event->proposed_by = $params['proposed_by'];
 		$event->approved_at = $params['approved_at'];
