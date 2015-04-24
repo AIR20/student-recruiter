@@ -8,6 +8,9 @@ class Staff extends User {
 
 	public function save() {
 		// Staff::$db->begin_transaction();
+
+		$this->role = 1; // role is staff
+
 		if (!parent::save()) {
 			// Staff::$db->rollback();
 			return false;
