@@ -5,46 +5,44 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-
-DROP SCHEMA IF EXISTS `u3ac`;
-CREATE SCHEMA IF NOT EXISTS `u3ac` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-
 -- -----------------------------------------------------
--- Schema srs
+-- Schema u3ac
 -- -----------------------------------------------------
-USE u3ac;
+DROP SCHEMA IF EXISTS `u3ac` ;
+CREATE SCHEMA IF NOT EXISTS `u3ac` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `u3ac` ;
 
 -- -----------------------------------------------------
--- Table `users`
+-- Table `u3ac`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `users` ;
+DROP TABLE IF EXISTS `u3ac`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(90) NOT NULL,
   `hashed_password` VARCHAR(90) NOT NULL,
+  `role` INTEGER NOT NULL,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
-  `role` INT NOT NULL,
   `gender` TINYINT NULL,
   `dob` DATE NULL,
   `avatar` VARCHAR(180) NULL,
-  `registered_at` DATETIME NOT NULL ,
+  `registered_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `email_UNIQUE` ON `users` (`email` ASC);
+CREATE UNIQUE INDEX `email_UNIQUE` ON `u3ac`.`users` (`email` ASC);
 
-CREATE INDEX `users_email_idx` ON `users` (`email` ASC);
+CREATE INDEX `users_email_idx` ON `u3ac`.`users` (`email` ASC);
 
 
 -- -----------------------------------------------------
--- Table `schools`
+-- Table `u3ac`.`schools`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `schools` ;
+DROP TABLE IF EXISTS `u3ac`.`schools` ;
 
-CREATE TABLE IF NOT EXISTS `schools` (
-  `id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `u3ac`.`schools` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `school_type` VARCHAR(45) NULL,
   `address_line1` VARCHAR(90) NULL,
@@ -57,36 +55,36 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `teachers`
+-- Table `u3ac`.`teachers`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `teachers` ;
+DROP TABLE IF EXISTS `u3ac`.`teachers` ;
 
-CREATE TABLE IF NOT EXISTS `teachers` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`teachers` (
   `user_id` INT(11) NOT NULL,
   `school_id` INT(11) NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_teachers_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
+    REFERENCES `u3ac`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_teachers_school_id`
     FOREIGN KEY (`school_id`)
-    REFERENCES `schools` (`id`)
+    REFERENCES `u3ac`.`schools` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_teachers_school_id_idx` ON `teachers` (`school_id` ASC);
+CREATE INDEX `fk_teachers_school_id_idx` ON `u3ac`.`teachers` (`school_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `students`
+-- Table `u3ac`.`students`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `students` ;
+DROP TABLE IF EXISTS `u3ac`.`students` ;
 
-CREATE TABLE IF NOT EXISTS `students` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`students` (
   `user_id` INT(11) NOT NULL,
   `school_id` INT(11) NULL,
   `teacher_id` INT(11) NULL,
@@ -97,33 +95,33 @@ CREATE TABLE IF NOT EXISTS `students` (
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_students_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
+    REFERENCES `u3ac`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_students_school_id`
     FOREIGN KEY (`school_id`)
-    REFERENCES `schools` (`id`)
+    REFERENCES `u3ac`.`schools` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_students_teacher_id`
     FOREIGN KEY (`teacher_id`)
-    REFERENCES `teachers` (`user_id`)
+    REFERENCES `u3ac`.`teachers` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_students_school_id_idx` ON `students` (`school_id` ASC);
+CREATE INDEX `fk_students_school_id_idx` ON `u3ac`.`students` (`school_id` ASC);
 
-CREATE INDEX `fk_students_teacher_id_idx` ON `students` (`teacher_id` ASC);
+CREATE INDEX `fk_students_teacher_id_idx` ON `u3ac`.`students` (`teacher_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `buildings`
+-- Table `u3ac`.`buildings`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `buildings` ;
+DROP TABLE IF EXISTS `u3ac`.`buildings` ;
 
-CREATE TABLE IF NOT EXISTS `buildings` (
-  `id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `u3ac`.`buildings` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `map_no` INT(11) NULL,
   PRIMARY KEY (`id`))
@@ -131,12 +129,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `departments`
+-- Table `u3ac`.`departments`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `departments` ;
+DROP TABLE IF EXISTS `u3ac`.`departments` ;
 
-CREATE TABLE IF NOT EXISTS `departments` (
-  `id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `u3ac`.`departments` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(90) NOT NULL,
   `building_id` INT(11) NULL,
   `address_line1` VARCHAR(90) NULL,
@@ -147,63 +145,63 @@ CREATE TABLE IF NOT EXISTS `departments` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_departments_building_id`
     FOREIGN KEY (`building_id`)
-    REFERENCES `buildings` (`id`)
+    REFERENCES `u3ac`.`buildings` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_departments_building_id_idx` ON `departments` (`building_id` ASC);
+CREATE INDEX `fk_departments_building_id_idx` ON `u3ac`.`departments` (`building_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `staff`
+-- Table `u3ac`.`staff`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `staff` ;
+DROP TABLE IF EXISTS `u3ac`.`staff` ;
 
-CREATE TABLE IF NOT EXISTS `staff` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`staff` (
   `user_id` INT(11) NOT NULL,
   `department_id` INT(11) NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_staff_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
+    REFERENCES `u3ac`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_staff_department_id`
     FOREIGN KEY (`department_id`)
-    REFERENCES `departments` (`id`)
+    REFERENCES `u3ac`.`departments` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_staff_department_id_idx` ON `staff` (`department_id` ASC);
+CREATE INDEX `fk_staff_department_id_idx` ON `u3ac`.`staff` (`department_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `admins`
+-- Table `u3ac`.`admins`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `admins` ;
+DROP TABLE IF EXISTS `u3ac`.`admins` ;
 
-CREATE TABLE IF NOT EXISTS `admins` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`admins` (
   `user_id` INT(11) NOT NULL,
   `phone` VARCHAR(45) NULL,
   PRIMARY KEY (`user_id`),
   CONSTRAINT `fk_admins_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
+    REFERENCES `u3ac`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `rooms`
+-- Table `u3ac`.`rooms`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `rooms` ;
+DROP TABLE IF EXISTS `u3ac`.`rooms` ;
 
-CREATE TABLE IF NOT EXISTS `rooms` (
-  `id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `u3ac`.`rooms` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `room_name` VARCHAR(45) NOT NULL,
   `room_no` VARCHAR(45) NULL,
   `building_id` INT(11) NULL,
@@ -211,28 +209,28 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_rooms_building_id`
     FOREIGN KEY (`building_id`)
-    REFERENCES `buildings` (`id`)
+    REFERENCES `u3ac`.`buildings` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_rooms_building_id_idx` ON `rooms` (`building_id` ASC);
+CREATE INDEX `fk_rooms_building_id_idx` ON `u3ac`.`rooms` (`building_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `events`
+-- Table `u3ac`.`events`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `events` ;
+DROP TABLE IF EXISTS `u3ac`.`events` ;
 
-CREATE TABLE IF NOT EXISTS `events` (
-  `id` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `u3ac`.`events` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(180) NOT NULL,
   `description` TEXT NOT NULL,
   `tags` VARCHAR(180) NULL,
   `room_id` INT(11) NULL,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
-  `proposed_at` DATETIME NOT NULL ,
+  `proposed_at` DATETIME NOT NULL,
   `proposed_by` INT(11) NULL,
   `approved_at` DATETIME NULL,
   `approved_by` INT(11) NULL,
@@ -243,67 +241,67 @@ CREATE TABLE IF NOT EXISTS `events` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_events_room_id`
     FOREIGN KEY (`room_id`)
-    REFERENCES `rooms` (`id`)
+    REFERENCES `u3ac`.`rooms` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_events_proposed_by`
     FOREIGN KEY (`proposed_by`)
-    REFERENCES `staff` (`user_id`)
+    REFERENCES `u3ac`.`staff` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_events_approved_by`
     FOREIGN KEY (`approved_by`)
-    REFERENCES `admins` (`user_id`)
+    REFERENCES `u3ac`.`admins` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_events_room_id_idx` ON `events` (`room_id` ASC);
+CREATE INDEX `fk_events_room_id_idx` ON `u3ac`.`events` (`room_id` ASC);
 
-CREATE INDEX `fk_events_approved_by_idx` ON `events` (`approved_by` ASC);
+CREATE INDEX `fk_events_approved_by_idx` ON `u3ac`.`events` (`approved_by` ASC);
 
-CREATE INDEX `events_start_time_idx` ON `events` (`start_time` ASC);
+CREATE INDEX `events_start_time_idx` ON `u3ac`.`events` (`start_time` ASC);
 
-CREATE INDEX `events_proposed_at_idx` ON `events` (`approved_at` ASC);
+CREATE INDEX `events_proposed_at_idx` ON `u3ac`.`events` (`approved_at` ASC);
 
-CREATE INDEX `fk_events_proposed_by_idx` ON `events` (`proposed_by` ASC);
+CREATE INDEX `fk_events_proposed_by_idx` ON `u3ac`.`events` (`proposed_by` ASC);
 
 
 -- -----------------------------------------------------
--- Table `applications`
+-- Table `u3ac`.`applications`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `applications` ;
+DROP TABLE IF EXISTS `u3ac`.`applications` ;
 
-CREATE TABLE IF NOT EXISTS `applications` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`applications` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `student_id` INT(11) NULL,
   `event_id` INT(11) NULL,
   `status` VARCHAR(45) NOT NULL DEFAULT 'reserved',
-  `created_at` DATETIME NOT NULL ,
+  `created_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_applications_student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `students` (`user_id`)
+    REFERENCES `u3ac`.`students` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE,
   CONSTRAINT `fk_applications_event_id`
     FOREIGN KEY (`event_id`)
-    REFERENCES `events` (`id`)
+    REFERENCES `u3ac`.`events` (`id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_applications_student_id_idx` ON `applications` (`student_id` ASC);
+CREATE INDEX `fk_applications_student_id_idx` ON `u3ac`.`applications` (`student_id` ASC);
 
-CREATE INDEX `fk_applications_event_id_idx` ON `applications` (`event_id` ASC);
+CREATE INDEX `fk_applications_event_id_idx` ON `u3ac`.`applications` (`event_id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `feedbacks`
+-- Table `u3ac`.`feedbacks`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `feedbacks` ;
+DROP TABLE IF EXISTS `u3ac`.`feedbacks` ;
 
-CREATE TABLE IF NOT EXISTS `feedbacks` (
+CREATE TABLE IF NOT EXISTS `u3ac`.`feedbacks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `student_id` INT(11) NULL,
   `comment` TEXT NULL,
@@ -311,12 +309,12 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_feedbacks_student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `students` (`user_id`)
+    REFERENCES `u3ac`.`students` (`user_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_feedbacks_student_id_idx` ON `feedbacks` (`student_id` ASC);
+CREATE INDEX `fk_feedbacks_student_id_idx` ON `u3ac`.`feedbacks` (`student_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
