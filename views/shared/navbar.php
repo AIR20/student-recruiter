@@ -19,9 +19,6 @@
 					<a href="<?php echo $app->urlFor('list_event'); ?>">Events</a>
 				</li>
 				<li>
-					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>
-				</li>
-				<li>
 					<a href="#">Map</a>
 				</li>
 				<li>
@@ -40,6 +37,9 @@
 					<a href="<?php echo $app->urlFor('login'); ?>">Login</a>
 				</li>
 				<?php else: ?>
+				<li>
+					<a href="<?php echo $app->urlFor('account'); ?>">Account</a>
+				</li>
 				<li>
 					<a href="<?php echo $app->urlFor('logout'); ?>">Logout</a>
 				</li>
