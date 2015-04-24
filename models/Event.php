@@ -2,19 +2,19 @@
 
 class Event extends Model {
 	// mapped to database fields
-	public $id;
-	public $title;
-	public $description;
+	public $id ; //not null
+	public $title; //not null
+	public $description; //not null
 	public $tags;
 	public $room_id;
 	public $start_time;
 	public $end_time;
-	public $proposed_at;
+	public $proposed_at; //not null
 	public $proposed_by;
-	public $approved_at;
+	public $approved_at='2015-04-25 12:12:12';
 	public $approved_by;
 	public $status = "pending";
-	public $applicants = 0;
+	public $applicants = 2; //not null
 	public $facebook_link;
 	public $twitter_link;
 
@@ -28,10 +28,15 @@ class Event extends Model {
 			);
 			if ($stmt) {
 				$stmt->bind_param("sssissisississ", $this->title, $this->description, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->facebook_link, $this->twitter_link);
-				if ( !$stmt->execute() ) return false;
+				if ( !$stmt->execute() ){
+					throw new Exception($stmt->error);
+					return false;
+				}
+
 				$this->id = $stmt->insert_id;
 				return true;
 			}
+
 		}
 		else {
 			// TODO: Update record

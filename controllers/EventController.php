@@ -1,7 +1,7 @@
 <?php
 
 class EventController extends BaseController {
-	
+
 	public function index() {
 		$this->data['events'] = Event::getEventList();
 		$this->app->render('event.php', $this->data);
@@ -35,7 +35,6 @@ class EventController extends BaseController {
 		$event->approved_at = $params['approved_at'];
 		$event->approved_by = $params['approved_by'];
 		$event->status = $params['status'];
-		$event->applicants = $params['applicants'];
 		$event->facebook_link = $params['facebook_link'];
 		$event->twitter_link = $params['twitter_link'];
 
@@ -44,12 +43,13 @@ class EventController extends BaseController {
 			$app->redirect($app->urlFor('home'));
 		} else {
 				$app->flash('warning', 'There was an error with the request');
-				$app->redirect($app->urlFor('create_event'));
+
+				$app->redirect($app->urlFor('home'));
 		}
 	}
 
 	# POST /event/1/approve
 	public function approve($id) {
-		
+
 	}
 }
