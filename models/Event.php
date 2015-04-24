@@ -2,16 +2,17 @@
 
 class Event extends Model {
 	// mapped to database fields
-	public $id ; //not null
+	public $id; //not null
 	public $title; //not null
 	public $description; //not null
 	public $tags;
 	public $room_id;
+	public $date;
 	public $start_time;
 	public $end_time;
 	public $proposed_at; //not null
 	public $proposed_by;
-	public $approved_at='2015-04-25 12:12:12';
+	public $approved_at;
 	public $approved_by;
 	public $status = "pending";
 	public $applicants = 2; //not null
