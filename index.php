@@ -10,6 +10,10 @@ if ($config['slim']['debug'] == true) {
     ini_set('display_errors', 1);
 }
 
+if (DEPARTMENT_SERVER) {
+	ini_set('session.save_path', SESSION_PATH);
+}
+
 /**
  * Start native PHP session
  */

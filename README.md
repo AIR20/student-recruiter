@@ -35,3 +35,8 @@ The SRS will provide facilities to enable the co-ordination of events organised 
     chmod 755 .htaccess
     ```
 
+5. Make a folder `tmp` with 777 permission if you are using department server.
+
+	```shell
+	mkdir -m 777 tmp
+	```
