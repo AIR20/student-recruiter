@@ -26,7 +26,7 @@ class SchoolTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testListSchool() {
-		$scls = School::getAllSchools();
+		$scls = School::getSchoolList();
 		$this->assertInternalType("array", $scls);
 	}
 

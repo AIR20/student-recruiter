@@ -48,7 +48,7 @@ class Room extends Model {
 		}
 	}
 
-	public static function getAllRooms() {
+	public static function getRoomList() {
 		$result = Room::$db->query(
 			"SELECT `id`, `room_name`, `room_no`, `building_id`, `size` FROM `rooms`"
 		);

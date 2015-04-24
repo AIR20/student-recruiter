@@ -21,7 +21,7 @@ class BuildingTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testListBuilding() {
-		$rms = Building::getAllBuildings();
+		$rms = Building::getBuildingList();
 		$this->assertInternalType("array", $rms);
 	}
 

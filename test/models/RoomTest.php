@@ -22,7 +22,7 @@ class RoomTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testListRoom() {
-		$rms = Room::getAllRooms();
+		$rms = Room::getRoomList();
 		$this->assertInternalType("array", $rms);
 	}
 
