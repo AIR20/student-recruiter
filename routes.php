@@ -46,29 +46,34 @@ $app->group(
 );
 
 $app->group(
-	'/staff',
-	function () use($app){
-		$app->get(
-			'/create_event',
-			'StaffController:create_event'
-		)->name('create_event');
-	}
-);
-
-$app->group(
 	'/event',
 	function () use($app){
 		$app->get(
 			'/list',
 			'EventController:index'
 		)->name('list_event');
+
+		$app->get(
+			'/create',
+			'EventController:create'
+		)->name('create_event');
 		
+		$app->post(
+			'',
+			'EventController:store'
+		)->name('event_store');
+
 		$app->get(
 			'/:id',
 			'EventController:view'
 		)->name('view_event');
+		
+		$app->get(
+			'/book/:id',
+			'EventController:book'
+		)->name('book_event');
 	}
-	
+
 );
 
 $app->get(

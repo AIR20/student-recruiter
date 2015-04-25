@@ -14,12 +14,12 @@
 
 			<!-- Request form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="" method="post" class="form-horizontal">
-				
+			<form action="<?php echo $app->urlFor('event_store');?>" method="post" class="form-horizontal">
+
 				<!--Event type-->
 				<div class="form-group">
 				  <label class="col-sm-2 control-label">
-					Event type: 
+					Event type:
 				  </label>
 				  <div class="col-sm-10">
 					<select class="form-control" name="password">
@@ -41,21 +41,21 @@
 						Event title: <span class="error">*</span>
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="event_title">
+						<input class="form-control" type="text" name="title">
 					</div>
 				</div>
-				
+
 				<!--Event description-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Event description: <span class="error">*</span>
 					</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="4" id=event_description type="text" name="event_description"></textarea>
+						<textarea class="form-control" rows="4" id=description type="text" name="description"></textarea>
 					</div>
 				</div>
-				
-				
+
+
 				<!--Event image url-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -72,25 +72,45 @@
 		          	Date of event: <span class="error">*<?php echo $dobErr?></span>
 		          </label>
 		          <div class="col-sm-10">
-		                <input type="text" class="datepicker form-control" name = "eventDate" placeholder="DD/MM/YYY">
+		                <input type="text" class="datepicker form-control" name = "date" placeholder="DD/MM/YYY">
                     <script>
                         var d = new Date();
                         $('.datepicker').datepicker({
                           format:"d M yyyy",
-                          defaultViewDate: {  
+                          defaultViewDate: {
                               year: d.getFullYear(),
                               month: d.getMonth(),
-                              day: d.getDate(), 
+                              day: d.getDate(),
                           }
                         });
                     </script>
 		          </div>
 		        </div>
 
+				<!--time-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Start time:
+					</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="start_time" placeholder="HH:MM">
+					</div>
+				</div>
+
+				<!--end time-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						End time:
+					</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="end_time" placeholder="HH:MM">
+					</div>
+				</div>
+
 				<!--building-->
 				<div class="form-group">
 				  <label class="col-sm-2 control-label">
-					Building: 
+						Building:
 				  </label>
 				  <div class="col-sm-10">
 					<select class="form-control" name="building_id">
@@ -100,12 +120,12 @@
 					  <option value="4">Central Teaching Hub</option>
 				   </select>
 				  </div>
-				</div>	
+				</div>
 
 				<!--room-->
 				<div class="form-group">
 				  <label class="col-sm-2 control-label">
-					Room: 
+					Room:
 				  </label>
 				  <div class="col-sm-10">
 					<select class="form-control" name="room_id">
@@ -115,7 +135,7 @@
 					  <option value="5">Lecture Room 106/107</option>
 				   </select>
 				  </div>
-				</div>	
+				</div>
 
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">

@@ -2,19 +2,20 @@
 
 class Event extends Model {
 	// mapped to database fields
-	public $id;
-	public $title;
-	public $description;
+	public $id; //not null
+	public $title; //not null
+	public $description; //not null
 	public $tags;
 	public $room_id;
+	public $date;
 	public $start_time;
 	public $end_time;
-	public $proposed_at;
+	public $proposed_at; //not null
 	public $proposed_by;
 	public $approved_at;
 	public $approved_by;
 	public $status = "pending";
-	public $applicants = 0;
+	public $applicants = 2; //not null
 	public $facebook_link;
 	public $twitter_link;
 
@@ -27,11 +28,16 @@ class Event extends Model {
 				"INSERT INTO `events` (`title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("sssisssisississ", $this->title, $this->description, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->facebook_link, $this->twitter_link);
-				if ( !$stmt->execute() ) return false;
+				$stmt->bind_param("sssissisississ", $this->title, $this->description, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->facebook_link, $this->twitter_link);
+				if ( !$stmt->execute() ){
+					throw new Exception($stmt->error);
+					return false;
+				}
+
 				$this->id = $stmt->insert_id;
 				return true;
 			}
+
 		}
 		else {
 			// TODO: Update record
@@ -43,6 +49,33 @@ class Event extends Model {
 	public function validate() {
 		// TODO: Validate fields
 		return true;
+	}
+	
+	// 1 = success 0 = query fail 2 = already booked 3 = u are not a student
+	public function bookEvent(){
+		Event::db_init();
+		$id = $this->id;
+		if(!isset($_SESSION['user'])){
+			return 3;
+		}
+		$stu_id = $_SESSION['user'];
+		
+		$curr_time = $this->current_time();
+		
+		$check_already_booked = Event::$db->query("SELECT `id` FROM `applications` WHERE `student_id` = $stu_id AND `event_id` = $id");
+		//current user not booked this event yet
+		if($check_already_booked->num_rows == 0){		
+			$result = Event::$db->query("UPDATE `events` SET `applicants` = `applicants` + 1 WHERE `id` = $id");
+			$result2 = Event::$db->query("INSERT INTO `applications` (`student_id`, `event_id`, `created_at`) VALUES ($stu_id, $id, '$curr_time')");
+			if($result && $result2){
+				return 1;
+			} else {
+				return 0;
+			}
+		} else {
+			// user already booked  this event
+			return 2;
+		}
 	}
 
 	public static function getEventById($id) {

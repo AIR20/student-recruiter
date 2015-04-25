@@ -13,11 +13,11 @@
 			<p>Register for an account. <span class="error">* required</span></p>
 
 			<?php require 'shared/notice.php'; ?>
-			
+
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
 			<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal">
-				
+
 				<!--first name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -27,7 +27,7 @@
 						<input class="form-control" type="text" name="fname" value="<?php echo $_SESSION['fname'];?>">
 					</div>
 				</div>
-				
+
 				<!--last name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -37,8 +37,8 @@
 						<input class="form-control" type="text" name="lname" value="<?php echo $_SESSION['lname'];?>">
 					</div>
 				</div>
-				
-				
+
+
 				<!--email-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -48,7 +48,7 @@
 						<input class="form-control" type="text" name="email" value="<?php echo $_SESSION['email'];?>">
 					</div>
 				</div>
-				
+
 				<!--password-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -91,15 +91,8 @@
               });
             </script>
           </div>
-
-					<!-- <div class="form-inline">
-						<div class="col-sm-10">
-							<input class="form-control" placeholder="YYYY" type="text" name="year" value="<?php echo $_SESSION['year'];?>">
-							<input class="form-control" placeholder="MM" type="text" name="month" value="<?php echo $_SESSION['month'];?>">
-							<input class="form-control" placeholder="DD" type="text" name="day" value="<?php echo $_SESSION['day'];?>">
-						</div>
-					</div> -->
 				</div>
+
 				<!--address-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -135,11 +128,11 @@
 						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 					</div>
 				</div>
-	      
+
         <!--School-->
-        <div class="form-group"> 
+        <div class="form-group">
           <label class="col-sm-2 control-label">
-            School:        
+            School:
           </label>
           <div class="col-sm-10">
             <select class="form-control" name="school_id">
@@ -151,29 +144,29 @@
             </select>
           </div>
         </div>
-      
+
         <!--Interests checkboxes-->
 				<div class="form-group">
     		  <label class="col-sm-2 control-label">
             Interests:
           </label>
-          <div class="col-sm-10"> 
+          <div class="col-sm-10">
             <div class="checkbox">
               <label><input type="checkbox" name="interest">Art</label>
-            </div>         
+            </div>
             <div class="checkbox">
               <label><input type="checkbox" name="interest">Careers</label>
-            </div>  
+            </div>
             <div class="checkbox">
               <label><input type="checkbox" name="interest">Computer Science</label>
             </div>
             <div class="checkbox">
               <label><input type="checkbox" name="interest">Concerts</label>
-            </div>    
+            </div>
             <div class="checkbox">
               <label><input type="checkbox" name="interest">Open days</label>
             </div>
-          </div>	
+          </div>
         </div>
 
 				<!--submit form-->
