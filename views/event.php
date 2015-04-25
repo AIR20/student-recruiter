@@ -18,8 +18,8 @@
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>		
 							<div class="panel-body">
-								<big><b>Description:</b></big>
-								<?php echo $event->description ?>
+								<h5><?php echo date('ga', strtotime($event->start_time)) . ' - ' . date('ga', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
+								<p><?php echo $event->description ?></p>
 								</br>
 								<div style="float:right">
 									<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-primary">Book</a> 
