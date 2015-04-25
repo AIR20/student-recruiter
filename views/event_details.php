@@ -10,7 +10,7 @@
       <div class="well col-md-9 col-md-offset-1">
         <h1><?php echo $event->title;?></h1>
         <h3></h3>
-				<h4><?php echo date('l dS F, Y', strtotime($event->start_time)) ;?></h4>
+				<h4><?php echo date('l jS F, Y', strtotime($event->start_time)) ;?></h4>
 				<h4><?php echo date('ga', strtotime($event->start_time)) . ' - ' . date('ga', strtotime($event->end_time));?></h4>
 		<h5></h5>
         <div class="panel panel-default">
