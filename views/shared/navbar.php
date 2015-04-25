@@ -1,5 +1,5 @@
 <!-- start of navbar -->
-<div class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
 			<a href="#" class="navbar-brand">Student Recruiter System</a>
@@ -59,5 +59,5 @@
 
 		</div>
 	</div>
-</div>
+</nav>
 <!-- end of navbar -->
