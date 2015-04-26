@@ -81,7 +81,10 @@ $app->get(
 	'AccountController:display'
 )->name('account');
 
-
+$app->get(
+	'/map',
+	'MapController:display'
+)->name('map');	
 
 $app->get(
 	'/login',

@@ -19,7 +19,7 @@
 					<a href="<?php echo $app->urlFor('list_event'); ?>">Events</a>
 				</li>
 				<li>
-					<a href="#">Map</a>
+					<a href="<?php echo $app->urlFor('map'); ?>">Map</a>
 				</li>
 				<li>
 					<a href = "#">Calendar</a>
