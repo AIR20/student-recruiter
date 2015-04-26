@@ -17,7 +17,7 @@
 						<hr class="intro-divider">
 						<ul class="list-inline intro-social-buttons">
 							<li>
-								<a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+								<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 							</li>
 							<li>
 								<a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
@@ -126,7 +126,7 @@
 				<div class="col-lg-6">
 					<ul class="list-inline banner-social-buttons">
 						<li>
-							<a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+							<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 						</li>
 						<li>
 							<a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
