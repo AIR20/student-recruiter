@@ -33,7 +33,6 @@ class Event extends Model {
 					throw new Exception($stmt->error);
 					return false;
 				}
-
 				$this->id = $stmt->insert_id;
 				return true;
 			}

@@ -1,32 +1,31 @@
 <?php
 
-class Staff extends User {
+class Admin extends User {
 	// mapped to database fields
-	public $department_id;
 	public $phone;
 
 
 	public function save() {
-		// Staff::$db->begin_transaction();
+		// Admin::$db->begin_transaction();
 
-		$this->role = 1; // role is staff
+		$this->role = 0; // role is admin
 
 		if (!parent::save()) {
-			// Staff::$db->rollback();
+			// Admin::$db->rollback();
 			return false;
 		}
 
 		if ($this->new_record) {
-			$stmt = Staff::$db->prepare(
-				"INSERT INTO `staff` (`user_id`, `department_id`, `phone`) VALUES (?, ?, ?)"
+			$stmt = Admin::$db->prepare(
+				"INSERT INTO `admins` (`user_id`, `phone`) VALUES (?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("iis", $this->id, $this->department_id, $this->phone);
+				$stmt->bind_param("is", $this->id, $this->phone);
 				if ($stmt->execute()) {
-					// Staff::$db->commit();
+					// Admin::$db->commit();
 					return true;
 				} else {
-					// Staff::$db->rollback();
+					// Admin::$db->rollback();
 					return false;
 				}
 			}
