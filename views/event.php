@@ -9,8 +9,7 @@
 			<div class="row">
 			<div class="main col-md-12">
 
-				<h1 class="page-header">Events listing</h1>
-				<p>A list of all events</p>
+				<h1 class="page-header">Upcoming events</h1>
 				<div class="well col-md-8 col-md-offset-2">
 					<?php foreach($events as $event) : ?>
 						<div class="panel panel-primary">
@@ -18,7 +17,11 @@
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>		
 							<div class="panel-body">
-								<h5><?php echo date('ga', strtotime($event->start_time)) . ' - ' . date('ga', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
+							<h5><?php $room = Room::getRoomById($event->room_id);
+								$building = Building::getBuildingById($room->building_id);
+								echo $building->name . ' - ' . $room->room_name; ?>
+							</h5>
+								<h5><?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
 								<p><?php echo $event->description ?></p>
 								</br>
 								<div style="float:right">

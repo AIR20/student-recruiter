@@ -9,10 +9,12 @@
     <div class="container">
       <div class="well col-md-9 col-md-offset-1">
         <h1><?php echo $event->title;?></h1>
-        <h3></h3>
-				<h4><?php echo date('l jS F, Y', strtotime($event->start_time)) ;?></h4>
-				<h4><?php echo date('ga', strtotime($event->start_time)) . ' - ' . date('ga', strtotime($event->end_time));?></h4>
-		<h5></h5>
+			<?php		
+				$room = Room::getRoomById($event->room_id); 
+				$building = Building::getBuildingById($room->building_id);
+				echo $building->name . ' - ' . $room->room_name; ?>
+				<h5><?php echo date('l jS F, Y', strtotime($event->start_time)) ;?></h5>
+				<h5><?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time));?></h5>
         <div class="panel panel-default">
           <div class="panel-body">
             <img src="http://www.awi.de/typo3temp/pics/d2c0282da7.jpg"/>
