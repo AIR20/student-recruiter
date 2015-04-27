@@ -17,13 +17,19 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">Email</label>
 							<div class="col-md-10">
-								<input class="form-control" type="text" name="email" size="64" />
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+									<input class="form-control" type="text" name="email" size="64" />
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Password</label>
 							<div class="col-md-10">
-								<input class="form-control" type="password" name="password" size="64" />
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+									<input class="form-control" type="password" name="password" size="64" />
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -36,9 +42,10 @@
 			</div>
 			</div>
 			<!-- end of login panel -->
-			
+
 		</div>
 	</div>
 </div>
+<?php require 'shared/footer.php'; ?>
 </body>
 </html>
