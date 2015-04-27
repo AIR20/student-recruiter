@@ -32,6 +32,21 @@ $app->group(
 			'/register',
 			'TeacherController:register'
 		)->name('teacher_register');
+
+		$app->get(
+			'/class',
+			'TeacherController:viewClass'
+		)->name('view_class');
+
+		$app->get(
+			'/add_student',
+			'TeacherController:addStudent'
+		)->name('add_student');
+
+		$app->get(
+			'/edit_student/:id',
+			'TeacherController:editStudent'
+		)->name('edit_student');
 	}
 );
 
@@ -57,7 +72,7 @@ $app->group(
 			'/create',
 			'EventController:create'
 		)->name('create_event');
-		
+
 		$app->post(
 			'',
 			'EventController:store'
@@ -67,7 +82,7 @@ $app->group(
 			'/:id',
 			'EventController:view'
 		)->name('view_event');
-		
+
 		$app->get(
 			'/book/:id',
 			'EventController:book'
@@ -77,14 +92,14 @@ $app->group(
 );
 
 $app->get(
-	'/accountDetails',
+	'/account',
 	'AccountController:display'
 )->name('account');
 
 $app->get(
 	'/map',
 	'MapController:display'
-)->name('map');	
+)->name('map');
 
 $app->get(
 	'/login',

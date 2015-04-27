@@ -72,4 +72,16 @@ class Student extends User {
 			throw new Exception("No such student.");
 		}
 	}
+
+	public static function getStudentListByTeacherId($id) {
+		Student::db_init();
+		$result = Student::$db->query(
+			"SELECT `user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode` FROM `students` WHERE `teacher_id` = $id"
+		);
+
+		$students = array();
+		while ($tmp = $result->fetch_object()) {
+			$students[] = Student::getStudentById($tmp->user_id);
+		}
+	}
 }

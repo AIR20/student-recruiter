@@ -171,3 +171,14 @@ body > .container {
 		margin-bottom: 0;
 	}
 }
+
+/* panel for student */
+
+.student ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.student address {
+	padding-left: 40px;
+}

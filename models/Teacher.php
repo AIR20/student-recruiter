@@ -55,4 +55,8 @@ class Teacher extends User {
 			throw new Exception("No such teacher.");
 		}
 	}
+
+	public function getStudentList() {
+		return Student::getStudentListByTeacherId($this->id);
+	}
 }
