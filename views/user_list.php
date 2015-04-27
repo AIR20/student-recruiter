@@ -17,17 +17,24 @@
 					  <thead>
 					    <tr>
 					      <th>UserID</th>
-					      <th>SchoolID</th>
+					      <th>First name</th>
+					      <th>Last name</th>
+					      <th>Email</th>
 					      <th>TeacherID</th>
 					      <th>Address1</th>
 					    </tr>
 					  </thead>
 					  <tbody>
 					    
-						<?php foreach($students as $student) : ?>
+						<?php foreach($students as $student) : 
+						$user = User::getUserById($student->user_id);
+						?>
 						<tr>
 					      <td><?php echo $student->user_id; ?></td>
-					      <td><?php echo $student->school_id; ?></td>
+					      <td><?php echo $user->firstname; ?></td>
+					      <td><?php echo $user->lastname; ?></td>
+					      <td><?php echo $user->email; ?></td>
+					      <td><?php echo $student->name; ?></td>
 					      <td><?php echo $student->teacher_id; ?></td>
 					      <td><?php echo $student->address_line1; ?></td>
 					    </tr>
