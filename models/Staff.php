@@ -44,7 +44,7 @@ class Staff extends User {
 	}
 
 	public static function getStaffById($id) {
-		$staff = User::getUserById($id);
+		$staff = User::getUserById($id, 'Staff');
 		$result = Staff::$db->query(
 			"SELECT `user_id`, `department_id`, `phone` FROM `staff` WHERE `user_id` = $id LIMIT 1"
 		);

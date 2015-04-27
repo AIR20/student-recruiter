@@ -54,7 +54,7 @@ class Student extends User {
 	}
 
 	public static function getStudentById($id) {
-		$student = User::getUserById($id);
+		$student = User::getUserById($id, 'Student');
 		$result = Student::$db->query(
 			"SELECT `user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode` FROM `students` WHERE `user_id` = $id LIMIT 1"
 		);

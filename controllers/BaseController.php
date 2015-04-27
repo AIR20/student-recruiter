@@ -29,6 +29,8 @@ class BaseController
 		);
 		/** base dir for asset file */
 		$this->data['assetUrl'] = $this->baseUrl() . '/assets/';
+		/** user object **/
+		$this->data['user'] = $_SESSION['user'];
 		$this->data['app'] = $this->app;
 		$this->loadBaseCss();
 		$this->loadBaseJs();

@@ -58,17 +58,19 @@ class EventController extends BaseController {
 	
 	public function book($id){
 		$e = Event::getEventById($id);
-		if($e->bookEvent()==1){
+		if (!isset($this->data['user'])) {
+			$this->app->flash('error', 'Please login first');
+			$this->app->redirect($this->app->urlFor('home'));
+		} else if (!$this->data['user']->isStudent()) {
+			$this->app->flash('error', 'You must be a student BIATCHHH');
+			$this->app->redirect($this->app->urlFor('home'));
+		}
+		$result = $e->bookEvent($this->data['user']->id);
+		if ($result == 1) {
 			$this->app->flash('info', 'Successfully Booked Event.');
 			$this->app->redirect($this->app->urlFor('home'));
-		} else if($e->bookEvent()==0){
-			$this->app->flash('error', 'BOOKING UNSUCCESSFUL BITCH');
-			$this->app->redirect($this->app->urlFor('home'));
-		} else if($e->bookEvent()==2) {
-			$this->app->flash('error', 'U ALRDY BOOKED THIS EVENT BITCH');
-			$this->app->redirect($this->app->urlFor('home'));
 		} else {
-			$this->app->flash('error', 'U must be a student BIATCHHH');
+			$this->app->flash('error', 'Booking UNSUCCESSFUL.');
 			$this->app->redirect($this->app->urlFor('home'));
 		}
 	}

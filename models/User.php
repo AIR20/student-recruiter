@@ -33,8 +33,7 @@ class User extends Model {
 			// TODO: change to hashed password later
 			if ($user->hashed_password == $password) {
 
-				$_SESSION['user'] = $user->id;
-				return $user;
+				return $user->id;
 				
 			} else {
 
@@ -73,13 +72,13 @@ class User extends Model {
 	/**
 	 * This class method returns a user object from a user id.
 	 */
-	public static function getUserById($id) {
+	public static function getUserById($id, $klass = 'User') {
 		User::db_init();
 		$result = User::$db->query("SELECT `id`, `email`, `hashed_password`, `role`, `firstname`, `lastname`, `gender`, `dob`, `avatar`, `registered_at` FROM `users` WHERE id = $id LIMIT 1");
 		if ( $result->num_rows == 0 ) {
 			throw new Exception('No such user.');
 		}
-		$user = $result->fetch_object('User');
+		$user = $result->fetch_object($klass);
 		$user->new_record = false;
 		return $user;
 	}

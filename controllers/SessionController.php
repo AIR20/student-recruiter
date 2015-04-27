@@ -13,11 +13,20 @@ class SessionController extends BaseController {
 
 		$email = $app->request->post('email');
 		$password = $app->request->post('password');
-		//$app->redirect($app->urlFor('home'));
 
-		if (User::authenticate($email, $password)) {
+		$uid = User::authenticate($email, $password);
+		if ( $uid !== false) {
+			$user = User::getUserById($uid);
+			if($user->isAdmin())
+				$_SESSION['user'] = Admin::getAdminById($uid);
+			if($user->isStaff())
+				$_SESSION['user'] = Staff::getStaffById($uid);
+			if($user->isTeacher())
+				$_SESSION['user'] = Teacher::getTeacherById($uid);
+			if($user->isStudent())
+				$_SESSION['user'] = Student::getStudentById($uid);
+
 			$app->flash('info', 'Successfully logged in.');
-			
 			$app->redirect($app->urlFor('home'));
 		} else {
 			$app->flash('error', 'Wrong email and password combination.');

@@ -29,6 +29,11 @@
             <h3 class="panel-title">Event details</h3>
           </div>
           <div class="panel-body">
+            <ul>
+            <?php foreach ($events as $e): ?>
+              <li><?php echo $e->title;?></li>
+            <?php endforeach; ?>
+            </ul>
           </div>
         </div>
 

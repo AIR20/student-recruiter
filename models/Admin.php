@@ -43,7 +43,7 @@ class Admin extends User {
 	}
 
 	public static function getAdminById($id) {
-		$admin = User::getUserById($id);
+		$admin = User::getUserById($id, 'Admin');
 		$result = Admin::$db->query(
 			"SELECT `user_id`, `phone` FROM `admins` WHERE `user_id` = $id LIMIT 1"
 		);

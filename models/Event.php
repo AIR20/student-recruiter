@@ -47,22 +47,18 @@ class Event extends Model {
 		return true;
 	}
 	
-	// 1 = success 0 = query fail 2 = already booked 3 = u are not a student
-	public function bookEvent(){
+	// 1 = success 0 = query fail 2 = already booked
+	public function bookEvent($student_id){
 		Event::db_init();
 		$id = $this->id;
-		if(!isset($_SESSION['user'])){
-			return 3;
-		}
-		$stu_id = $_SESSION['user'];
 		
 		$curr_time = $this->current_time();
 		
-		$check_already_booked = Event::$db->query("SELECT `id` FROM `applications` WHERE `student_id` = $stu_id AND `event_id` = $id");
+		$check_already_booked = Event::$db->query("SELECT `id` FROM `applications` WHERE `student_id` = $student_id AND `event_id` = $id");
 		//current user not booked this event yet
 		if($check_already_booked->num_rows == 0){		
 			$result = Event::$db->query("UPDATE `events` SET `applicants` = `applicants` + 1 WHERE `id` = $id");
-			$result2 = Event::$db->query("INSERT INTO `applications` (`student_id`, `event_id`, `created_at`) VALUES ($stu_id, $id, '$curr_time')");
+			$result2 = Event::$db->query("INSERT INTO `applications` (`student_id`, `event_id`, `created_at`) VALUES ($student_id, $id, '$curr_time')");
 			if($result && $result2){
 				return 1;
 			} else {
