@@ -31,13 +31,12 @@
 					  <tbody>
 					    
 						<?php foreach($students as $student) : 
-						$user = User::getUserById($student->user_id);
 						?>
 						<tr>
-					      <td><?php echo $student->user_id; ?></td>
-					      <td><?php echo $user->firstname; ?></td>
-					      <td><?php echo $user->lastname; ?></td>
-					      <td><?php echo $user->email; ?></td>
+					      <td><?php echo $student->id; ?></td>
+					      <td><?php echo $student->firstname; ?></td>
+					      <td><?php echo $student->lastname; ?></td>
+					      <td><?php echo $student->email; ?></td>
 					      <td><?php echo $student->name; ?></td>
 					      <td><?php echo $student->teacher_id; ?></td>
 					      <td><?php echo $student->address_line1; ?></td>

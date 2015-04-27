@@ -76,11 +76,11 @@ class Student extends User {
 
 	public static function getStudentList(){
 		Student::db_init();
-		$result = Student::$db->query("SELECT `user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode` FROM students");
+		$result = Student::$db->query("SELECT `user_id` FROM `students`");
 		
 		$students = array();
-		while($student = $result->fetch_object('Student')){
-			$students[] = $student;
+		while($tmp = $result->fetch_object()){
+			$students[] = Student::getStudentById($tmp->user_id);
 		}
 		return $students;
 	}
@@ -88,7 +88,7 @@ class Student extends User {
 	public static function getStudentListByTeacherId($id) {
 		Student::db_init();
 		$result = Student::$db->query(
-			"SELECT `user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode` FROM `students` WHERE `teacher_id` = $id"
+			"SELECT `user_id` FROM `students` WHERE `teacher_id` = $id"
 		);
 
 		$students = array();
