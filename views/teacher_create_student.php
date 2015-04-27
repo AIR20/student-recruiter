@@ -16,7 +16,7 @@
 
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal">
+			<form action="<?php echo $app->urlFor('teacher_store_student'); ?>" method="post" class="form-horizontal">
 
 				<!--first name-->
 				<div class="form-group">
@@ -46,16 +46,6 @@
 					</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="email" value="<?php echo $_SESSION['email'];?>">
-					</div>
-				</div>
-
-				<!--password-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Password: <span class="error">*<?php echo $passwErr; ?></span>
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="password" name="password" value="<?php echo $_SESSION['password'];?>">
 					</div>
 				</div>
 
@@ -128,46 +118,6 @@
 						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
 					</div>
 				</div>
-
-        <!--School-->
-        <div class="form-group">
-          <label class="col-sm-2 control-label">
-            School:
-          </label>
-          <div class="col-sm-10">
-            <select class="form-control" name="school_id">
-              <option value="00001">The City of Liverpool College</option>
-              <option value="00121">The Academy of St Francis of Assisi</option>
-              <option value="34234">Liverpool Blue Coat School</option>
-              <option value="45435">University Academy Liverpool</option>
-              <option value="56565">St Edward's College</option>
-            </select>
-          </div>
-        </div>
-
-        <!--Interests checkboxes-->
-				<div class="form-group">
-    		  <label class="col-sm-2 control-label">
-            Interests:
-          </label>
-          <div class="col-sm-10">
-            <div class="checkbox">
-              <label><input type="checkbox" name="interest">Art</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="interest">Careers</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="interest">Computer Science</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="interest">Concerts</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="interest">Open days</label>
-            </div>
-          </div>
-        </div>
 
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">

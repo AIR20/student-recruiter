@@ -30,8 +30,12 @@ class BaseController
 		/** base dir for asset file */
 		$this->data['assetUrl'] = $this->baseUrl() . '/assets/';
 		/** user object **/
-		if (isset($_SESSION['user']))
+
+		if (isset($_SESSION['user'])) {
+			$this->user = $_SESSION['user'];
 			$this->data['user'] = $_SESSION['user'];
+		}
+
 		$this->data['app'] = $this->app;
 		$this->loadBaseCss();
 		$this->loadBaseJs();
