@@ -5,6 +5,10 @@
     <?php require 'shared/navbar.php';?>
 		<?php $numEvents = count($events) ?>
 		<div class="container">
+			<div class="bs-doc-section">
+			<div class="row">
+			<div class="main col-md-12">
+			<h1 class="page-header">List of users</h1>
 			<ul class="nav nav-tabs">
  				<li class="active"><a href="#Students" data-toggle="tab">Students</a></li>
   				<li><a href="#Teachers" data-toggle="tab">Teachers</a></li>
@@ -48,10 +52,11 @@
 	    			
 	  			</div>
 			
-				<div class="tab-pane fade" id="Staff">
+					<div class="tab-pane fade" id="Staff">
 	    			
 	  			</div>
-			
+			</div>
+			</div>	
 			</div>
 		</div>
   </body>
