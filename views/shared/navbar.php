@@ -25,16 +25,19 @@
 					<a href = "#">Calendar</a>
 				</li>
 				
+				<?php if (isset($user) && $user->isTeacher()): ?>
 				<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teacher<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="<?php echo $app->urlFor('home');?>">View students</a></li>
+            <li><a href="<?php echo $app->urlFor('teacher_view_class');?>">View students</a></li>
             <li><a href="<?php echo $app->urlFor('home');?>">View my events</a></li>
 						<li class="divider"></li>
-            <li><a href="<?php echo $app->urlFor('home');?>">Add students</a></li>
+            <li><a href="<?php echo $app->urlFor('teacher_add_student');?>">Add students</a></li>
           </ul>
 				</li>
+				<?php endif; ?>
 
+				<?php if (isset($user) && $user->isStaff()): ?>
 				<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Staff<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -42,7 +45,9 @@
 						<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
 					</ul>
 				</li>
+				<?php endif; ?>
 				
+				<?php if (isset($user) && $user->isAdmin()): ?>
 				<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -54,6 +59,7 @@
 					<li><a href="<?php echo $app->urlFor('home');?>">Add new room</a></li>
           </ul>
         </li>
+        		<?php endif; ?>
 			</ul>
       
       <ul class="nav navbar-nav navbar-right">
