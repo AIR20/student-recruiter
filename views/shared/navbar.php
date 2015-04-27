@@ -45,7 +45,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
 					<li><a href="<?php echo $app->urlFor('user_list');?>">View users</a></li>
-            <li><a href="#">Pending events <span class="badge">3</span></a></li>
+					<li><a href="#">Pending events <span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
           </ul>
         </li>
 			</ul>
