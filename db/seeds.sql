@@ -3,12 +3,15 @@
 USE `srs`;
 SET NAMES utf8;
 
+-- Schools
+INSERT INTO `schools` (`id`, `name`, `school_type`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel`) VALUES (1, 'The City of Liverpool College', 'college', 'Roscoe Street', NULL, 'Liverpool', 'L1 9DW', '01512523000');
+
 -- Buildings
 -- ------------------------------------------------------
-INSERT INTO `buildings` (`id`,`name`,`map_no`) VALUES (1,'George Holt building',231);
-INSERT INTO `buildings` (`id`,`name`,`map_no`) VALUES (2,'Ashton Building',422);
-INSERT INTO `buildings` (`id`,`name`,`map_no`) VALUES (3,'Brodie Tower',233);
-INSERT INTO `buildings` (`id`,`name`,`map_no`) VALUES (4,'Central Teaching Hub',221);
+INSERT INTO `buildings` (`id`,`name`,`map_no`,`latitude`,`longitude`) VALUES (1,'George Holt building',231,53.406914,-2.966528);
+INSERT INTO `buildings` (`id`,`name`,`map_no`,`latitude`,`longitude`) VALUES (2,'Ashton Building',422,53.406447,-2.966372);
+INSERT INTO `buildings` (`id`,`name`,`map_no`,`latitude`,`longitude`) VALUES (3,'Brodie Tower',233,53.406751,-2.968411);
+INSERT INTO `buildings` (`id`,`name`,`map_no`,`latitude`,`longitude`) VALUES (4,'Central Teaching Hub',221,53.405097,-2.963181);
 
 -- Rooms
 -- ------------------------------------------------------
