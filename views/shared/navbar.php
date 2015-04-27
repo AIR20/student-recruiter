@@ -37,7 +37,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Staff<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">View my events</a></li>
-          </ul>
+						<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
+					</ul>
 				</li>
 				
 				<li class="dropdown">
