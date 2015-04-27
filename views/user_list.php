@@ -9,7 +9,7 @@
 			<div class="row">
 			<div class="main col-md-12">
 
-				<h1 class="page-header">Upcoming events</h1>
+				<h1 class="page-header">List of users</h1>
 				<div class="well col-md-8 col-md-offset-2">
 					<?php foreach($students as $student) : ?>
 						<div class="panel panel-primary">
