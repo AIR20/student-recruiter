@@ -69,6 +69,13 @@ class Event extends Model {
 			return 2;
 		}
 	}
+ 
+	public static function countPendingEvents(){
+		Event::db_init();
+		$result = Event::$db->query("SELECT COUNT(id) FROM `events` WHERE `status`='pending'");
+
+		return $row['COUNT(id)'];
+	}
 
 	public static function getEventById($id) {
 		Event::db_init();

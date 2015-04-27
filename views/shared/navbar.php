@@ -24,6 +24,36 @@
 				<li>
 					<a href = "#">Calendar</a>
 				</li>
+				
+				<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Teacher<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<?php echo $app->urlFor('home');?>">View students</a></li>
+            <li><a href="<?php echo $app->urlFor('home');?>">View my events</a></li>
+						<li class="divider"></li>
+            <li><a href="<?php echo $app->urlFor('home');?>">Add students</a></li>
+          </ul>
+				</li>
+
+				<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Staff<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="<?php echo $app->urlFor('home');?>">View my events</a></li>
+						<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+					<li><a href="<?php echo $app->urlFor('user_list');?>">View users</a></li>
+					<li><a href="">Pending events <span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
+					<li class="divider"></li>
+					<li><a href="<?php echo $app->urlFor('create_staff');?>">Add new staff</a></li>
+					<li><a href="<?php echo $app->urlFor('home');?>">Add new building</a></li>
+					<li><a href="<?php echo $app->urlFor('home');?>">Add new room</a></li>
+          </ul>
+        </li>
 			</ul>
       
       <ul class="nav navbar-nav navbar-right">

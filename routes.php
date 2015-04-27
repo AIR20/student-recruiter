@@ -42,6 +42,11 @@ $app->group(
 			'/create_staff',
 			'AdminController:create_staff'
 		)->name('create_staff');
+
+		$app->get(
+			'/users',
+			'AdminController:user_list'
+		)->name('user_list');
 	}
 );
 
