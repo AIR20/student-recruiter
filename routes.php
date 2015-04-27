@@ -33,6 +33,11 @@ $app->group(
 			'TeacherController:register'
 		)->name('teacher_register');
 
+		$app->post(
+			'',
+			'TeacherController:store'
+		)->name('teacher_store');
+
 		$app->get(
 			'/class',
 			'TeacherController:viewClass'

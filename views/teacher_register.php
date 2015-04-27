@@ -6,31 +6,25 @@
   <div class="container">
     <div class="bs-docs-section">
       <div class = "row">
-        <!--header-->
         <div class="main col-md-12">
           <h1 class="page-header"> Teacher registration</h1>
-          <p>Register for an account</p>
-        </div>
-
-        <!--registration form-->
-        <div class="well col-md-8 col-md-offset-2">
-          <form action="" method="post" class="form-horizontal">
-            
-            <!--title, drop down-->
-            <div class="form-group">
-              <label class="col-sm-2 control-label">
-                Title: 
-              </label>
-              <div class="col-sm-10">
-                <select class="form-control" name="title">
-                  <option value="Mr">Mr</option>
-                  <option value="Mrs">Mrs</option>
-                  <option value="Ms">Ms</option>
-                  <option value="Miss">Miss</option>
-                  <option value="Dr">Dr</option>
-               </select>
-              </div>
-            </div>
+					<?php require 'shared/notice.php'; ?>
+	        <div class="well col-md-8 col-md-offset-2">
+						<form action="<?php echo $app->urlFor('teacher_store'); ?>" method="post" class="form-horizontal">
+            	<div class="form-group">
+	              <label class="col-sm-2 control-label">
+  	              Title: 
+    	          </label>
+      	        <div class="col-sm-10">
+        	        <select class="form-control" name="title">
+          	        <option value="Mr">Mr</option>
+            	      <option value="Mrs">Mrs</option>
+              	    <option value="Ms">Ms</option>
+                	  <option value="Miss">Miss</option>
+                  	<option value="Dr">Dr</option>
+	               </select>
+  	            </div>
+    	        </div>
           
             <!--first name-->
             <div class="form-group">
