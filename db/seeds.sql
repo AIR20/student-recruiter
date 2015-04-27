@@ -4,6 +4,7 @@ USE `srs`;
 SET NAMES utf8;
 
 -- Schools
+-- ------------------------------------------------------
 INSERT INTO `schools` (`id`, `name`, `school_type`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel`) VALUES (1, 'The City of Liverpool College', 'college', 'Roscoe Street', NULL, 'Liverpool', 'L1 9DW', '01512523000');
 
 -- Buildings
@@ -34,5 +35,16 @@ INSERT INTO `events` (`id`,`title`,`description`,`tags`,`room_id`,`start_time`,`
 
 -- Users
 -- ------------------------------------------------------
+
+-- Student
 INSERT INTO `users` (`id`,`email`,`hashed_password`,`firstname`,`lastname`,`role`,`gender`,`dob`,`avatar`,`registered_at`) VALUES (1,'test@example.com','123456','Alex','Fleming',3,NULL,NULL,NULL,'2015-04-03 16:05:01');
 INSERT INTO `students` (`user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode`) VALUES (1, NULL, NULL, NULL, NULL, NULL, NULL);
+-- Teacher
+INSERT INTO `users` (`id`,`email`,`hashed_password`,`firstname`,`lastname`,`role`,`gender`,`dob`,`avatar`,`registered_at`) VALUES (2,'teacher@example.com','123456','Alex','Teacher',2,NULL,NULL,NULL,'2015-04-03 16:05:01');
+INSERT INTO `teachers` (`user_id`, `school_id`, `phone`) VALUES (2, 1, '0123456789');
+-- Staff
+INSERT INTO `users` (`id`,`email`,`hashed_password`,`firstname`,`lastname`,`role`,`gender`,`dob`,`avatar`,`registered_at`) VALUES (3,'staff@example.com','123456','Alex','Fleming',1,NULL,NULL,NULL,'2015-04-03 16:05:01');
+INSERT INTO `staff` (`user_id`, `department_id`, `phone`) VALUES (3, 1, '0123456789');
+-- Admin
+INSERT INTO `users` (`id`,`email`,`hashed_password`,`firstname`,`lastname`,`role`,`gender`,`dob`,`avatar`,`registered_at`) VALUES (4,'admin@example.com','123456','Alex','Admin',0,NULL,NULL,NULL,'2015-04-03 16:05:01');
+INSERT INTO `admins` (`user_id`, `phone`) VALUES (4, '0123456789');
