@@ -91,6 +91,19 @@ class Event extends Model {
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
+			$event->new_record = false;
+			$events[] = $event;
+		}
+		return $events;
+	}
+
+	public static function getBookedEventList($student_id){
+		Event::db_init();
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id)");
+
+		$events = array();
+		while($event = $result->fetch_object('Event')){
+			$event->new_record = false;
 			$events[] = $event;
 		}
 		return $events;

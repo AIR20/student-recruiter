@@ -41,4 +41,19 @@ class Admin extends User {
 		// TODO: Validate fields
 		return true;
 	}
+
+	public static function getAdminById($id) {
+		$admin = User::getUserById($id);
+		$result = Admin::$db->query(
+			"SELECT `user_id`, `phone` FROM `admins` WHERE `user_id` = $id LIMIT 1"
+		);
+
+		$tmp = $result->fetch_object();
+		if ($tmp) {
+			$admin->phone = $tmp->phone;
+			return $admin;
+		} else {
+			throw new Exception("No such admin.");
+		}
+	}
 }

@@ -39,4 +39,20 @@ class Teacher extends User {
 		// TODO: Validate fields
 		return true;
 	}
+
+	public static function getTeacherById($id) {
+		$teacher = User::getUserById($id);
+		$result = Teacher::$db->query(
+			"SELECT `user_id`, `school_id`, `phone` FROM `teachers` WHERE `user_id` = $id LIMIT 1"
+		);
+
+		$tmp = $result->fetch_object();
+		if ($tmp) {
+			$teacher->school_id = $tmp->school_id;
+			$teacher->phone = $tmp->phone;
+			return $teacher;
+		} else {
+			throw new Exception("No such teacher.");
+		}
+	}
 }

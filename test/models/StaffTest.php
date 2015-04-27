@@ -14,6 +14,16 @@ class StaffTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue($st->save(), "Cannot create staff");
 		$this->assertInternalType("int", $st->id);
+		return $st->id;
+	}
+
+	/**
+	 * @depends testCreateStaff
+	 */
+	public function testFindStaff($id) {
+		$st = Staff::getStaffById($id);
+		$this->assertEquals(1, $st->department_id);
+		$this->assertEquals('07422 133456', $st->phone);
 	}
 
 }

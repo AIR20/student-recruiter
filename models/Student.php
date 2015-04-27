@@ -48,4 +48,28 @@ class Student extends User {
 		// TODO: Validate fields
 		return true;
 	}
+
+	public function getEventList() {
+		return Event::getBookedEventList($this->id);
+	}
+
+	public static function getStudentById($id) {
+		$student = User::getUserById($id);
+		$result = Student::$db->query(
+			"SELECT `user_id`, `school_id`, `teacher_id`, `address_line1`, `address_line2`, `address_line3`, `postcode` FROM `students` WHERE `user_id` = $id LIMIT 1"
+		);
+
+		$tmp = $result->fetch_object();
+		if ($tmp) {
+			$student->school_id = $tmp->school_id;
+			$student->teacher_id = $tmp->teacher_id;
+			$student->address_line1 = $tmp->address_line1;
+			$student->address_line2 = $tmp->address_line2;
+			$student->address_line3 = $tmp->address_line3;
+			$student->postcode = $tmp->postcode;
+			return $student;
+		} else {
+			throw new Exception("No such student.");
+		}
+	}
 }

@@ -42,4 +42,20 @@ class Staff extends User {
 		// TODO: Validate fields
 		return true;
 	}
+
+	public static function getStaffById($id) {
+		$staff = User::getUserById($id);
+		$result = Staff::$db->query(
+			"SELECT `user_id`, `department_id`, `phone` FROM `staff` WHERE `user_id` = $id LIMIT 1"
+		);
+
+		$tmp = $result->fetch_object();
+		if ($tmp) {
+			$staff->department_id = $tmp->department_id;
+			$staff->phone = $tmp->phone;
+			return $staff;
+		} else {
+			throw new Exception("No such staff.");
+		}
+	}
 }

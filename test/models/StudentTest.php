@@ -14,6 +14,16 @@ class StudentTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue($st->save(), "Cannot create student");
 		$this->assertInternalType("int", $st->id);
+		return $st->id;
+	}
+
+	/**
+	 * @depends testCreateStudent
+	 */
+	public function testFindStudent($id) {
+		$st = Student::getStudentById($id);
+		$this->assertEquals('Ashton St', $st->address_line1);
+		$this->assertEquals('Liverpool', $st->address_line2);
 	}
 
 }

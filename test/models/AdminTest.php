@@ -13,6 +13,15 @@ class AdminTeadm extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue($adm->save(), "Cannot create admin");
 		$this->assertInternalType("int", $adm->id);
+		return $adm->id;
+	}
+
+	/**
+	 * @depends testCreateAdmin
+	 */
+	public function testFindAdmin($id) {
+		$adm = Admin::getAdminById($id);
+		$this->assertEquals('07422 133488', $adm->phone);
 	}
 
 }

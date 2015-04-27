@@ -83,4 +83,20 @@ class User extends Model {
 		$user->new_record = false;
 		return $user;
 	}
+
+	/**
+	 *	These functions test the role of the user.
+	 */
+	public function isAdmin() {
+		return $this->role == 0;
+	}
+	public function isStaff() {
+		return $this->role == 1;
+	}
+	public function isTeacher() {
+		return $this->role == 2;
+	}
+	public function isStudent() {
+		return $this->role == 3;
+	}
 }
