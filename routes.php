@@ -36,17 +36,22 @@ $app->group(
 		$app->get(
 			'/class',
 			'TeacherController:viewClass'
-		)->name('view_class');
+		)->name('teacher_view_class');
 
 		$app->get(
 			'/add_student',
 			'TeacherController:addStudent'
-		)->name('add_student');
+		)->name('teacher_add_student');
+
+		$app->post(
+			'/store_student',
+			'TeacherController:storeStudent'
+		)->name('teacher_store_student');
 
 		$app->get(
 			'/edit_student/:id',
 			'TeacherController:editStudent'
-		)->name('edit_student');
+		)->name('teacher_edit_student');
 	}
 );
 

@@ -17,7 +17,40 @@ class TeacherController extends BaseController {
 
     # GET /teacher/add_student
     function addStudent() {
-        throw new Exception('Not implemented.');
+        $this->app->render('teacher_create_student.php', $this->data);
+    }
+
+    # POST /teacher/new_student
+    function storeStudent() {
+        $this->requireValidTeacher();
+        $app = $this->app;
+        $params = $this->getParams();
+
+        $student = new Student(true);
+        $student->firstname = $params['fname'];
+        $student->lastname = $params['lname'];
+        $student->email = $params['email'];
+
+        // TODO: Should use hashed password
+        $student->hashed_password = 'SEEMS LIKE PASSWORD IS REQUIRED FIELD';
+        $student->gender = $params['gender'];
+
+        // convert date format
+        $student->dob = $this->convertDate($params['dob']);
+
+        $student->address_line1 = $params['addr1'];
+        $student->address_line2 = $params['addr2'];
+        $student->address_line3 = $params['addr3'];
+        $student->postcode = $params['postcode'];
+        $student->teacher_id = $this->user->id;
+
+        if ($student->save()) {
+            $app->flash('info', 'Well done. Student is added successfully.');
+            $app->redirect($app->urlFor('teacher_view_class'));
+        } else {
+            $app->flash('warning', 'The form cannot be submitted due to some errors.');
+            $app->redirect($app->urlFor('teacher_add_student'));
+        }
     }
 
     # GET /teacher/edit_student/:id

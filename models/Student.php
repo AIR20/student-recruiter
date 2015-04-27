@@ -83,5 +83,6 @@ class Student extends User {
 		while ($tmp = $result->fetch_object()) {
 			$students[] = Student::getStudentById($tmp->user_id);
 		}
+		return $students;
 	}
 }
