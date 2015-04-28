@@ -4,11 +4,12 @@ class StudentController extends BaseController {
 
 	# GET /student/register
 	function register() {	
+		$this->data['schools'] = School::getSchoolList();
 		$this->app->render('student_register.php', $this->data);
 	}
 
-  function event() {
-    $this->app->render('event.php', $this->data);
+	function event() {
+		$this->app->render('event.php', $this->data);
   }
 
 	# POST /student
