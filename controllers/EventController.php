@@ -9,7 +9,18 @@ class EventController extends BaseController {
 
 	# GET /event/1
 	public function view($id) {
+		if (isset($this->user) && $this->user->isStudent()) {
+			$booked_events = $this->user->getEventList();
+			$booked = false;
+			foreach ($booked_events as $event) {
+				if ($event->id == $id) {
+					$booked = true;
+					break;
+				}
+			}
+		}
 		$this->data['event'] = Event::getEventById($id);
+		$this->data['event']->booked = $booked;
 		$this->app->render('event_details.php', $this->data);
 	}
 
@@ -55,7 +66,7 @@ class EventController extends BaseController {
 
 	}
 
-	
+
 	public function book($id){
 		$e = Event::getEventById($id);
 		if (!isset($this->data['user'])) {
@@ -74,7 +85,7 @@ class EventController extends BaseController {
 			$this->app->redirect($this->app->urlFor('list_event'));
 		}
 	}
-	
+
 	public function unbook($id){
 		$e = Event::getEventById($id);
 		if (!isset($this->data['user'])) {
@@ -93,6 +104,5 @@ class EventController extends BaseController {
 			$this->app->redirect($this->app->urlFor('account'));
 		}
 	}
-	
-}
 
+}

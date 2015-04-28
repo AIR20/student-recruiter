@@ -20,7 +20,7 @@
         </div>
 
         <div class="panel panel-primary">
-					<!--title--> 
+					<!--title-->
 					<div class="panel-heading">
             <h3 class="panel-title">Event details</h3>
 					</div>
@@ -44,9 +44,11 @@
             A live video will be available on this page when the event starts and a recorded video will be available a few days after the event.
           </div>
         </div>
-
-        <a href="#" class="btn btn-primary">Book this event</a>
-
+        <?php if ($event->booked): ?>
+            <button class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Booked</button>
+        <?php else: ?>
+            <a href="#" class="btn btn-primary">Book this event</a>
+        <?php endif; ?>
       </div>
 
     </div>
