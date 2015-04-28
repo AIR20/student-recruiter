@@ -97,4 +97,13 @@ class Student extends User {
 		}
 		return $students;
 	}
+
+	public function getTeacherName(){
+		if($this->teacher_id){
+			$teacher = Teacher::getTeacherById($this->teacher_id);
+			return $teacher->firstname . ' ' . $teacher->lastname;
+		} else {
+			return "N/A";
+		}
+	}
 }
