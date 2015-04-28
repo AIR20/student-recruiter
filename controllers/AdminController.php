@@ -7,6 +7,8 @@ Class AdminController extends BaseController {
 
 	function user_list(){
 		$this->data['students'] = Student::getStudentList();
+		$this->data['teachers'] = Teacher::getTeacherList();
+		$this->data['staffs'] = Staff::getStaffList();
 		$this->app->render('user_list.php', $this->data);
 	}
 	

@@ -42,6 +42,17 @@ class Staff extends User {
 		// TODO: Validate fields
 		return true;
 	}
+	
+	public static function getStaffList(){
+		Staff::db_init();
+		$result = Staff::$db->query("SELECT `user_id` FROM `staff`");
+
+		$staffs = array();
+		while ($tmp = $result->fetch_object()){
+			$staffs[] = Staff::getStaffById($tmp->user_id);
+		}
+		return $staffs;
+	}
 
 	public static function getStaffById($id) {
 		$staff = User::getUserById($id, 'Staff');
@@ -58,4 +69,14 @@ class Staff extends User {
 			throw new Exception("No such staff.");
 		}
 	}
+
+	public function getDepartment() {
+		if($this->department_id) {
+			$department = Department::getDepartmentById($this->department_id);
+			return $department->name;
+		} else {
+			return "N/A";
+		}
+	}
+		
 }
