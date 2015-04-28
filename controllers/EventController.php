@@ -62,16 +62,35 @@ class EventController extends BaseController {
 			$this->app->flash('error', 'Please login first');
 			$this->app->redirect($this->app->urlFor('home'));
 		} else if (!$this->data['user']->isStudent()) {
-			$this->app->flash('error', 'You must be a student BIATCHHH');
+			$this->app->flash('error', 'You must be a student');
 			$this->app->redirect($this->app->urlFor('home'));
 		}
 		$result = $e->bookEvent($this->data['user']->id);
 		if ($result == 1) {
 			$this->app->flash('info', 'Successfully Booked Event.');
-			$this->app->redirect($this->app->urlFor('home'));
+			$this->app->redirect($this->app->urlFor('list_event'));
 		} else {
 			$this->app->flash('error', 'Booking UNSUCCESSFUL.');
+			$this->app->redirect($this->app->urlFor('list_event'));
+		}
+	}
+	
+	public function unbook($id){
+		$e = Event::getEventById($id);
+		if (!isset($this->data['user'])) {
+			$this->app->flash('error', 'Please login first');
 			$this->app->redirect($this->app->urlFor('home'));
+		} else if (!$this->data['user']->isStudent()) {
+			$this->app->flash('error', 'You must be a student');
+			$this->app->redirect($this->app->urlFor('home'));
+		}
+		$result = $e->unbookEvent($this->data['user']->id);
+		if ($result == 1) {
+			$this->app->flash('info', 'Successfully Cancelled Booking.');
+			$this->app->redirect($this->app->urlFor('account'));
+		} else {
+			$this->app->flash('error', 'Booking Cancel UNSUCCESSFUL.');
+			$this->app->redirect($this->app->urlFor('account'));
 		}
 	}
 	

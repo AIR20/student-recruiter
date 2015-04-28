@@ -69,6 +69,21 @@ class Event extends Model {
 			return 2;
 		}
 	}
+	
+		// 1 = success 0 = query fail 
+	public function unbookEvent($student_id){
+		Event::db_init();
+		$id = $this->id;
+				
+			$result = Event::$db->query("UPDATE `events` SET `applicants` = `applicants` - 1 WHERE `id` = $id");
+			$result2 = Event::$db->query("DELETE FROM `applications` WHERE `student_id`=$student_id AND `event_id`=$id");
+			if($result && $result2){
+				return 1;
+			} else {
+				return 0;
+			}
+
+	}
  
 	public static function countPendingEvents(){
 		Event::db_init();

@@ -8,6 +8,7 @@
 
 	
     <div class="container">
+	  <?php require 'shared/notice.php';?>
       <div class="well col-md-9 col-md-offset-1">
         <h1>Account Details</h1>
         <h3></h3>
@@ -31,8 +32,11 @@
           <div class="panel-body">
             <ul>
             <?php foreach ($events as $event): ?>
-              <li><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title;?></a></li>
-			  
+              <li><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title;?></a>
+			  <div style="float:right">
+				<a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-danger btn-xs">Cancel Booking</a> 
+			  </div></li>
+			  </br></br>
             <?php endforeach; ?>
             </ul>
           </div>

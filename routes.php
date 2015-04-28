@@ -102,6 +102,11 @@ $app->group(
 			'/book/:id',
 			'EventController:book'
 		)->name('book_event');
+		
+		$app->get(
+			'/unbook/:id',
+			'EventController:unbook'
+		)->name('unbook_event');
 	}
 
 );

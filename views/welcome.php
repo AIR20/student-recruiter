@@ -3,12 +3,12 @@
 <?php require 'shared/head.php'; ?>
 <body>
 	<?php require 'shared/navbar.php'; ?>
-	<?php require 'shared/notice.php'; ?>
+	
 
 	<!-- Intro Header -->
 	<div class="intro-header">
 		<div class="container">
-
+			<?php require 'shared/notice.php'; ?>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="intro-message">
