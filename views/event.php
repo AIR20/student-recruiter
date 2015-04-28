@@ -17,10 +17,7 @@
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>		
 							<div class="panel-body">
-							<h5><?php $room = Room::getRoomById($event->room_id);
-								$building = Building::getBuildingById($room->building_id);
-								echo $building->name . ' - ' . $room->room_name; ?>
-							</h5>
+							<h5><? $event->getRoomName(); ?></h5>
 								<h5><?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
 								<p><?php echo $event->description ?></p>
 								</br>
