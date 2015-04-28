@@ -34,6 +34,8 @@ class StudentController extends BaseController {
 		$student->address_line3 = $params['addr3'];
 		$student->postcode = $params['postcode'];
 
+		$student->school_id = $params['school_id'];
+
 		if ($student->save()) {
 			$app->flash('info', 'Register successfully.');
 			$app->redirect($app->urlFor('home'));
