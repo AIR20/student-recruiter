@@ -22,8 +22,8 @@ class TeacherTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testFindTeacher($id) {
 		$t = Teacher::getTeacherById($id);
-		$this->assertEquals(1, $st->school_id);
-		$this->assertEquals('07422 133456', $st->phone);
+		$this->assertEquals(1, $t->school_id);
+		$this->assertEquals('07422 133456', $t->phone);
 	}
 
 }
