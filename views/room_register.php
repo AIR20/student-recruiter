@@ -16,7 +16,7 @@
 			<div class="well col-md-8 col-md-offset-2">
 			<form action="" method="post" class="form-horizontal">	            
 
-				<!--first name-->
+				<!--Room name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Room Name:
@@ -25,6 +25,40 @@
 						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
 					</div>
 				</div>				
+				
+				<!--gender, drop down-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Building:
+					</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="building">
+							<?php foreach($buildings as $building) : ?>
+							<option value="0"><?php echo $building->name?></option>
+							<?php endforeach?>
+						</select>
+					</div>
+				</div>
+				
+				<!--Room Number-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Room Number:
+					</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
+					</div>
+				</div>	
+				
+				<!--Room Size-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Room Size:
+					</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
+					</div>
+				</div>	
 
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">

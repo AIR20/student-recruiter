@@ -47,6 +47,7 @@ class Building extends Model {
 	}
 
 	public static function getBuildingList() {
+		Building::db_init();
 		$result = Building::$db->query(
 			"SELECT `id`, `name`, `map_no` FROM `buildings`"
 		);
