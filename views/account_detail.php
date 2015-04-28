@@ -30,8 +30,9 @@
           </div>
           <div class="panel-body">
             <ul>
-            <?php foreach ($events as $e): ?>
-              <li><?php echo $e->title;?></li>
+            <?php foreach ($events as $event): ?>
+              <li><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title;?></a></li>
+			  
             <?php endforeach; ?>
             </ul>
           </div>
