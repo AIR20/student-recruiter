@@ -93,11 +93,11 @@
 	              </label>
 	              <div class="col-sm-10">
 	                <select class="form-control" name="department_id">
-	                  <option value="01">Art</option>
-	                  <option value="64">Computer Science</option>
-	                  <option value="66">Music</option>
-	                  <option value="80">Philosophy</option>
-	                  <option value="99">Physics</option>
+	                  <option value="1">Art</option>
+	                  <option value="2">Computer Science</option>
+	                  <option value="3">Music</option>
+	                  <option value="4">Philosophy</option>
+	                  <option value="5">Physics</option>
 	               </select>
 	              </div>
 	            </div>	
