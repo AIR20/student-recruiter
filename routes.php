@@ -72,6 +72,11 @@ $app->group(
 			'/users',
 			'AdminController:user_list'
 		)->name('user_list');
+		
+		$app->get(
+			'/add_building',
+			'AdminController:add_building'
+		)->name('add_building');
 	}
 );
 

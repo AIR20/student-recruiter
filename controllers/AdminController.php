@@ -9,4 +9,8 @@ Class AdminController extends BaseController {
 		$this->data['students'] = Student::getStudentList();
 		$this->app->render('user_list.php', $this->data);
 	}
+	
+	function add_building(){
+		$this->app->render('building_register.php', $this->data);
+	}
 }

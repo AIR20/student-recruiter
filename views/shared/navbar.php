@@ -50,7 +50,7 @@
 					<li><a href="">Pending events <span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
 					<li class="divider"></li>
 					<li><a href="<?php echo $app->urlFor('create_staff');?>">Add new staff</a></li>
-					<li><a href="<?php echo $app->urlFor('home');?>">Add new building</a></li>
+					<li><a href="<?php echo $app->urlFor('add_building');?>">Add new building</a></li>
 					<li><a href="<?php echo $app->urlFor('home');?>">Add new room</a></li>
           </ul>
         </li>
