@@ -8,6 +8,8 @@ class Teacher extends User {
 
 	public function save() {
 		// Teacher::$db->begin_transaction();
+		$this->role = 2;
+		
 		if (!parent::save()) {
 			// Teacher::$db->rollback();
 			return false;

@@ -3,38 +3,31 @@
 class TeacherController extends BaseController {
 
     # GET /teacher/register
-    function register(){
-
-        $this->app->render('teacher_register.php', $this->data);
-    }
+	function register() {
+		$this->app->render('teacher_register.php', $this->data);
+  }
 		
-		function store() {
-			$app = $this->app;
-			$params = $this->getParams();
+	function store() {
+		$app = $this->app;
+		$params = $this->getParams();
 
-			$teacher = new Teacher(true);
-			$teacher->firstname = $params['fname'];
-			$teacher->lastname = $params['lname'];
-			$teacher->email = $params['email'];
-
-			$teacher->hashed_password = $params['password'];
-			$teacher->gender = $params['gender'];
-
-			$teacher->dob = $this->convertDate($params['dob']);
-
-			$teacher->address_line1 = $params['addr1'];
-			$teacher->address_line2 = $params['addr2'];
-			$teacher->address_line3 = $params['addr3'];
-			$teacher->postcode = $params['postcode'];
-
-			if ($teacher->save()) {
-				$app->flash('info', 'Registration sucessful');
-				$app->redirect($app->urlFor('home'));
-			} else {
-				$app->flash('warning', 'Registration unsuccessful');
-				$app->redirect($app->urlFor('teacher_register'));
-			}
+		$teacher = new Teacher(true);
+		$teacher->firstname = $params['fname'];
+		$teacher->lastname = $params['lname'];
+		$teacher->email = $params['email'];
+		$teacher->hashed_password = $params['password'];
+		$teacher->phone = $params['phone'];
+		$teacher->dob = $this->convertDate($params['dob']);
+		$teacher->gender = $params['gender'];
+		$teacher->school_id = $params['school_id'];
+		if ($teacher->save()) {
+			$app->flash('info', 'Registration sucessful');
+			$app->redirect($app->urlFor('home'));
+		} else {
+			$app->flash('warning', 'Registration unsuccessful');
+			$app->redirect($app->urlFor('teacher_register'));
 		}
+	}
 
     # GET /teacher/class
     function viewClass() {
