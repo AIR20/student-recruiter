@@ -46,17 +46,17 @@ class Event extends Model {
 		// TODO: Validate fields
 		return true;
 	}
-	
+
 	// 1 = success 0 = query fail 2 = already booked
 	public function bookEvent($student_id){
 		Event::db_init();
 		$id = $this->id;
-		
+
 		$curr_time = $this->current_time();
-		
+
 		$check_already_booked = Event::$db->query("SELECT `id` FROM `applications` WHERE `student_id` = $student_id AND `event_id` = $id");
 		//current user not booked this event yet
-		if($check_already_booked->num_rows == 0){		
+		if($check_already_booked->num_rows == 0){
 			$result = Event::$db->query("UPDATE `events` SET `applicants` = `applicants` + 1 WHERE `id` = $id");
 			$result2 = Event::$db->query("INSERT INTO `applications` (`student_id`, `event_id`, `created_at`) VALUES ($student_id, $id, '$curr_time')");
 			if($result && $result2){
@@ -69,7 +69,7 @@ class Event extends Model {
 			return 2;
 		}
 	}
-	
+
 		// 1 = success 0 = query fail 
 	public function unbookEvent($student_id){
 		Event::db_init();
@@ -82,7 +82,6 @@ class Event extends Model {
 			} else {
 				return 0;
 			}
-
 	}
  
 	public static function countPendingEvents(){
@@ -125,5 +124,23 @@ class Event extends Model {
 			$events[] = $event;
 		}
 		return $events;
+	}
+
+	public function getRoomName() {
+		if ($this->room_id) {
+			$rm = Room::getRoomById($this->room_id);
+			return $rm->room_name.' '.$rm->room_no;
+		} else {
+			return 'TBD';
+		}
+	}
+
+	public function getBuildingName() {
+		if ($this->room_id) {
+			$rm = Room::getRoomById($this->room_id);
+			return $rm->getBuildingName();
+		} else {
+			return 'TBD';
+		}
 	}
 }

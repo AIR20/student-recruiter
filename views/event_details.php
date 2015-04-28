@@ -9,10 +9,7 @@
     <div class="container">
       <div class="well col-md-9 col-md-offset-1">
         <h1><?php echo $event->title;?></h1>
-			<?php		
-				$room = Room::getRoomById($event->room_id); 
-				$building = Building::getBuildingById($room->building_id);
-				echo $building->name . ' - ' . $room->room_name; ?>
+			<?php echo $event->getBuildingName(). ' - ' . $event->getRoomName();?>
 				<h5><?php echo date('l jS F, Y', strtotime($event->start_time)) ;?></h5>
 				<h5><?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time));?></h5>
         <div class="panel panel-default">

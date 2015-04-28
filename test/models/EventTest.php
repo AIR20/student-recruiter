@@ -24,6 +24,8 @@ class EventTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('Test Title', $ev->title);
 		$this->assertEquals('http://facebook.com/test', $ev->facebook_link);
 		$this->assertEquals(0, $ev->applicants);
+		$this->assertEquals('Teaching Laboratory 2 GHOLT-H102', $ev->getRoomName());
+		$this->assertEquals('George Holt building', $ev->getBuildingName());
 	}
 
 	public function testListEvents() {
