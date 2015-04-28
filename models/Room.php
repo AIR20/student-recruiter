@@ -60,4 +60,13 @@ class Room extends Model {
 		}
 		return $rooms;
 	}
+
+	public function getBuildingName() {
+		if ($this->building_id) {
+			$bd = Building::getBuildingById($this->building_id);
+			return $bd->name;
+		} else {
+			return 'TBD';
+		}
+	}
 }
