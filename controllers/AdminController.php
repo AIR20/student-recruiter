@@ -13,4 +13,8 @@ Class AdminController extends BaseController {
 	function add_building(){
 		$this->app->render('building_register.php', $this->data);
 	}
+	
+	function add_room(){
+		$this->app->render('room_register.php', $this->data);
+	}
 }

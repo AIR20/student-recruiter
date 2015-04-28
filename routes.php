@@ -77,6 +77,11 @@ $app->group(
 			'/add_building',
 			'AdminController:add_building'
 		)->name('add_building');
+		
+		$app->get(
+			'/add_room',
+			'AdminController:add_room'
+		)->name('add_room');
 	}
 );
 
