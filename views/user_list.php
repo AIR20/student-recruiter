@@ -86,8 +86,8 @@
 					    		<th>UserID</th>
 						    	<th>First name</th>
 								<th>Last name</th>
+								<th>Age</th>								
 								<th>Department</th>
-								<th>Age</th>
 						    	<th>Email</th>
 								<th>Date registered</th>
 							</tr>
