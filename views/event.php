@@ -43,8 +43,9 @@
 							<h5><i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
 								<p><?php echo $event->description ?></p>
 								</br>
-								<div style="float:right">
-									<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-primary"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
+								<div class="pull-right">
+										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
+										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
 								</div>
 							</div>
 						</div>
