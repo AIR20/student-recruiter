@@ -7,9 +7,16 @@ Class AdminController extends BaseController {
 
 	function user_list(){
 		$this->data['students'] = Student::getStudentList();
+		$this->data['teachers'] = Teacher::getTeacherList();
+		$this->data['staffs'] = Staff::getStaffList();
 		$this->app->render('user_list.php', $this->data);
 	}
 	
+	function add_department(){
+		$this->data['buildings'] = Building::getBuildingList();
+		$this->app->render('department_register.php', $this->data);
+	}
+
 	function add_building(){
 		$this->app->render('building_register.php', $this->data);
 	}
@@ -17,5 +24,9 @@ Class AdminController extends BaseController {
 	function add_room(){
 		$this->data['buildings'] = Building::getBuildingList();
 		$this->app->render('room_register.php', $this->data);
+	}
+
+	function add_school(){
+		$this->app->render('school_register.php', $this->data);
 	}
 }

@@ -124,6 +124,8 @@ CREATE TABLE IF NOT EXISTS `u3ac`.`buildings` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `map_no` INT(11) NULL,
+  `longitude` DECIMAL(9,6) NULL,
+  `latitude` DECIMAL(9,6) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -226,6 +228,7 @@ CREATE TABLE IF NOT EXISTS `u3ac`.`events` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(180) NOT NULL,
   `description` TEXT NOT NULL,
+  `type` VARCHAR(80) NULL,
   `tags` VARCHAR(180) NULL,
   `room_id` INT(11) NULL,
   `start_time` DATETIME NULL,

@@ -41,6 +41,17 @@ class Teacher extends User {
 		// TODO: Validate fields
 		return true;
 	}
+	
+	public static function getTeacherList(){
+		Teacher::db_init();
+		$result = Teacher::$db->query("SELECT `user_id` FROM `teachers`");
+
+		$teachers = array();
+		while ($tmp = $result->fetch_object()){
+			$teachers[] = Teacher::getTeacherById($tmp->user_id);
+		}
+		return $teachers;
+	}
 
 	public static function getTeacherById($id) {
 		$teacher = User::getUserById($id, 'Teacher');

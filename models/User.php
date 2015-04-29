@@ -98,4 +98,22 @@ class User extends Model {
 	public function isStudent() {
 		return $this->role == 3;
 	}
+
+	public function getAge() {
+		if($this->dob) {
+			$age = date_diff(date_create($this->dob), date_create('now'))->y;
+			return $age;
+		} else {
+			return "N/A";
+		}
+	}
+
+	public function getSchoolName() {
+		if($this->school_id) {
+			$school = School::getSchoolById($this->school_id);
+			return $school->name;
+		} else {
+			return "N/A";
+		}
+	}
 }

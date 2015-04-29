@@ -63,15 +63,6 @@ $app->group(
 $app->group(
 	'/admin',
 	function () use($app){
-		$app->get(
-			'/create_staff',
-			'AdminController:create_staff'
-		)->name('create_staff');
-		
-		$app->post(
-			'',
-			'StaffController:store'
-		)->name('staff_store');
 
 		$app->get(
 			'/users',
@@ -79,14 +70,69 @@ $app->group(
 		)->name('user_list');
 		
 		$app->get(
-			'/add_building',
-			'AdminController:add_building'
-		)->name('add_building');
-		
-		$app->get(
 			'/add_room',
 			'AdminController:add_room'
 		)->name('add_room');
+	}
+);
+
+$app->group(
+	'/admin/create_staff',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:create_staff'
+		)->name('create_staff');
+		
+		$app->post(
+			'',
+			'StaffController:store'
+		)->name('staff_store');
+	}
+);
+
+$app->group(
+	'/admin/add_department',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:add_department'
+		)->name('add_department');
+
+		$app->post(
+			'',
+			'DepartmentController:store'
+		)->name('department_store');
+	}
+);
+
+$app->group(
+	'/admin/add_building',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:add_building'
+		)->name('add_building');
+
+		$app->post(
+			'',
+			'BuildingController:store'
+		)->name('building_store');
+	}
+);
+
+$app->group(
+	'/admin/add_school',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:add_school'
+		)->name('add_school');
+
+		$app->post(
+			'',
+			'SchoolController:store'
+		)->name('school_store');
 	}
 );
 

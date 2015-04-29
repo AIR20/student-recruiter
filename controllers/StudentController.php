@@ -4,11 +4,12 @@ class StudentController extends BaseController {
 
 	# GET /student/register
 	function register() {	
+		$this->data['schools'] = School::getSchoolList();
 		$this->app->render('student_register.php', $this->data);
 	}
 
-  function event() {
-    $this->app->render('event.php', $this->data);
+	function event() {
+		$this->app->render('event.php', $this->data);
   }
 
 	# POST /student
@@ -32,6 +33,8 @@ class StudentController extends BaseController {
 		$student->address_line2 = $params['addr2'];
 		$student->address_line3 = $params['addr3'];
 		$student->postcode = $params['postcode'];
+
+		$student->school_id = $params['school_id'];
 
 		if ($student->save()) {
 			$app->flash('info', 'Register successfully.');
