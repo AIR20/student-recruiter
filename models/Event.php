@@ -142,7 +142,7 @@ class Event extends Model {
 	public function getRoomName() {
 		if ($this->room_id) {
 			$rm = Room::getRoomById($this->room_id);
-			return $rm->room_name.' '.$rm->room_no;
+			return $rm->room_name.' ('.$rm->room_no.')';
 		} else {
 			return 'TBD';
 		}
