@@ -11,9 +11,9 @@
 			<h1 class="page-header">List of users</h1>
 			
 			<ul class="nav nav-tabs">
-				<li class="active"><a aria-expanded="true" href="#Students" data-toggle="tab">Students</a></li>
-				<li class=""><a aria-expanded="false" href="#Teachers" data-toggle="tab">Teachers</a></li>
-				<li class=""><a aria-expanded="false" href="#Staff" data-toggle="tab">Staff</a></li>
+				<li class="active"><a aria-expanded="true" href="#Students" data-toggle="tab">Students  &nbsp<span class="badge"><?php echo User::countUsersByRole(3); ?></span></a></a></li>
+				<li class=""><a aria-expanded="false" href="#Teachers" data-toggle="tab">Teachers  &nbsp<span class="badge"><?php echo User::countUsersByRole(2); ?></span></a></a></li>
+				<li class=""><a aria-expanded="false" href="#Staff" data-toggle="tab">Staff  &nbsp<span class="badge"><?php echo User::countUsersByRole(1); ?></span></a></a></li>
 			</ul>
 
 			<div id="myTabContent" class="tab-content">
@@ -119,6 +119,7 @@
 		</div>	
 		</div>
 	</div>
+	<?php require('shared/footer.php'); ?>
 </body>
 </html>
 

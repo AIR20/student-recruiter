@@ -116,4 +116,11 @@ class User extends Model {
 			return "N/A";
 		}
 	}
+
+	public static function countUsersByRole($role)	{
+		User::db_init();
+		$result = User::$db->query("SELECT COUNT(id) FROM `users` WHERE `role`=$role");
+		$obj = $result->fetch_row();
+		return $obj[0];
+	}
 }
