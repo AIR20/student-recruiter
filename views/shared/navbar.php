@@ -53,6 +53,7 @@
 					<li><a href="<?php echo $app->urlFor('add_department');?>">Add new department</a></li>
 					<li><a href="<?php echo $app->urlFor('add_building');?>">Add new building</a></li>
 					<li><a href="<?php echo $app->urlFor('add_room');?>">Add new room</a></li>
+					<li><a href="<?php echo $app->urlFor('add_school');?>">Add new school</a></li>
           </ul>
         </li>
 			</ul>

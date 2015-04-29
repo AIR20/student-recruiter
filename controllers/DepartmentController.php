@@ -1,9 +1,6 @@
 <?php
 
 Class DepartmentController extends BaseController {
-  function add_department(){
-    $this->app->render('add_department.php', $this->data);
-	}
 
 	function store() {
 		$app = $this->app;
