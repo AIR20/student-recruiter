@@ -6,7 +6,7 @@ class EventController extends BaseController {
 		$this->data['events'] = Event::getEventList();
 		$this->app->render('event.php', $this->data);
 	}
-
+	
 	# GET /event/1
 	public function view($id) {
 		if (isset($this->user) && $this->user->isStudent()) {
@@ -31,6 +31,28 @@ class EventController extends BaseController {
 		$this->app->render('create_event.php', $this->data);
 	}
 
+	# GET /event/pending
+	public function pending() {
+		$this->data['pending_events'] = Event::getPendingEventList();
+		$this->app->render('pending_events.php', $this->data);
+	}
+
+	# GET /event/:id/approve
+	public function approve() {
+		$this->app->render('approve_event.php', $this->data);
+	}
+
+	# GET /event/:id/reject
+	public function reject() {
+		$this->app->render('reject_event.php', $this->data);
+	}
+
+	# GET /event/:id/remove
+	public function remove() {
+		$this->app->render('remove_event.php', $this->data);
+	}
+
+
 	# POST /event
 	public function store(){
 		$app = $this->app;
@@ -48,7 +70,7 @@ class EventController extends BaseController {
 		$event->proposed_by = $params['proposed_by'];
 		$event->approved_at = $params['approved_at'];
 		$event->approved_by = $params['approved_by'];
-		$event->status = $params['status'];
+		$event->status = 'pending'; 
 		$event->facebook_link = $params['facebook_link'];
 		$event->twitter_link = $params['twitter_link'];
 
@@ -60,12 +82,6 @@ class EventController extends BaseController {
 			$app->redirect($app->urlFor('home'));
 		}
 	}
-
-	# POST /event/1/approve
-	public function approve($id) {
-
-	}
-
 
 	public function book($id){
 		$e = Event::getEventById($id);
