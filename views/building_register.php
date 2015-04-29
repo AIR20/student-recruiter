@@ -14,7 +14,7 @@
 
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="" method="post" class="form-horizontal">	            
+			<form action="" method="post" class="form-horizontal">
 
 				<!--first name-->
 				<div class="form-group">
@@ -35,20 +35,36 @@
 					L.mapbox.accessToken = 'pk.eyJ1IjoiYXliY2hhbiIsImEiOiJaNlV1dlBVIn0.PtSa8Vmur7aYb0jxUfANgA';
 					var map = L.mapbox.map('small-map', 'aybchan.lmmiljek');
 					map.setView([53.4060706, -2.9661172], 16);
-					$.getJSON('<?php echo $assetUrl; ?>geojson/buildings.geojson', function (data) {
-						map.featureLayer.setGeoJSON(data);
-					});
 					var marker;
 					map.on('click', function(e) {
-						if (marker) map.removeLayer(marker);
-						marker = L.marker(e.latlng, {
-								icon: L.mapbox.marker.icon({
-								'marker-size': 'large',
-								'marker-symbol': 'building',
-								'marker-color': '#158cba'
-							})
-						});
-						marker.addTo(map);
+						if (marker) {
+							marker.setLatLng(e.latlng);
+						} else {
+							marker = L.marker(e.latlng, {
+									icon: L.mapbox.marker.icon({
+									'marker-size': 'large',
+									'marker-symbol': 'building',
+									'marker-color': '#158cba'
+								})
+							});
+							marker.addTo(map);
+						}
+						$("#lat").val(e.latlng.lat);
+						$("#lon").val(e.latlng.lng);
+					});
+					map.featureLayer.on('click', function(e) {
+						if (marker) {
+							marker.setLatLng(e.latlng);
+						} else {
+							marker = L.marker(e.latlng, {
+									icon: L.mapbox.marker.icon({
+									'marker-size': 'large',
+									'marker-symbol': 'building',
+									'marker-color': '#158cba'
+								})
+							});
+							marker.addTo(map);
+						}
 						$("#lat").val(e.latlng.lat);
 						$("#lon").val(e.latlng.lng);
 					});
