@@ -4,6 +4,7 @@ class TeacherController extends BaseController {
 
     # GET /teacher/register
 	function register() {
+        $this->data['schools'] = School::getSchoolList();
 		$this->app->render('teacher_register.php', $this->data);
   }
 		
