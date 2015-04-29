@@ -9,9 +9,7 @@
 		<div class="main col-md-12">
 
 			<!-- page start -->
-			<h1 class="page-header">Student Registration</h1>
-			<p>Register for an account. <span class="error">* required</span></p>
-
+			<h1 class="page-header">Add a new student</h1>
 			<?php require 'shared/notice.php'; ?>
 
 			<!-- Registration form -->
@@ -21,20 +19,20 @@
 				<!--first name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						First name: <span class="error">*<?php echo $fnameErr; ?></span>
+						First name:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="fname" value="<?php echo $_SESSION['fname'];?>">
+						<input class="form-control" type="text" name="fname">
 					</div>
 				</div>
 
 				<!--last name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Surname: <span class="error">*<?php echo $lnameErr; ?></span>
+						Surname:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="lname" value="<?php echo $_SESSION['lname'];?>">
+						<input class="form-control" type="text" name="lname">
 					</div>
 				</div>
 
@@ -42,10 +40,10 @@
 				<!--email-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Email: <span class="error">*<?php echo $emailErr; ?></span>
+						Email:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="email" value="<?php echo $_SESSION['email'];?>">
+						<input class="form-control" type="text" name="email">
 					</div>
 				</div>
 
@@ -65,57 +63,57 @@
 				<!--date of birth-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						DOB: <span class="error">*<?php echo $dobErr?></span>
+						DOB:
 					</label>
-          <div class="col-sm-10">
-            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
-            <script>
-              $('.datepicker').datepicker({
-                format: "d M yyyy",
-                startView: 2,
-                defaultViewDate: {
-                  year: 1996,
-                  month: 1,
-                  day: 1
-                }
-              });
-            </script>
-          </div>
+			        <div class="col-sm-10">
+			            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
+			            <script>
+			              $('.datepicker').datepicker({
+			                format: "d M yyyy",
+			                startView: 2,
+			                defaultViewDate: {
+			                  year: 1996,
+			                  month: 1,
+			                  day: 1
+			                }
+			              });
+			            </script>
+			        </div>
 				</div>
 
 				<!--address-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Address line 1: <span class="error">*<?php echo $addr1Err; ?></span>
+						Address line 1:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr1" value="<?php echo $_SESSION['addr1'];?>">
+						<input class="form-control" type="text" name="addr1">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Address line 2: <span class="error"><?php echo $addr2Err; ?></span>
+						Address line 2:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr2" value="<?php echo $_SESSION['addr2'];?>">
+						<input class="form-control" type="text" name="addr2">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Address line 3: <span class="error">*<?php echo $townErr; ?></span>
+						Town:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr3" value="<?php echo $_SESSION['town'];?>">
+						<input class="form-control" type="text" name="addr3">
 					</div>
 				</div>
 
 				<!-- postcode -->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Post code: <span class="error">*<?php echo $postcodeErr; ?></span>
+						Post code:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="postcode" value="<?php echo $_SESSION['postcode'];?>">
+						<input class="form-control" type="text" name="postcode">
 					</div>
 				</div>
 
