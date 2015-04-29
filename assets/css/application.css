@@ -188,8 +188,14 @@ body > .container {
 }
 
 /* Style for Map */
-#map {
+#large-map {
 	height: 600px;
 	min-height: 600px;
+	margin-bottom: 20px;
+}
+
+#small-map {
+	height: 400px;
+	min-height: 400px;
 	margin-bottom: 20px;
 }

@@ -11,6 +11,7 @@ Class AdminController extends BaseController {
 	}
 	
 	function add_building(){
+		$this->loadMap();
 		$this->app->render('building_register.php', $this->data);
 	}
 	
