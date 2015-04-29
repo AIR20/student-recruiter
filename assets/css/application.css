@@ -10,7 +10,7 @@ body {
 
 body > .container {
 	/* Make padding after nav bar */
-	padding: 60px 15px 0;
+	padding: 54px 15px 0;
 }
 
 .login-panel {
@@ -185,4 +185,17 @@ body > .container {
 
 .student address {
 	padding-left: 40px;
+}
+
+/* Style for Map */
+#large-map {
+	height: 600px;
+	min-height: 600px;
+	margin-bottom: 20px;
+}
+
+#small-map {
+	height: 400px;
+	min-height: 400px;
+	margin-bottom: 20px;
 }

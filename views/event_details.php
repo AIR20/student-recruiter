@@ -44,13 +44,42 @@
             A live video will be available on this page when the event starts and a recorded video will be available a few days after the event.
           </div>
         </div>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Location</h3>
+          </div>
+          <div class="panel-body">
+            <?php if (isset($building->longitude) && isset($building->latitude)): ?>
+            <div id="small-map">
+            </div>
+            <script type="text/javascript">
+              L.mapbox.accessToken = 'pk.eyJ1IjoiYXliY2hhbiIsImEiOiJaNlV1dlBVIn0.PtSa8Vmur7aYb0jxUfANgA';
+              var map = L.mapbox.map('large-map', 'aybchan.lmmiljek');
+              var location = [<?php echo $building->latitude; ?>, <?php echo $building->longitude ?>];
+              map.setView(location, 25);
+              marker = L.marker(e.latlng, {
+                icon: L.mapbox.marker.icon({
+                  'marker-size': 'large',
+                  'marker-symbol': 'building',
+                  'marker-color': '#158cba'
+                })
+              });
+            marker.addTo(map);
+            </script>
+            <?php else: ?>
+              <i class="fa fa-spinner fa-pulse fa-4x"></i> Loading the map. Note this might take forever. Probably you should ask locals for direction (hopefully not an infinite loop). Have fun!
+            <?php endif; ?>
+          </div>
+
+        </div>
         <?php if ($event->booked): ?>
             <button class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Booked</button>
         <?php else: ?>
             <a href="#" class="btn btn-primary">Book this event</a>
         <?php endif; ?>
       </div>
-
     </div>
+    <?php require 'shared/footer.php'; ?>
   </body>
 </html>

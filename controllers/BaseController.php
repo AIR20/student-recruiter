@@ -230,4 +230,12 @@ class BaseController
 		}
 		return $params;
 	}
+
+	/**
+	 * Load css and js for the map
+	 */
+	protected function loadMap() {
+		$this->loadCss("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css", array('location' => 'external'));
+		$this->loadJs("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js", array('location' => 'external'));
+	}
 }
