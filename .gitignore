@@ -10,3 +10,4 @@ tmp/*
 db/*
 !db/schema.sql
 !db/seeds.sql
+!db/buildings.geojson
