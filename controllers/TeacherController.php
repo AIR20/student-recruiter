@@ -41,6 +41,11 @@ class TeacherController extends BaseController {
     function addStudent() {
         $this->app->render('teacher_create_student.php', $this->data);
     }
+	
+	# GET /teacher/add_student
+    function addRegisteredStudent() {
+        $this->app->render('teacher_create_registered_student.php', $this->data);
+    }
 
     # POST /teacher/new_student
     function storeStudent() {

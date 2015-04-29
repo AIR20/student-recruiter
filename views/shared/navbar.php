@@ -31,7 +31,8 @@
             <li><a href="<?php echo $app->urlFor('teacher_view_class');?>">View students</a></li>
             <li><a href="<?php echo $app->urlFor('home');?>">View my events</a></li>
 						<li class="divider"></li>
-            <li><a href="<?php echo $app->urlFor('teacher_add_student');?>">Add students</a></li>
+            <li><a href="<?php echo $app->urlFor('teacher_add_student');?>">Add new students</a></li>
+			<li><a href="<?php echo $app->urlFor('teacher_add_registered_student');?>">Add registered students</a></li>
           </ul>
 				</li>
 

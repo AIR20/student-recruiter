@@ -48,6 +48,11 @@ $app->group(
 			'TeacherController:addStudent'
 		)->name('teacher_add_student');
 
+		$app->get(
+			'/add_registered_student',
+			'TeacherController:addRegisteredStudent'
+		)->name('teacher_add_registered_student');
+		
 		$app->post(
 			'/store_student',
 			'TeacherController:storeStudent'
