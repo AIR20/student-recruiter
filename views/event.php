@@ -39,9 +39,19 @@
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>
 							<div class="panel-body">
-							<h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . ' - ' .  $event->getRoomName(); ?></h5>
-							<h5><i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)) . ', ' . date('l jS F, Y', strtotime($event->start_time));?></h5>
-								<p><?php echo $event->description ?></p>
+							<h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . '—' .  $event->getRoomName(); ?></h5>
+							<h5><i class="fa fa-calendar-o fa-fw"></i> <?php echo date('l jS F, Y', strtotime($event->start_time));?> &nbsp <i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?>
+							</br>
+							</br>
+							<p><?php echo $event->description ?></p>
+							</br>
+							<?php if(isset($user) && ($user->isStaff() || $user->isAdmin())) :
+							$capacity = ($event->applicants / $event->getRoomSize())*100; ?>
+								<h5><i class="fa fa-line-chart fa-fw"></i> Capacity:</h5>
+								<div class="progress">
+									<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%"></div>
+								</div>
+							<?php endif; ?>
 								</br>
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
