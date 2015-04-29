@@ -26,8 +26,8 @@
 								<th>First name</th>
 								<th>Last name</th>
 								<th>Age</th>
-					      		<th>Email</th>
-					      		<th>School</th>
+			      		<th>Email</th>
+			      		<th>School</th>
 								<th>Teacher</th>
 								<th>Town</th>
 								<th>Date registered</th>
@@ -37,13 +37,13 @@
 						<tbody>
 							<?php foreach($students as $student) : ?>
 							<tr>
-					  			<td><?php echo $student->id; ?></td>
-					  			<td><?php echo $student->firstname; ?></td>
-					  			<td><?php echo $student->lastname; ?></td>
-					  			<td><?php echo $student->getAge(); ?></td>
-					  			<td><?php echo $student->email; ?></td>
-					  			<td><?php echo $student->getSchoolName(); ?></td>
-					  			<td><?php echo $student->getTeacherName(); ?></td>
+				  			<td><?php echo $student->id; ?></td>
+				  			<td><?php echo $student->firstname; ?></td>
+				  			<td><?php echo $student->lastname; ?></td>
+				  			<td><?php echo $student->getAge(); ?></td>
+				  			<td><?php echo $student->email; ?></td>
+				  			<td><?php echo $student->getSchoolName(); ?></td>
+				  			<td><?php echo $student->getTeacherName(); ?></td>
 								<td><?php echo $student->address_line3; ?></td>
 								<td><?php echo $student->registered_at; ?></td>
 							</tr>
@@ -55,12 +55,13 @@
 					<table class="table table-striped table-hover ">
 						<thead>
 					    	<tr>
-					    		<th>UserID</th>
-						    	<th>First name</th>
+				    		<th>UserID</th>
+					    	<th>First name</th>
 								<th>Last name</th>
 								<th>Age</th>
-						    	<th>Email</th>
-							    <th>School</th>
+					    	<th>Email</th>
+								<th>School</th>
+								<th>Students in class</th>
 								<th>Date registered</th>
 							</tr>
 						</thead>
@@ -68,12 +69,13 @@
 						<tbody>
 							<?php foreach($teachers as $teacher) : ?>
 							<tr>
-						  		<td><?php echo $teacher->id; ?></td>
-						  		<td><?php echo $teacher->firstname; ?></td>
-						  		<td><?php echo $teacher->lastname; ?></td>
-						  		<td><?php echo $teacher->getAge(); ?></td>
-						  		<td><?php echo $teacher->email; ?></td>
-						  		<td><?php echo $teacher->getSchoolName(); ?></td>
+					  		<td><?php echo $teacher->id; ?></td>
+					  		<td><?php echo $teacher->firstname; ?></td>
+					  		<td><?php echo $teacher->lastname; ?></td>
+					  		<td><?php echo $teacher->getAge(); ?></td>
+					  		<td><?php echo $teacher->email; ?></td>
+								<td><?php echo $teacher->getSchoolName(); ?></td>
+								<td><?php echo Teacher::countStudentsById($teacher->id); ?></td>
 								<td><?php echo $teacher->registered_at; ?></td>
 							</tr>
 							<?php endforeach; ?>

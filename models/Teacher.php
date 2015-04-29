@@ -72,4 +72,12 @@ class Teacher extends User {
 	public function getStudentList() {
 		return Student::getStudentListByTeacherId($this->id);
 	}
+
+	public static function countStudentsById($id){
+		Student::db_init();
+		$result = Student::$db->query("SELECT COUNT(`user_id`) FROM `students` WHERE `teacher_id`=$id");
+		$obj = $result->fetch_row();
+		return $obj[0];
+		
+	}
 }
