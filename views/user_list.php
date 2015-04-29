@@ -14,6 +14,7 @@
 				<li class="active"><a aria-expanded="true" href="#Students" data-toggle="tab">Students  &nbsp<span class="badge"><?php echo User::countUsersByRole(3); ?></span></a></a></li>
 				<li class=""><a aria-expanded="false" href="#Teachers" data-toggle="tab">Teachers  &nbsp<span class="badge"><?php echo User::countUsersByRole(2); ?></span></a></a></li>
 				<li class=""><a aria-expanded="false" href="#Staff" data-toggle="tab">Staff  &nbsp<span class="badge"><?php echo User::countUsersByRole(1); ?></span></a></a></li>
+				<li class=""><a aria-expanded="false" href="#Administrators" data-toggle="tab">Administrators &nbsp<span class="badge"><?php echo User::countUsersByRole(0); ?></span></a></a></li>
 			</ul>
 
 			<div id="myTabContent" class="tab-content">
@@ -79,6 +80,7 @@
 						</tbody>
 			 		</table>
 				</div>
+
 				<div class="tab-pane fade" id="Staff">
 					<table class="table table-striped table-hover ">
 						<thead>
@@ -108,13 +110,35 @@
 						</tbody>
 			 		</table>
 				</div>
+
+	  		<div class="tab-pane fade" id="Administrators">
+					<table class="table table-striped table-hover ">
+						<thead>
+					    	<tr>
+					    		<th>UserID</th>
+						    	<th>First name</th>
+									<th>Last name</th>
+									<th>Age</th>								
+						    	<th>Email</th>
+									<th>Date registered</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<?php foreach($administrators as $administrators) : ?>
+							<tr>
+						  		<td><?php echo $administrators->id; ?></td>
+						  		<td><?php echo $administrators->firstname; ?></td>
+						  		<td><?php echo $administrators->lastname; ?></td>
+						  		<td><?php echo $administrators->getAge(); ?></td>
+						  		<td><?php echo $administrators->email; ?></td>
+									<td><?php echo $administrators->registered_at; ?></td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+			 		</table>
+				</div>
 			</div>
-
-
-	  		<div class="tab-pane fade" id="Staff">
-	   								
-			</div>
-
 		</div>
 		</div>	
 		</div>

@@ -41,6 +41,17 @@ class Admin extends User {
 		// TODO: Validate fields
 		return true;
 	}
+	
+	public static function getAdminList() {
+		Admin::db_init();
+		$result = Admin::$db->query("SELECT `user_id` FROM `admins`");
+
+		$admins = array();
+		while ($tmp = $result->fetch_object()) {
+			$admins[] = Admin::getAdminById($tmp->user_id);
+		}
+		return $admins;
+	}
 
 	public static function getAdminById($id) {
 		$admin = User::getUserById($id, 'Admin');
