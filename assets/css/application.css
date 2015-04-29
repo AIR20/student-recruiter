@@ -189,6 +189,7 @@ body > .container {
 
 /* Style for Map */
 #map {
-	height: 200px;
-	min-height: 200px;
+	height: 600px;
+	min-height: 600px;
+	margin-bottom: 20px;
 }
