@@ -1,133 +1,86 @@
 <!DOCTYPE html>
 <html>
-<?php require 'shared/head.php'; ?>
-<body>
-<?php require 'shared/navbar.php'; ?>
-<div class="container">
-	<div class="bs-docs-section">
-	<div class="row">
-		<div class="main col-md-12">
+	<?php require 'shared/head.php';?>
+  	<body>
+    <?php require 'shared/navbar.php';?>
+		<?php $numEvents = count($events) ?>
+		<div class="container">
+			<div class="bs-doc-section">
+			<div class="row">
+			<div class="main col-md-12">
+			<h1 class="page-header">List of users</h1>
+			
+			<ul class="nav nav-tabs">
+				<li class="active"><a aria-expanded="true" href="#Students" data-toggle="tab">Students  &nbsp<span class="badge"><?php echo User::countStudentsFromSchool($schoolID); ?></span></a></a></li>
+				
+			</ul>
 
-			<!-- page start -->
-			<h1 class="page-header">Add a new student</h1>
-			<?php require 'shared/notice.php'; ?>
-
-			<!-- Registration form -->
-			<div class="well col-md-8 col-md-offset-2">
-			<form action="<?php echo $app->urlFor('teacher_store_student'); ?>" method="post" class="form-horizontal">
-
-				<!--first name-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						First name:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="fname">
-					</div>
-				</div>
-
-				<!--last name-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Surname:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="lname">
-					</div>
-				</div>
-
-
-				<!--email-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Email:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="email">
-					</div>
-				</div>
-
-				<!--gender, drop down-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Gender: <span class="error">*</span>
-					</label>
-					<div class="col-sm-10">
-						<select class="form-control" name="gender">
-							<option value="0">Male</option>
-							<option value="1">Female</option>
-						</select>
-					</div>
-				</div>
-
-				<!--date of birth-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						DOB:
-					</label>
-			        <div class="col-sm-10">
-			            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
-			            <script>
-			              $('.datepicker').datepicker({
-			                format: "d M yyyy",
-			                startView: 2,
-			                defaultViewDate: {
-			                  year: 1996,
-			                  month: 1,
-			                  day: 1
-			                }
-			              });
-			            </script>
-			        </div>
-				</div>
-
-				<!--address-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Address line 1:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr1">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Address line 2:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr2">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Town:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr3">
-					</div>
-				</div>
-
-				<!-- postcode -->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Post code:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="postcode">
-					</div>
-				</div>
-
-				<!--submit form-->
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="Students">
+					<table class="table table-striped table-hover " id="student-list">
+						<thead>
+							<tr>
+						 		<th>UserID</th>
+								<th>First name</th>
+								<th>Last name</th>
+								<th>Age</th>
+					      		<th>Email</th>
+					      		<th>School</th>
+								<th>Teacher</th>
+								<th>Town</th>
+								<th>Date registered</th>
+						    </tr>
+						</thead>
+					
+						<tbody>
+							<?php foreach($students as $student) : ?>
+							
+							<tr>
+					  			<td><?php echo $student->id; ?></td>
+					  			<td><?php echo $student->firstname; ?></td>
+					  			<td><?php echo $student->lastname; ?></td>
+					  			<td><?php echo $student->getAge(); ?></td>
+					  			<td><?php echo $student->email; ?></td>
+					  			<td><?php echo $student->getSchoolName(); ?></td>
+					  			<td><?php echo $student->getTeacherName(); ?></td>
+								<td><?php echo $student->address_line3; ?></td>
+								<td><?php echo $student->registered_at; ?></td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+			 		</table>
+				</div>				
+			</div>
+			
+			<form id ="form" action="<?php echo $app->urlFor('teacher_store_registered_student'); ?>" method="post" class="form-horizontal">
+				 
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">
 			</form>
-			<!-- end of registration form -->
-			</div>
-			<!-- page end -->
+			
+			<script type="text/javascript">
+			
+		$("#student-list tbody tr").click(function() {
+			//$(this).removeClass('danger');
+			
+			
+			
+			
+			if($(this).hasClass('danger')){
+				$(this).removeClass('danger');
+				$('#form #student-number-' + $(this).children().first().html()).remove();
+			} else {
+				$('#form').append('<input id = "student-number-' + $(this).children().first().html()+'" type="hidden" name="list[]" value="'+ $(this).children().first().html() +'">')
+				$(this).addClass('danger');
+			}
+			
+		});
+	</script>
 
 		</div>
+		</div>	
+		</div>
 	</div>
-	</div>
-</div>
-<?php require 'shared/footer.php';?>
+	<?php require('shared/footer.php'); ?>
 </body>
 </html>
+

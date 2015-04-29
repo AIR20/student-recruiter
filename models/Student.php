@@ -74,10 +74,22 @@ class Student extends User {
 	}
 
 
+	public static function getStudentsFromSchool($schoolID){
+		Student::db_init();
+
+		$result = Student::$db->query("SELECT `user_id` FROM `students` WHERE `school_id` = $schoolID AND  `teacher_id` IS NULL");
+
+		$students = array();
+		while($tmp = $result->fetch_object()){
+			$students[] = Student::getStudentById($tmp->user_id);
+		}
+		return $students;
+	}
+
 	public static function getStudentList(){
 		Student::db_init();
 		$result = Student::$db->query("SELECT `user_id` FROM `students`");
-		
+
 		$students = array();
 		while($tmp = $result->fetch_object()){
 			$students[] = Student::getStudentById($tmp->user_id);
@@ -98,6 +110,14 @@ class Student extends User {
 		return $students;
 	}
 
+	public function updateTeacher($teacherID){
+
+		$result = Student::$db->query(
+			"UPDATE `students` SET `teacher_id` = $teacherID WHERE `user_id` = " . $this->id
+		);
+
+	}
+
 	public function getTeacherName(){
 		if($this->teacher_id){
 			$teacher = Teacher::getTeacherById($this->teacher_id);
@@ -106,4 +126,17 @@ class Student extends User {
 			return "N/A";
 		}
 	}
+
+
+	public function getSchool($studentID){
+		if($this->school_id){
+			$school = School::getSchoolByID($this->school_id);
+			return $school->id;
+
+		} else {
+			return 0;
+		}
+
+	}
+
 }

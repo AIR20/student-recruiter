@@ -123,4 +123,11 @@ class User extends Model {
 		$obj = $result->fetch_row();
 		return $obj[0];
 	}
+	public static function countStudentsFromSchool($schoolID)	{
+		User::db_init();
+		$result = User::$db->query("SELECT COUNT(user_id) FROM `students` WHERE `school_id` = $schoolID");
+		$obj = $result->fetch_row();
+		return $obj[0];
+	}
+	
 }

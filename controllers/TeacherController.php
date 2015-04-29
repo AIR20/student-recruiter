@@ -7,7 +7,7 @@ class TeacherController extends BaseController {
         $this->data['schools'] = School::getSchoolList();
 		$this->app->render('teacher_register.php', $this->data);
   }
-		
+
 	function store() {
 		$app = $this->app;
 		$params = $this->getParams();
@@ -41,10 +41,29 @@ class TeacherController extends BaseController {
     function addStudent() {
         $this->app->render('teacher_create_student.php', $this->data);
     }
-	
+
 	# GET /teacher/add_student
     function addRegisteredStudent() {
+		$this->data['students'] = Student::getStudentsFromSchool($this->user->school_id);
+		$this->data['schoolID'] = Student::getSchool($this->user->id);
         $this->app->render('teacher_create_registered_student.php', $this->data);
+    }
+
+	# POST /teacher/new_student
+    function storeRegisteredStudent() {
+        $this->requireValidTeacher();
+        $app = $this->app;
+        $params = $this->getParams();
+
+        //$student = new Student(true);
+		$students = $params['list'];
+
+		foreach($students as $student){
+			$studentObj = Student::getStudentById($student);
+			$studentObj->updateTeacher($this->user->id);
+		}
+
+		$app->redirect($app->urlFor('teacher_view_class'));
     }
 
     # POST /teacher/new_student
