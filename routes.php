@@ -163,6 +163,11 @@ $app->group(
 			'',
 			'EventController:store'
 		)->name('event_store');
+		
+		$app->get(
+			'/pending',
+			'EventController:pending'
+		)->name('pending_events');
 
 		$app->get(
 			'/:id',
@@ -170,14 +175,29 @@ $app->group(
 		)->name('view_event');
 
 		$app->get(
-			'/book/:id',
+			'/:id/book',
 			'EventController:book'
 		)->name('book_event');
 		
 		$app->get(
-			'/unbook/:id',
+			'/:id/unbook',
 			'EventController:unbook'
 		)->name('unbook_event');
+
+		$app->get(
+			'/:id/approve',
+			'EventController:approve'
+		)->name('approve_event');
+
+		$app->get(
+			'/:id/reject',
+			'EventController:reject'
+		)->name('reject_event');
+
+		$app->get(
+			'/:id/remove',
+			'EventController:remove'
+		)->name('remove_event');
 	}
 
 );

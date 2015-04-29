@@ -15,7 +15,7 @@ class Event extends Model {
 	public $proposed_by;
 	public $approved_at;
 	public $approved_by;
-	public $status = "pending";
+	public $status; 
 	public $applicants = 0;
 	public $facebook_link;
 	public $twitter_link;
@@ -115,6 +115,18 @@ class Event extends Model {
 		return $events;
 	}
 
+	public static function getPendingEventList(){
+		Event::db_init();
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `status`='pending'");
+
+		$events = array();
+		while($event = $result->fetch_object('Event')){
+			$event->new_record = false;
+			$events[] = $event;
+		}
+		return $events;
+	}
+
 	public static function getBookedEventList($student_id){
 		Event::db_init();
 		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id)");
@@ -130,10 +142,15 @@ class Event extends Model {
 	public function getRoomName() {
 		if ($this->room_id) {
 			$rm = Room::getRoomById($this->room_id);
-			return $rm->room_name.' '.$rm->room_no;
+			return $rm->room_name.' ('.$rm->room_no.')';
 		} else {
 			return 'TBD';
 		}
+	}
+
+	public function getRoomSize() {
+			$rm = Room::getRoomById($this->room_id);
+			return $rm->size;
 	}
 
 	public function getBuildingName() {
