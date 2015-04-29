@@ -69,6 +69,7 @@
 			            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
 			            <script>
 			              $('.datepicker').datepicker({
+							autoclose: true,
 			                format: "d M yyyy",
 			                startView: 2,
 			                defaultViewDate: {

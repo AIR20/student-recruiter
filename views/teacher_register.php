@@ -11,10 +11,10 @@
               <?php require 'shared/notice.php'; ?>
             <div class="well col-md-8 col-md-offset-2">
              	<form action="<?php echo $app->urlFor('teacher_store'); ?>" method="post" class="form-horizontal">
-              
+
 	            	<div class="form-group">
 	                <label class="col-sm-2 control-label">
-	                  Title: 
+	                  Title:
 	                </label>
 	                <div class="col-sm-10">
 	                  <select class="form-control" name="title">
@@ -80,6 +80,7 @@
 	                  <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
 	                  <script>
 	                    $('.datepicker').datepicker({
+                          autoclose: true,
 	                      format: "d M yyyy",
 	                      startView: 2,
 	                      defaultViewDate: {
@@ -89,9 +90,9 @@
 	                      }
 	                    });
 	                  </script>
-	                </div> 
+	                </div>
 	              </div>
-	              
+
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label">
 	                  Gender: <span class="error">*</span>
@@ -103,10 +104,10 @@
 	                  </select>
 	                </div>
 	              </div>
-	              
+
 	              <div class="form-group">
 	                <label class="col-sm-2 control-label">
-	                  School: 
+	                  School:
 	                </label>
 	                <div class="col-sm-10">
 	                  	<select class="form-control" name="school_id">

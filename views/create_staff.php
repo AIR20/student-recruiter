@@ -16,11 +16,11 @@
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
 			<form action="<?php echo $app->urlFor('staff_store'); ?>" method="post" class="form-horizontal">
-	  	
+
 			<!--title, drop down-->
 	  	<div class="form-group">
 	    	<label class="col-sm-2 control-label">
-	      	Title: 
+	      	Title:
 	      </label>
 	      <div class="col-sm-10">
 	      	<select class="form-control" name="title">
@@ -42,7 +42,7 @@
 						<input class="form-control" type="text" name="fname">
 					</div>
 				</div>
-				
+
 				<!--last name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -52,8 +52,8 @@
 						<input class="form-control" type="text" name="lname">
 					</div>
 				</div>
-				
-				
+
+
 				<!--email-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -63,17 +63,17 @@
 						<input class="form-control" type="text" name="email">
 					</div>
 				</div>
-				
+
 				<!--password-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Password:
 					</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="password" name="password"> 
+						<input class="form-control" type="password" name="password">
 					</div>
 				</div>
-				
+
 				<!--phone number-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -96,7 +96,7 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<!--date of birth-->
         <div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -106,6 +106,7 @@
             <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
             <script>
               $('.datepicker').datepicker({
+				autoclose: true,
                 format: "d M yyyy",
                 startView: 2,
                 defaultViewDate: {
@@ -121,7 +122,7 @@
 				<!--department-->
 				<div class="form-group">
 	      	<label class="col-sm-2 control-label">
-	        	Department: 
+	        	Department:
 	        </label>
 	        <div class="col-sm-10">
 	        	<select class="form-control" name="department_id">
@@ -132,7 +133,7 @@
 	            <option value="99">Department of Physics</option>
 	          </select>
 	        </div>
-	      </div>	
+	      </div>
 				<!--submit form-->
 				<input class="col-sm-offset-2 btn btn-primary" type="submit">
 			</form>

@@ -76,6 +76,7 @@
 	                    <script>
 	                        var d = new Date();
 	                        $('.datepicker').datepicker({
+							  autoclose: true,
 	                          format:"d M yyyy",
 	                          defaultViewDate: {
 	                              year: d.getFullYear(),
