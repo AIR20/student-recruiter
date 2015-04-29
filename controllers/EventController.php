@@ -26,9 +26,9 @@ class EventController extends BaseController {
 
 	# GET /event/create
 	public function create() {
-
+        $this->data['buildings'] = Building::getBuildingList();
+        $this->data['rooms'] = Room::getRoomList();
 		$this->app->render('create_event.php', $this->data);
-
 	}
 
 	# POST /event
@@ -39,6 +39,7 @@ class EventController extends BaseController {
 		$event = new Event(true);
 		$event->title = $params['title'];
 		$event->description = $params['description'];
+		$event->type = $params['type'];
 		$event->tags = $params['tags'];
 		$event->room_id = $params['room_id'];
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
@@ -55,9 +56,8 @@ class EventController extends BaseController {
 			$app->flash('info', 'Request sent.');
 			$app->redirect($app->urlFor('home'));
 		} else {
-				$app->flash('warning', 'There was an error with the request');
-
-				$app->redirect($app->urlFor('home'));
+			$app->flash('warning', 'There was an error with the request');
+			$app->redirect($app->urlFor('home'));
 		}
 	}
 

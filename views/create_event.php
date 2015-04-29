@@ -18,21 +18,21 @@
 
 				<!--Event type-->
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">
-					Event type:
-				  </label>
-				  <div class="col-sm-10">
-					<select class="form-control" name="password">
-					  <option value="Open day">Open day</option>
-					  <option value="Public lecture">Public lecture</option>
-					  <option value="Public lecture">Talk</option>
-					  <option value="Concert">Concert</option>
-					  <option value="Workshop">Workshop</option>
-					  <option value="Sample course">Sample course</option>
-						<option value="Careers event">Careers event</option>
-						<option value="Careers fair">Careers fair</option>
-				   </select>
-				  </div>
+					<label class="col-sm-2 control-label">
+						Event type:
+					</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="type">
+							<option value="Open day">Open day</option>
+							<option value="Public lecture">Public lecture</option>
+							<option value="Public lecture">Talk</option>
+							<option value="Concert">Concert</option>
+							<option value="Workshop">Workshop</option>
+							<option value="Sample course">Sample course</option>
+							<option value="Careers event">Careers event</option>
+							<option value="Careers fair">Careers fair</option>
+						</select>
+				  	</div>
 				</div>
 
 				<!--Event title-->
@@ -68,23 +68,23 @@
 
 				<!--date of event-->
 		        <div class="form-group">
-		          <label class="col-sm-2 control-label">
-		          	Date of event: <span class="error">*<?php echo $dobErr?></span>
-		          </label>
-		          <div class="col-sm-10">
+		          	<label class="col-sm-2 control-label">
+		          		Date of event: <span class="error">*<?php echo $dobErr?></span>
+			        </label>
+		    	    <div class="col-sm-10">
 		                <input type="text" class="datepicker form-control" name = "date" placeholder="DD/MM/YYY">
-                    <script>
-                        var d = new Date();
-                        $('.datepicker').datepicker({
-                          format:"d M yyyy",
-                          defaultViewDate: {
-                              year: d.getFullYear(),
-                              month: d.getMonth(),
-                              day: d.getDate(),
-                          }
-                        });
-                    </script>
-		          </div>
+	                    <script>
+	                        var d = new Date();
+	                        $('.datepicker').datepicker({
+	                          format:"d M yyyy",
+	                          defaultViewDate: {
+	                              year: d.getFullYear(),
+	                              month: d.getMonth(),
+	                              day: d.getDate(),
+	                          }
+	                        });
+	                    </script>
+		          	</div>
 		        </div>
 
 				<!--time-->
@@ -109,32 +109,30 @@
 
 				<!--building-->
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">
+				  	<label class="col-sm-2 control-label">
 						Building:
-				  </label>
-				  <div class="col-sm-10">
-					<select class="form-control" name="building_id">
-					  <option value="1">George Holt building</option>
-					  <option value="2">Ashton Building</option>
-					  <option value="3">Brodie Tower</option>
-					  <option value="4">Central Teaching Hub</option>
-				   </select>
-				  </div>
+					</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="building_id">
+							<?php foreach($buildings as $building) : ?>
+							<option value="<?php echo $building->id?>"><?php echo $building->name; ?></option>
+							<?php endforeach; ?>
+					   	</select>
+					</div>
 				</div>
 
 				<!--room-->
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">
-					Room:
-				  </label>
-				  <div class="col-sm-10">
-					<select class="form-control" name="room_id">
-					  <option value="2">Seminar Room H2.23</option>
-					  <option value="3">Lecture Room 108</option>
-					  <option value="4">Room 702</option>
-					  <option value="5">Lecture Room 106/107</option>
-				   </select>
-				  </div>
+					<label class="col-sm-2 control-label">
+						Room:
+				  	</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="room_id">
+							<?php foreach($rooms as $room) : ?>
+							<option value="<?php echo $room->id?>"><?php echo $room->room_name; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
 				</div>
 
 				<!--submit form-->
