@@ -5,17 +5,19 @@ class Building extends Model {
 	public $id;
 	public $name;
 	public $map_no;
+	public $longitude;
+	public $latitude;
 
 	public function save() {
 		if (!parent::save()) return false;
 
 		if ($this->new_record) {
 			$stmt = Building::$db->prepare(
-				"INSERT INTO `buildings` (`name`, `map_no`) VALUES (?, ?)"
+				"INSERT INTO `buildings` (`name`, `map_no`, `longitude`, `latitude`) VALUES (?, ?, ?, ?)"
 			);
 
 			if ($stmt) {
-				$stmt->bind_param('si', $this->name, $this->map_no);
+				$stmt->bind_param('sidd', $this->name, $this->map_no, $this->longitude, $this->latitude);
 
 				if (!$stmt->execute()) return false;
 

@@ -70,11 +70,6 @@ $app->group(
 		)->name('user_list');
 		
 		$app->get(
-			'/add_building',
-			'AdminController:add_building'
-		)->name('add_building');
-		
-		$app->get(
 			'/add_room',
 			'AdminController:add_room'
 		)->name('add_room');
@@ -108,6 +103,21 @@ $app->group(
 			'',
 			'DepartmentController:store'
 		)->name('department_store');
+	}
+);
+
+$app->group(
+	'/admin/add_building',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:add_building'
+		)->name('add_building');
+
+		$app->post(
+			'',
+			'BuildingController:store'
+		)->name('building_store');
 	}
 );
 
