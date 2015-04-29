@@ -122,6 +122,21 @@ $app->group(
 );
 
 $app->group(
+	'/admin/add_school',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:add_school'
+		)->name('add_school');
+
+		$app->post(
+			'',
+			'SchoolController:store'
+		)->name('school_store');
+	}
+);
+
+$app->group(
 	'/event',
 	function () use($app){
 		$app->get(
