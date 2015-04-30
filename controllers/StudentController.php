@@ -5,6 +5,7 @@ class StudentController extends BaseController {
 	# GET /student/register
 	function register() {
 		$this->loadDropzone();
+		$this->loadJs('validator.min.js');
 		$this->data['schools'] = School::getSchoolList();
 		$this->app->render('student_register.php', $this->data);
 	}
