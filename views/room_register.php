@@ -8,68 +8,56 @@
 	<div class="row">
 		<div class="main col-md-12">
 
-			<!-- page start -->
-			<h1 class="page-header">Add a Room</h1>
-			<p>Add a room to a building <span class="error">* required</span></p>
+			<h1 class="page-header">Add a new room</h1>
+			<?php require 'shared/notice.php'; ?>
 
-			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="" method="post" class="form-horizontal">	            
+				<form action="<?php echo $app->urlFor('room_store'); ?>" method="post" class="form-horizontal">	            
 
-				<!--Room name-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Room Name:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							Room name:
+						</label>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" name="name" placeholder="eg. Lab 2">
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control" type="text" name="code" placeholder="room code eg. GHOLT-LAB2">
+						</div>
+					</div>				
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							Building:
+						</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="building_id">
+								<?php foreach($buildings as $building) : ?>
+								<option value="<?php echo $building->id; ?>"><?php echo $building->name?></option>
+								<?php endforeach?>
+							</select>
+						</div>
 					</div>
-				</div>				
-				
-				<!--gender, drop down-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Building:
-					</label>
-					<div class="col-sm-10">
-						<select class="form-control" name="building">
-							<?php foreach($buildings as $building) : ?>
-							<option value="0"><?php echo $building->name?></option>
-							<?php endforeach?>
-						</select>
-					</div>
-				</div>
-				
-				<!--Room Number-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Room Number:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
-					</div>
-				</div>	
-				
-				<!--Room Size-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Room Size:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="bname" value="<?php echo $_SESSION['bname'];?>">
-					</div>
-				</div>	
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">
+							Room size:
+						</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="size" placeholder="Max capacity of the room, eg. 30">
+						</div>
+					</div>	
 
-				<!--submit form-->
-				<input class="col-sm-offset-2 btn btn-primary" type="submit">
-			</form>
-			<!-- end of registration form -->
+					<div class="col-sm-offset-2">
+						<button type="reset" class="btn btn-default">Reset</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
 			</div>
-			<!-- page end -->
-
 		</div>
 	</div>
 	</div>
 </div>
+<?php require 'shared/footer.php'; ?>
 </body>
 </html>
