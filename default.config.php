@@ -81,7 +81,7 @@ $config['twitter'] = array(
 // Set Mailgun 
 $config['mailgun'] = array(
 	'api_key' => "",
-	'mailgun_domain' => ""
+	'domain' => ""
 );
 
 date_default_timezone_set('Europe/London');
