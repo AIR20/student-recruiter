@@ -39,6 +39,8 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Uni Staff<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo $app->urlFor('home');?>">Manage my events</a></li>
+						<li><a href="<?php echo $app->urlFor('pending_events'); ?>">View feedback</a></li>
+						<li><a href="<?php echo $app->urlFor('pending_events'); ?>">View statistics</a></li>
 						<li class="divider"></li>
 						<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
 					</ul>
@@ -47,14 +49,18 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrator<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo $app->urlFor('user_list');?>">View users</a></li>
-						<li><a href="<?php echo $app->urlFor('pending_events'); ?>">Pending events &nbsp<span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
-						<li class="divider"></li>
-						<li><a href="<?php echo $app->urlFor('create_staff');?>">Add new staff</a></li>
-						<li><a href="<?php echo $app->urlFor('add_department');?>">Add new department</a></li>
-						<li><a href="<?php echo $app->urlFor('add_building');?>">Add new building</a></li>
-						<li><a href="<?php echo $app->urlFor('add_room');?>">Add new room</a></li>
-						<li><a href="<?php echo $app->urlFor('add_school');?>">Add new school</a></li>
+
+							<li><a href="<?php echo $app->urlFor('pending_events'); ?>">Pending events &nbsp<span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
+							<li><a href="<?php echo $app->urlFor('pending_events'); ?>">View statistics</a></li>
+							<li><a href="<?php echo $app->urlFor('user_list');?>">View users</a></li>
+							<li><a href="<?php echo $app->urlFor('department_list');?>">View departments</a></li>
+							<li><a href="<?php echo $app->urlFor('department_list');?>">View schools</a></li>
+							<li class="divider"></li>
+							<li><a href="<?php echo $app->urlFor('create_staff');?>">Add new staff</a></li>
+							<li><a href="<?php echo $app->urlFor('add_department');?>">Add new department</a></li>
+							<li><a href="<?php echo $app->urlFor('add_building');?>">Add new building</a></li>
+							<li><a href="<?php echo $app->urlFor('add_room');?>">Add new room</a></li>
+							<li><a href="<?php echo $app->urlFor('add_school');?>">Add new school</a></li>
 						</ul>
 				</li>
 			</ul>

@@ -152,6 +152,16 @@ $app->group(
 );
 
 $app->group(
+	'/department/list',
+	function () use($app){
+		$app->get(
+			'',
+			'AdminController:department_list'
+		)->name('department_list');
+	}
+);
+
+$app->group(
 	'/event',
 	function () use($app){
 		$app->get(
