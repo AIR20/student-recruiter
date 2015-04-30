@@ -57,7 +57,7 @@
 						Phone:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="phone">
+						<input class="form-control" type="text" name="phone" placeholder="0151 795 4275">
 					</div>
 				</div>
 
@@ -102,8 +102,11 @@
 						</select>
 					</div>
 				</div>
-			<input class="col-sm-offset-2 btn btn-primary" type="submit">
-		</form>
+				<div class="col-sm-offset-2">
+					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
 	</div>
 	</div>
 	</div>
