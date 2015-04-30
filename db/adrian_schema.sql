@@ -202,8 +202,8 @@ DROP TABLE IF EXISTS `rooms` ;
 
 CREATE TABLE IF NOT EXISTS `rooms` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `room_name` VARCHAR(45) NOT NULL,
-  `room_no` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `code` VARCHAR(45) NULL,
   `building_id` INT(11) NULL,
   `size` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
