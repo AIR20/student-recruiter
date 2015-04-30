@@ -35,6 +35,7 @@ class Room extends Model {
 	}
 
 	public static function getRoomById($id) {
+		Room::db_init();
 		$result = Room::$db->query(
 			"SELECT `id`, `name`, `code`, `building_id`, `size` FROM `rooms` WHERE id = $id LIMIT 1"
 		);
