@@ -40,7 +40,7 @@
 							Address:
 						</label>
 						<div class="col-sm-8">
-							<input class="form-control" type="text" name="addr1" placeholder="Building number">
+							<input class="form-control" type="text" name="addr1" placeholder="Street no. and street">
 						</div>
 					</div>
 
