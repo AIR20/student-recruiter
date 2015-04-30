@@ -26,7 +26,6 @@ class EventController extends BaseController {
 
 	# GET /event/create
 	public function create() {
-        $this->data['buildings'] = Building::getBuildingList();
         $this->data['rooms'] = Room::getRoomList();
 		$this->app->render('create_event.php', $this->data);
 	}
