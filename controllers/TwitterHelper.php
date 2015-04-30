@@ -1,7 +1,23 @@
 <?php
 
 class TwitterHelper {
+	public static function tweet($status) {
+		global $config;
+		$settings = $config['twitter'];
+		$url = "https://api.twitter.com/1.1/statuses/update.json";
+		$requestMethod = 'POST';
 
+		/** POST fields required by the URL above. See relevant docs as above **/
+		$postfields = array(
+			'status' => $status
+		);
+
+		/** Perform a POST request and echo the response **/
+		$twitter = new TwitterAPIExchange($settings);
+		return $twitter->buildOauth($url, $requestMethod)
+					->setPostfields($postfields)
+					->performRequest();
+	}
 }
 
 /**

@@ -70,4 +70,18 @@ $config['db'] = array(
 	'database'		=> 'srs'
 );
 
+// Set twitter access tokens here
+$config['twitter'] = array(
+	'oauth_access_token' => "",
+	'oauth_access_token_secret' => "",
+	'consumer_key' => "",
+	'consumer_secret' => ""
+);
+
+// Set Mailgun 
+$config['mailgun'] = array(
+	'api_key' => "",
+	'mailgun_domain' => ""
+);
+
 date_default_timezone_set('Europe/London');
