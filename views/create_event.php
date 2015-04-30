@@ -11,36 +11,32 @@
 			<!-- page start -->
 			<h1 class="page-header">Create event</h1>
 
-			<!-- Request form -->
 			<div class="well col-md-8 col-md-offset-2">
 			<form action="<?php echo $app->urlFor('event_store');?>" method="post" class="form-horizontal">
-
-				<!--Event type-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Event type:
+						Type:
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<select class="form-control" name="type">
 							<option value="Open day">Open day</option>
 							<option value="Public lecture">Public lecture</option>
-							<option value="Public lecture">Talk</option>
+							<option value="Talk">Talk</option>
 							<option value="Concert">Concert</option>
 							<option value="Workshop">Workshop</option>
-							<option value="Sample course">Sample course</option>
+							<option value="Taster course">Taster course</option>
 							<option value="Careers event">Careers event</option>
 							<option value="Careers fair">Careers fair</option>
 						</select>
 				  	</div>
 				</div>
 
-				<!--Event title-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Event title:
 					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="title">
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="title" placeholder="eg. Computer Science taster classes">
 					</div>
 				</div>
 
@@ -49,8 +45,8 @@
 					<label class="col-sm-2 control-label">
 						Event description:
 					</label>
-					<div class="col-sm-10">
-						<textarea class="form-control" rows="4" id=description type="text" name="description"></textarea>
+					<div class="col-sm-8">
+						<textarea class="form-control" rows="4" id=description type="text" name="description" placeholder="Give a detailed description of what this event will involve."></textarea>
 					</div>
 				</div>
 
@@ -60,7 +56,7 @@
 					<label class="col-sm-2 control-label">
 						Image url:
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<input class="form-control" type="text" name="image_url">
 					</div>
 				</div>
@@ -70,7 +66,7 @@
 		          	<label class="col-sm-2 control-label">
 		          		Date of event:
 			        </label>
-		    	    <div class="col-sm-10">
+		    	    <div class="col-sm-2">
 		                <input type="text" class="datepicker form-control" name = "date" placeholder="DD/MM/YYY">
 	                    <script>
 	                        var d = new Date();
@@ -85,24 +81,16 @@
 	                        });
 	                    </script>
 		          	</div>
-		        </div>
-
-				<!--time-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Start time:
+					<label class="col-sm-1 control-label">
+						From:
 					</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input class="form-control" type="text" name="start_time" placeholder="HH:MM">
 					</div>
-				</div>
-
-				<!--end time-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						End time:
+					<label class="col-sm-1 control-label">
+						to
 					</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input class="form-control" type="text" name="end_time" placeholder="HH:MM">
 					</div>
 				</div>
@@ -112,7 +100,7 @@
 					<label class="col-sm-2 control-label">
 						Room:
 				  	</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<select class="form-control" name="room_id">
 							<?php foreach($rooms as $room) : ?>
 							<option value="<?php echo $room->id?>"><?php echo $room->getBuildingName() . '—' . $room->room_name; ?></option>
