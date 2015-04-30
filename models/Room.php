@@ -3,8 +3,8 @@
 class Room extends Model {
 	// mapped to database fields
 	public $id;
-	public $room_name;
-	public $room_no;
+	public $name;
+	public $code;
 	public $building_id;
 	public $size = 0;
 
@@ -13,11 +13,11 @@ class Room extends Model {
 
 		if ($this->new_record) {
 			$stmt = Room::$db->prepare(
-				"INSERT INTO `rooms` (`room_name`, `room_no`, `building_id`, `size`) VALUES (?, ?, ?, ?)"
+				"INSERT INTO `rooms` (`name`, `code`, `building_id`, `size`) VALUES (?, ?, ?, ?)"
 			);
 
 			if ($stmt) {
-				$stmt->bind_param('ssii', $this->room_name, $this->room_no, $this->building_id, $this->size);
+				$stmt->bind_param('ssii', $this->name, $this->code, $this->building_id, $this->size);
 
 				if (!$stmt->execute()) return false;
 
@@ -36,7 +36,7 @@ class Room extends Model {
 
 	public static function getRoomById($id) {
 		$result = Room::$db->query(
-			"SELECT `id`, `room_name`, `room_no`, `building_id`, `size` FROM `rooms` WHERE id = $id LIMIT 1"
+			"SELECT `id`, `name`, `code`, `building_id`, `size` FROM `rooms` WHERE id = $id LIMIT 1"
 		);
 
 		$room = $result->fetch_object('Room');
@@ -49,8 +49,9 @@ class Room extends Model {
 	}
 
 	public static function getRoomList() {
+		Room::db_init();
 		$result = Room::$db->query(
-			"SELECT `id`, `room_name`, `room_no`, `building_id`, `size` FROM `rooms`"
+			"SELECT `id`, `name`, `code`, `building_id`, `size` FROM `rooms`"
 		);
 
 		$rooms = array();

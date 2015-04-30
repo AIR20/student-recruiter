@@ -24,9 +24,12 @@
 						<textarea class="form-control" rows="4" id=description type="comment" name="description"></textarea>
 					</div>
 				</div>
+				
+				<div class="col-sm-offset-2">
+					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>			
 
-				<!--submit form-->
-				<input class="col-sm-offset-2 btn btn-danger" type="submit">
 			</form><!-- end of event form -->
 			</div><!-- page end -->
 		</div>

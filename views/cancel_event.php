@@ -25,8 +25,11 @@
 					</div>
 				</div>
 
-				<!--submit form-->
-				<input class="col-sm-offset-2 btn btn-danger" type="submit">
+				<div class="col-sm-offset-2">
+					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>			
+
 			</form><!-- end of event form -->
 			</div><!-- page end -->
 		</div>

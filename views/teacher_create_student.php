@@ -16,43 +16,56 @@
 			<div class="well col-md-8 col-md-offset-2">
 			<form action="<?php echo $app->urlFor('teacher_store_student'); ?>" method="post" class="form-horizontal">
 
-				<!--first name-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						First name:
+						Name:
 					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="fname">
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="fname" placeholder="First name">
+					</div>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="lname" placeholder="Surname">
 					</div>
 				</div>
-
-				<!--last name-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Surname:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="lname">
-					</div>
-				</div>
-
-
-				<!--email-->
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Email:
 					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="email">
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="email" placeholder="example@gmail.com">
 					</div>
 				</div>
 
-				<!--gender, drop down-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Gender: <span class="error">*</span>
+						Password:
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
+						<input class="form-control" type="password" name="password">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						DOB:
+					</label>
+					<div class="col-sm-4">
+						<input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
+						<script>
+							$('.datepicker').datepicker({
+								autoclose: true,
+								format: "d M yyyy",
+								startView: 2,
+								defaultViewDate: {
+								year: 1985,
+								month: 1,
+								day: 1
+								}
+							});
+						</script>
+					</div>
+					<div class="col-sm-4">
 						<select class="form-control" name="gender">
 							<option value="0">Male</option>
 							<option value="1">Female</option>
@@ -60,67 +73,64 @@
 					</div>
 				</div>
 
-				<!--date of birth-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Address:
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="addr1" placeholder="House number and street">
+					</div>		
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="addr2" placeholder="House name/Flat number (optional)">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="addr3" placeholder="Town">
+					</div>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="postcode" placeholder="Postcode">
+					</div>
+				</div>
+
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						DOB:
 					</label>
-			        <div class="col-sm-10">
-			            <input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
-			            <script>
-			              $('.datepicker').datepicker({
-							autoclose: true,
-			                format: "d M yyyy",
-			                startView: 2,
-			                defaultViewDate: {
-			                  year: 1996,
-			                  month: 1,
-			                  day: 1
-			                }
-			              });
-			            </script>
-			        </div>
-				</div>
-
-				<!--address-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Address line 1:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr1">
+					<div class="col-sm-4">
+						<input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
+						<script>
+							$('.datepicker').datepicker({
+								autoclose: true,
+								format: "d M yyyy",
+								startView: 2,
+								defaultViewDate: {
+								year: 1985,
+								month: 1,
+								day: 1
+								}
+							});
+						</script>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Address line 2:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr2">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Town:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="addr3">
+					<div class="col-sm-4">
+						<select class="form-control" name="gender">
+							<option value="0">Male</option>
+							<option value="1">Female</option>
+						</select>
 					</div>
 				</div>
 
-				<!-- postcode -->
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						Post code:
-					</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="postcode">
+					<div class="col-sm-offset-2">
+						<button type="reset" class="btn btn-default">Reset</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
-				</div>
-
-				<!--submit form-->
-				<input class="col-sm-offset-2 btn btn-primary" type="submit">
-			</form>
+				</form>
 			<!-- end of registration form -->
 			</div>
 			<!-- page end -->

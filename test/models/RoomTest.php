@@ -3,8 +3,8 @@ class RoomTest extends PHPUnit_Framework_TestCase {
 
 	public function testCreateRoom() {
 		$rm = new Room();
-		$rm->room_name = 'Common Room';
-		$rm->room_no = 'LAB331';
+		$rm->name = 'Common Room';
+		$rm->code = 'LAB331';
 		$rm->size = 21;
 
 		$this->assertTrue($rm->save(), "Cannot create room");
@@ -17,8 +17,8 @@ class RoomTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testFindRoom($id) {
 		$rm = Room::getRoomById($id);
-		$this->assertEquals('Common Room', $rm->room_name);
-		$this->assertEquals('LAB331', $rm->room_no);
+		$this->assertEquals('Common Room', $rm->name);
+		$this->assertEquals('LAB331', $rm->code);
 	}
 
 	public function testListRoom() {

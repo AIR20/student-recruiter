@@ -83,6 +83,11 @@ $app->group(
 			'/add_room',
 			'AdminController:add_room'
 		)->name('add_room');
+
+		$app->post(
+			'',
+			'RoomController:store'
+		)->name('room_store');
 	}
 );
 

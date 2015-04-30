@@ -1,6 +1,6 @@
 -- Date: 2015-04-02 14:36
 
-USE `srs`;
+USE `u3ac`;
 SET NAMES utf8;
 
 -- Schools
@@ -16,12 +16,12 @@ INSERT INTO `buildings` (`id`,`name`,`map_no`,`latitude`,`longitude`) VALUES (4,
 
 -- Rooms
 -- ------------------------------------------------------
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (1,'Teaching Laboratory 2','GHOLT-H102',1,30);
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (2,'Seminar Room H2.23','GHOLT-H223',1,15);
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (3,'Lecture Room 108','BROD-108',3,35);
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (4,'Room 702','BROD-702',3,15);
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (5,'Lecture Room 106/107','ASHT-LR',2,40);
-INSERT INTO `rooms` (`id`,`room_name`,`room_no`,`building_id`,`size`) VALUES (6,'Lecture Theatre B','CTH-LTB',4,100);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (1,'Teaching Laboratory 2','GHOLT-H102',1,30);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (2,'Seminar Room H2.23','GHOLT-H223',1,15);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (3,'Lecture Room 108','BROD-108',3,35);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (4,'Room 702','BROD-702',3,15);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (5,'Lecture Room 106/107','ASHT-LR',2,40);
+INSERT INTO `rooms` (`id`,`name`,`code`,`building_id`,`size`) VALUES (6,'Lecture Theatre B','CTH-LTB',4,100);
 
 -- Departments
 -- ------------------------------------------------------

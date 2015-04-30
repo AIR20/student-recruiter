@@ -1,8 +1,9 @@
 <?php
 
 Class AdminController extends BaseController {
-  function create_staff(){
-	  $this->app->render('create_staff.php', $this->data);
+	function create_staff(){
+		$this->data['departments'] = Department::getDepartmentList();
+		$this->app->render('create_staff.php', $this->data);
 	}
 
 	function user_list(){
