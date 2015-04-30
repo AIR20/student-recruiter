@@ -22,7 +22,7 @@ class EventTest extends PHPUnit_Framework_TestCase {
 		$ev = Event::getEventById($id);
 		$this->assertEquals('Test Title', $ev->title);
 		$this->assertEquals(0, $ev->applicants);
-		$this->assertEquals('Teaching Laboratory 2 GHOLT-H102', $ev->getRoomName());
+		$this->assertEquals('Teaching Laboratory 2 (GHOLT-H102)', $ev->getRoomName());
 		$this->assertEquals('George Holt building', $ev->getBuildingName());
 	}
 
