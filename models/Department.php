@@ -32,6 +32,7 @@ class Department extends Model {
 	}
 
 	public static function getDepartmentById($id){
+		Department::db_init();
 		$result = Department::$db->query(
 			"SELECT `id`, `name`, `building_id`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel` FROM `departments` WHERE id = $id LIMIT 1"
 		);
@@ -46,6 +47,7 @@ class Department extends Model {
 	}
 
 	public static function getDepartmentList(){
+		Department::db_init();
 		$result = Department::$db->query(
 			"SELECT `id`, `name`, `building_id`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel` FROM `departments`"
 		);
