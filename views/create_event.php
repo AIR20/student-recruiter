@@ -10,7 +10,6 @@
 
 			<!-- page start -->
 			<h1 class="page-header">Create event</h1>
-			<p>Request admin to make this event<span class="error">* required</span></p>
 
 			<!-- Request form -->
 			<div class="well col-md-8 col-md-offset-2">
@@ -38,7 +37,7 @@
 				<!--Event title-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Event title: <span class="error">*</span>
+						Event title:
 					</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="title">
@@ -48,7 +47,7 @@
 				<!--Event description-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Event description: <span class="error">*</span>
+						Event description:
 					</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" rows="4" id=description type="text" name="description"></textarea>
@@ -59,7 +58,7 @@
 				<!--Event image url-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Image url: <span class="error">*</span>
+						Image url:
 					</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="image_url">
@@ -69,7 +68,7 @@
 				<!--date of event-->
 		        <div class="form-group">
 		          	<label class="col-sm-2 control-label">
-		          		Date of event: <span class="error">*<?php echo $dobErr?></span>
+		          		Date of event:
 			        </label>
 		    	    <div class="col-sm-10">
 		                <input type="text" class="datepicker form-control" name = "date" placeholder="DD/MM/YYY">
@@ -108,20 +107,6 @@
 					</div>
 				</div>
 
-				<!--building-->
-				<div class="form-group">
-				  	<label class="col-sm-2 control-label">
-						Building:
-					</label>
-					<div class="col-sm-10">
-						<select class="form-control" name="building_id">
-							<?php foreach($buildings as $building) : ?>
-							<option value="<?php echo $building->id?>"><?php echo $building->name; ?></option>
-							<?php endforeach; ?>
-					   	</select>
-					</div>
-				</div>
-
 				<!--room-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -130,19 +115,23 @@
 					<div class="col-sm-10">
 						<select class="form-control" name="room_id">
 							<?php foreach($rooms as $room) : ?>
-							<option value="<?php echo $room->id?>"><?php echo $room->room_name; ?></option>
+							<option value="<?php echo $room->id?>"><?php echo $room->getBuildingName() . '—' . $room->room_name; ?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
 				</div>
 
 				<!--submit form-->
-				<input class="col-sm-offset-2 btn btn-primary" type="submit">
+				<div class="col-sm-offset-2">
+					<button type="reset" class="btn btn-default">Reset</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
 			</form><!-- end of event form -->
 			</div><!-- page end -->
 		</div>
 	</div>
 	</div>
 </div>
+<?php require('shared/footer.php'); ?>
 </body>
 </html>
