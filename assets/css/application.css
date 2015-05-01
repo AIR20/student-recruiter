@@ -209,3 +209,9 @@ body > .container {
 .dropzone .dz-preview.dz-image-preview {
 	background: inherit;
 }
+
+/* Avatar! */
+img.avatar {
+	height: 25px;
+	width: 25px;
+}
