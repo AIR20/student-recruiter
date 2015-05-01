@@ -28,6 +28,7 @@ class BaseController
 			'debug'    => array(),
 		);
 		/** base dir for asset file */
+		$this->data['baseUrl'] = $this->baseUrl();
 		$this->data['assetUrl'] = $this->baseUrl() . '/assets/';
 		/** user object **/
 
@@ -237,5 +238,13 @@ class BaseController
 	protected function loadMap() {
 		$this->loadCss("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css", array('location' => 'external'));
 		$this->loadJs("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js", array('location' => 'external'));
+	}
+
+	/**
+	 * Load dropzone
+	 */
+	protected function loadDropzone() {
+		$this->loadCss("dropzone.min.css", array('position' => 'before:application.css'));
+		$this->loadJs("dropzone.min.js");
 	}
 }

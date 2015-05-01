@@ -3,7 +3,8 @@
 class StudentController extends BaseController {
 
 	# GET /student/register
-	function register() {	
+	function register() {
+		$this->loadDropzone();
 		$this->data['schools'] = School::getSchoolList();
 		$this->app->render('student_register.php', $this->data);
 	}
@@ -29,6 +30,7 @@ class StudentController extends BaseController {
 		// convert date format
 		$student->dob = $this->convertDate($params['dob']);
 
+		$student->avatar = $params['avatar'];
 		$student->address_line1 = $params['addr1'];
 		$student->address_line2 = $params['addr2'];
 		$student->address_line3 = $params['addr3'];

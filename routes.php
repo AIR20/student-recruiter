@@ -231,3 +231,8 @@ $app->post(
 	'/authenticate',
 	'SessionController:authenticate'
 )->name('auth');
+
+$app->post(
+	'/upload',
+	'UploadController:upload'
+)->name('upload');

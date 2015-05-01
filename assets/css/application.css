@@ -199,3 +199,13 @@ body > .container {
 	min-height: 400px;
 	margin-bottom: 20px;
 }
+
+/* Style for dropzone */
+.dropzone {
+	background: inherit;
+	border: 2px dashed #888;
+	border-radius: 8px;
+}
+.dropzone .dz-preview.dz-image-preview {
+	background: inherit;
+}

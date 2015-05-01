@@ -46,6 +46,31 @@
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
+						Avatar:
+					</label>
+					<div class="col-sm-8">
+						<input id="avatar-url" type="hidden" name="avatar">
+						<div id="avatar" class="dropzone"></div>
+						<script type="text/javascript">
+							Dropzone.options.avatar = {
+								url: '<?php echo $app->urlFor('upload') ?>',
+								paramName: "file", // The name that will be used to transfer the file
+								maxFilesize: 2,
+								maxFiles: 1,
+								init: function() {
+									this.on("success", function(file, response) {
+										$('#avatar-url').val(response.url);
+									});
+								}
+							};
+						</script>
+					</div>
+				</div>
+
+				
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
 						DOB:
 					</label>
 					<div class="col-sm-4">
