@@ -14,8 +14,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"><?php echo $department->name; ?></div>
 	  					<div class="panel-body">
-	  						<?php echo Building::getBuildingById($department->id)->name . "\r\n" . $department->address_line1 . "\r\n" . $department->address_line2; ?>
-
+								<?php echo Building::getBuildingById($department->id)->name . "\n" . $department->address_line1 . "\n" . $department->address_line2; ?>
 	    					<?php foreach($staffs as $staff) :?>
 	    						<?php if($staff->department_id==$department->id) : ?>
 	    							<?php echo $staff->id; ?>
