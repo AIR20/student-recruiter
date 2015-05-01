@@ -14,6 +14,13 @@ Class AdminController extends BaseController {
 		$this->app->render('user_list.php', $this->data);
 	}
 	
+	function department_list(){
+		$this->data['staffs'] = Staff::getStaffList();		
+		$this->data['events'] = Event::getEventList();
+		$this->data['departments'] = Department::getDepartmentList();
+		$this->app->render('departments.php', $this->data);	
+	}
+	
 	function add_department(){
 		$this->data['buildings'] = Building::getBuildingList();
 		$this->app->render('department_register.php', $this->data);

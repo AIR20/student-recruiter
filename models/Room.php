@@ -51,7 +51,7 @@ class Room extends Model {
 	public static function getRoomList() {
 		Room::db_init();
 		$result = Room::$db->query(
-			"SELECT `id`, `name`, `code`, `building_id`, `size` FROM `rooms`"
+			"SELECT rooms.id, rooms.name, code, building_id, size FROM rooms INNER JOIN buildings ON building_id=buildings.id ORDER BY buildings.name;"
 		);
 
 		$rooms = array();

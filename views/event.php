@@ -42,19 +42,32 @@
 							<h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . '—'; ?><i><?php echo $event->getRoomName(); ?></i></h5>
 							<h5><i class="fa fa-calendar-o fa-fw"></i> <?php echo date('l jS F, Y', strtotime($event->start_time));?> &nbsp <i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?></h5>
 							<p><?php echo $event->description ?></p>
-							<?php if(isset($user) && ($user->isStaff() || $user->isAdmin())) :
-							$capacity = ($event->applicants / $event->getRoomSize())*100; ?>
-								<h5><i class="fa fa-line-chart fa-fw"></i> Capacity:</h5>
-								<div class="progress">
-									<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%"></div>
-								</div>
-							<?php endif; ?>
+							
 								</br>
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
+										
+										<?php if(!(isset($user)) || !($user->isTeacher())) : ?>
 										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
+										<?php endif; ?>
+
+										<?php if(isset($user) && ($user->isTeacher())) : ?>
+										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Class book</a>
+										</a>
+										<?php endif; ?>
 								</div>
 							</div>
+							<?php if(isset($user) && ($user->isStaff() || $user->isAdmin())) :
+							$capacity = ($event->applicants / $event->getRoomSize())*100; ?>
+								<div class="panel-footer">
+									<small><i class="fa fa-line-chart fa-fw"></i> Capacity: <?php echo $event->applicants . '/' . $event->getRoomSize(); ?></small>
+									<div class="content col-sm-6"><div class="progress">
+										<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%">
+									</div>
+								</div>
+								</div>
+							</div>
+						<?php endif; ?> 					  	
 						</div>
 					<?php endforeach; ?>
 				</div>

@@ -54,7 +54,7 @@ class School extends Model {
 	public static function getSchoolList() {
 		School::db_init();
 		$result = School::$db->query(
-			"SELECT `id`, `name`, `school_type`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel` FROM `schools`"
+			"SELECT `id`, `name`, `school_type`, `address_line1`, `address_line2`, `address_line3`, `postcode`, `tel` FROM `schools` ORDER BY `name`"
 		);
 
 		$schools = array();

@@ -103,7 +103,7 @@
 					<div class="col-sm-8">
 						<select class="form-control" name="room_id">
 							<?php foreach($rooms as $room) : ?>
-							<option value="<?php echo $room->id?>"><?php echo $room->getBuildingName() . '—' . $room->room_name; ?></option>
+							<option value="<?php echo $room->id?>"><?php echo $room->getBuildingName() . '—' . $room->name; ?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
