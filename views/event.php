@@ -47,7 +47,7 @@
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
 										
-										<?php if(!($user->isTeacher())) : ?>
+										<?php if(!(isset($user)) || !($user->isTeacher())) : ?>
 										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
 										<?php endif; ?>
 

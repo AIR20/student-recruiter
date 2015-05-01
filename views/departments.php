@@ -7,7 +7,7 @@
 		<h1 class="page-header">Department list</h1>
 		<?php require 'shared/notice.php'; ?>
 		<div class="row">
-			<div class="main col-sm-10">
+			<div class="main col-sm-11 col-md-offset-1">
 				
 				<div class="content col-sm-5">
 					<?php foreach($departments as $department) : ?>
@@ -17,7 +17,7 @@
 	  						<?php echo Building::getBuildingById($department->id)->name . "\r\n" . $department->address_line1 . "\r\n" . $department->address_line2; ?>
 
 	    					<?php foreach($staffs as $staff) :?>
-	    						<?php if($staff->getDepartment()==$department->name) : ?>
+	    						<?php if($staff->department_id==$department->id) : ?>
 	    							<?php echo $staff->id; ?>
 	    							<?php echo $staff->firstname. ' ' . $staff->name; ?>
 	    						<?php endif; ?>

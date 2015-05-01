@@ -105,7 +105,7 @@ class Event extends Model {
 
 	public static function getEventList(){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events`");
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `status`='approved' ORDER BY `start_time`");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
@@ -117,7 +117,7 @@ class Event extends Model {
 
 	public static function getPendingEventList(){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `status`='pending'");
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `status`='pending' ORDER BY `start_time`");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
@@ -129,7 +129,7 @@ class Event extends Model {
 
 	public static function getBookedEventList($student_id){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id)");
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id) ORDER BY `start_time`");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){

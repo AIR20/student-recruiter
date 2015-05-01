@@ -3,7 +3,6 @@
 	<?php require 'shared/head.php';?>
   	<body>
     <?php require 'shared/navbar.php';?>
-		<?php $numEvents = count($events) ?>
 		<div class="container">
 			<div class="bs-doc-section">
 			<div class="row">

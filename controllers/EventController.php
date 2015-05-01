@@ -86,7 +86,7 @@ class EventController extends BaseController {
 		$e = Event::getEventById($id);
 		if (!isset($this->data['user'])) {
 			$this->app->flash('error', 'Please login first');
-			$this->app->redirect($this->app->urlFor('home'));
+			$this->app->redirect($this->app->urlFor('login'));
 		} else if (!$this->data['user']->isStudent()) {
 			$this->app->flash('error', 'You must be a student');
 			$this->app->redirect($this->app->urlFor('home'));
