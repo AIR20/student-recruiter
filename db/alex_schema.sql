@@ -239,7 +239,6 @@ CREATE TABLE IF NOT EXISTS `u3ac`.`events` (
   `approved_by` INT(11) NULL,
   `status` VARCHAR(45) NULL DEFAULT 'pending',
   `applicants` INT(11) NOT NULL DEFAULT 0,
-  `facebook_link` VARCHAR(180) NULL,
   `twitter_link` VARCHAR(180) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_events_room_id`

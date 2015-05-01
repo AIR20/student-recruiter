@@ -70,7 +70,6 @@ class EventController extends BaseController {
 		$event->approved_at = $params['approved_at'];
 		$event->approved_by = $params['approved_by'];
 		$event->status = 'pending'; 
-		$event->facebook_link = $params['facebook_link'];
 		$event->twitter_link = $params['twitter_link'];
 
 		if($event->save()){
