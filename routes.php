@@ -52,12 +52,12 @@ $app->group(
 			'/add_registered_student',
 			'TeacherController:addRegisteredStudent'
 		)->name('teacher_add_registered_student');
-		
+
 		$app->post(
 			'/store_registered_student',
 			'TeacherController:storeRegisteredStudent'
 		)->name('teacher_store_registered_student');
-		
+
 		$app->post(
 			'/store_student',
 			'TeacherController:storeStudent'
@@ -78,7 +78,7 @@ $app->group(
 			'/users',
 			'AdminController:user_list'
 		)->name('user_list');
-		
+
 		$app->get(
 			'/add_room',
 			'AdminController:add_room'
@@ -98,7 +98,7 @@ $app->group(
 			'',
 			'AdminController:create_staff'
 		)->name('create_staff');
-		
+
 		$app->post(
 			'',
 			'StaffController:store'
@@ -168,7 +168,7 @@ $app->group(
 			'',
 			'EventController:store'
 		)->name('event_store');
-		
+
 		$app->get(
 			'/pending',
 			'EventController:pending'
@@ -183,7 +183,7 @@ $app->group(
 			'/:id/book',
 			'EventController:book'
 		)->name('book_event');
-		
+
 		$app->get(
 			'/:id/unbook',
 			'EventController:unbook'
@@ -233,6 +233,6 @@ $app->post(
 )->name('auth');
 
 $app->post(
-	'/upload',
+	'/api/upload',
 	'UploadController:upload'
 )->name('upload');
