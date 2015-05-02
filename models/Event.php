@@ -37,8 +37,14 @@ class Event extends Model {
 
 		}
 		else {
-			// TODO: Update record
-			throw new Exception('Update not implemented yet.');
+			$stmt = Event::$db->prepare(
+				"UPDATE `events` SET `title` = ?, `description` = ?, `type` = ?, `tags` = ?, `room_id` = ?, `start_time` = ?, `end_time` = ?, `proposed_at` = ?, `proposed_by` = ?, `approved_at` = ?, `approved_by` = ?, `status` = ?, `applicants` = ?, `facebook_link` = ?, `twitter_link` = ? WHERE `id` = ?"
+			);
+			if ($stmt) {
+				$stmt->bind_param("ssssisssisisissi", $this->title, $this->description, $this->type, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->facebook_link, $this->twitter_link, $this->id);
+				if (!$stmt->execute()) return false;
+				return true;
+			}
 		}
 
 	}
