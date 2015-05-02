@@ -247,4 +247,25 @@ class BaseController
 		$this->loadCss("dropzone.min.css", array('position' => 'before:application.css'));
 		$this->loadJs("dropzone.min.js");
 	}
+
+	protected function requireValidStudent() {
+		if (isset($this->user) && $this->user->isStudent()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidTeacher() {
+		if (isset($this->user) && $this->user->isTeacher()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidStaff() {
+		if (isset($this->user) && $this->user->isStaff()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidAdmin() {
+		if (isset($this->user) && $this->user->isAdmin()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
 }
