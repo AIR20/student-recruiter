@@ -139,6 +139,19 @@ class Event extends Model {
 		return $events;
 	}
 
+	public static function getFilteredEventList($options) {
+		Event::db_init();
+		$query = $options['query'];
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `facebook_link`, `twitter_link` FROM `events` WHERE `description` LIKE '%$query%'");
+
+		$events = array();
+		while($event = $result->fetch_object('Event')){
+			$event->new_record = false;
+			$events[] = $event;
+		}
+		return $events;
+	}
+
 	public function getRoomName() {
 		if ($this->room_id) {
 			$rm = Room::getRoomById($this->room_id);

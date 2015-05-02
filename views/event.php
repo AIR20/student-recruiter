@@ -10,6 +10,20 @@
 			<div class="main col-sm-12">
 				<div class="sidebar col-sm-3">
 
+				<div id="search-bar">
+					<h3>Search</h3>
+					<form id="search" class="search">
+						<div class="form-group">
+							<div class="input-group">
+							<input type="text" class="query form-control" name="query">
+							<span class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="fa fa-search fa-fw fa-lg"></i></button>
+							</span>
+							</div>
+						</div>
+					</form>
+				</div>
+
 				<div id="event-type">
 					<h3>Event Type</h3>
 					<ul class="nav nav-pills nav-stacked">
@@ -32,7 +46,7 @@
 				</div>
 
 				</div>
-				<div class="content col-sm-9">
+				<div id="events" class="content col-sm-9">
 					<?php foreach($events as $event) : ?>
 						<div id="event-<?php echo $event->id; ?>" class="event panel panel-default">
 							<div class="panel-heading">
@@ -102,11 +116,23 @@
 			e.preventDefault();
 		});
 
+		$("#search-bar #search").submit(function(e) {
+			e.preventDefault();
+			var url = '<?php echo $app->urlFor('search_event') ?>';
+			var data = {
+				query: $(this).find('.query').val()
+			};
+			$("#events").children().hide();
+			$.getJSON(url, data, function(data) {
+				for (var i in data['id']) {
+					$("#events").children('#event-' + data['id'][i]).show();
+				}
+			});
+		});
 
 		$(document).ready(function() {
 			var url = '<?php echo $app->urlFor('student_event'); ?>';
 			$.getJSON(url, function(data) {
-				console.log(data);
 				for (var i in data['id']) {
 					$('#event-' + data['id'][i]).find('a.book-btn').hide();
 					$('#event-' + data['id'][i]).find('a.booked-btn').show();

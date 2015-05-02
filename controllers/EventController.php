@@ -131,4 +131,23 @@ class EventController extends BaseController {
 		}
 	}
 
+	# GET /event/search
+	public function search() {
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		$params = $this->app->request->get();
+		$events = 
+			Event::getFilteredEventList(array(
+				'query' => $params['query'],
+				'type'  => $params['type'],
+				'tags'  => $params['tag']
+			));
+		$ret = array(
+			'id' => array()
+		);
+		foreach ($events as $e) {
+			$ret['id'][] = $e->id;
+		}
+		echo json_encode($ret);
+	}
+
 }

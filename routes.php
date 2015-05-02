@@ -169,6 +169,11 @@ $app->group(
 			'EventController:create'
 		)->name('create_event');
 
+		$app->get(
+			'/search',
+			'EventController:search'
+		)->name('search_event');
+
 		$app->post(
 			'',
 			'EventController:store'
