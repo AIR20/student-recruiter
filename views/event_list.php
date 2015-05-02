@@ -70,6 +70,15 @@
 										<a href="<?php echo $app->urlFor('classbook_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Class book</a>
 										</a>
 										<?php endif; ?>
+
+										<?php if(isset($user) && $user->isAdmin()): ?>
+										<?php if(!$event->twitter_link): ?>
+											<a href="<?php echo $app->urlFor('tweet_event', array('id' => $event->id)); ?>" class="tweet-btn btn btn-danger"><i class="fa fa-retweet fa-lg fa-fw"></i> Tweet Event</a>
+											<a href="#" class="tweeted-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Event Tweeted</a>
+										<?php else: ?>
+											<a href="#" class="tweeted-btn btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Event Tweeted</a>
+										<?php endif; ?>
+										<?php endif; ?>
 								</div>
 							</div>
 							<?php if(isset($user) && ($user->isStaff() || $user->isAdmin())) :
@@ -124,7 +133,28 @@
 				});
 		});
 
+		$("a.tweet-btn").on('click', function(e) {
+			e.preventDefault();
+			var url = $(this).attr('href');
+			$(this).children('i').attr('class', 'fa fa-spinner fa-spin fa-lg fa-fw');
+			var btn = $(this);
+			$.getJSON(url, function(data) {
+				btn.hide();
+				btn.parents('.event').find('.tweeted-btn').show();
+			})
+				.fail(function( jqxhr, textStatus, error ) {
+
+				})
+				.always(function() {
+					btn.children('i').attr('class', 'fa fa-retweet fa-lg fa-fw');
+				});
+		});
+
 		$("a.booked-btn").on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$("a.tweeted-btn").on('click', function(e) {
 			e.preventDefault();
 		});
 
