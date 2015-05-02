@@ -2,6 +2,7 @@
 assets/*/bootstrap* linguist-vendored
 assets/*/jquery* linguist-vendored
 assets/fonts/* linguist-vendored
+assets/*/dropzone* linguist-vendored
 
 # ignore Slim framework
 vendor/* linguist-vendored

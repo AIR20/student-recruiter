@@ -12,17 +12,17 @@
 
 			<!-- Registration form -->
 			<div class="well col-md-8 col-md-offset-2">
-				<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal">
+				<form action="<?php echo $app->urlFor('student_store'); ?>" method="post" class="form-horizontal" data-toggle="validator">
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Name:
 					</label>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="fname" placeholder="First name">
+						<input class="form-control" type="text" name="fname" placeholder="First name" required>
 					</div>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="lname" placeholder="Surname">
+						<input class="form-control" type="text" name="lname" placeholder="Surname" required>
 					</div>
 				</div>
 				
@@ -31,7 +31,7 @@
 						Email:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="email" placeholder="example@gmail.com">
+						<input class="form-control" type="email" name="email" placeholder="example@gmail.com" required>
 					</div>
 				</div>
 
@@ -40,9 +40,34 @@
 						Password:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="password" name="password">
+						<input class="form-control" type="password" name="password" required>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Avatar:
+					</label>
+					<div class="col-sm-8">
+						<input id="avatar-url" type="hidden" name="avatar">
+						<div id="avatar" class="dropzone"></div>
+						<script type="text/javascript">
+							Dropzone.options.avatar = {
+								url: '<?php echo $app->urlFor('upload') ?>',
+								paramName: "file", // The name that will be used to transfer the file
+								maxFilesize: 2,
+								maxFiles: 1,
+								init: function() {
+									this.on("success", function(file, response) {
+										$('#avatar-url').val(response.url);
+									});
+								}
+							};
+						</script>
+					</div>
+				</div>
+
+				
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
@@ -76,7 +101,7 @@
 						Address:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="addr1" placeholder="House number and street">
+						<input class="form-control" type="text" name="addr1" placeholder="House number and street" required>
 					</div>		
 				</div>
 
@@ -90,10 +115,10 @@
 				<div class="form-group">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="addr3" placeholder="Town">
+						<input class="form-control" type="text" name="addr3" placeholder="Town" required>
 					</div>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="postcode" placeholder="Postcode">
+						<input class="form-control" type="text" name="postcode" placeholder="Postcode" required>
 					</div>
 				</div>
 

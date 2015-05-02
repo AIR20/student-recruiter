@@ -10,6 +10,20 @@
 			<div class="main col-sm-12">
 				<div class="sidebar col-sm-3">
 
+				<div id="search-bar">
+					<h3>Search</h3>
+					<form id="search" class="search">
+						<div class="form-group">
+							<div class="input-group">
+							<input type="text" class="query form-control" name="query">
+							<span class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="fa fa-search fa-fw fa-lg"></i></button>
+							</span>
+							</div>
+						</div>
+					</form>
+				</div>
+
 				<div id="event-type">
 					<h3>Event Type</h3>
 					<ul class="nav nav-pills nav-stacked">
@@ -32,9 +46,9 @@
 				</div>
 
 				</div>
-				<div class="content col-sm-9">
+				<div id="events" class="content col-sm-9">
 					<?php foreach($events as $event) : ?>
-						<div class="panel panel-default">
+						<div id="event-<?php echo $event->id; ?>" class="event panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>
@@ -47,13 +61,9 @@
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
 										
-										<?php if(!(isset($user)) || !($user->isTeacher())) : ?>
-											<?php if(!($event->isBooked($user->id, $event->id))) :  ?>
-											<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
-											<?php else : ?>	
-											<a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-warning"><i class="fa fa-close fa-lg fa-fw"></i> Cancel Booking</a>
-											<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
-											<?php endif; ?>
+										<?php if(!(isset($user)) || $user->isStudent()) : ?>
+											<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
+											<a href="#" class="booked-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
 										<?php endif; ?>
 
 										<?php if(isset($user) && ($user->isTeacher())) : ?>
@@ -67,12 +77,11 @@
 								<div class="panel-footer">
 									<small><i class="fa fa-line-chart fa-fw"></i> Capacity: <?php echo $event->applicants . '/' . $event->getRoomSize(); ?></small>
 									<div class="content col-sm-6"><div class="progress">
-										<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%">
+										<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%"></div>
 									</div>
 								</div>
-								</div>
 							</div>
-						<?php endif; ?> 					  	
+							<?php endif; ?> 					  	
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -97,6 +106,52 @@
 				$(this).children('i').addClass('fa-times');
 			}
 		});
+
+		$("a.book-btn").on('click', function(e) {
+			e.preventDefault();
+			var url = $(this).attr('href');
+			$(this).children('i').attr('class', 'fa fa-spinner fa-spin fa-lg fa-fw');
+			var btn = $(this);
+			$.getJSON(url, function(data) {
+				btn.hide();
+				btn.parents('.event').find('.booked-btn').show();
+			})
+				.fail(function( jqxhr, textStatus, error ) {
+
+				})
+				.always(function() {
+					btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg fa-fw');
+				});
+		});
+
+		$("a.booked-btn").on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$("#search-bar #search").submit(function(e) {
+			e.preventDefault();
+			var url = '<?php echo $app->urlFor('search_event') ?>';
+			var data = {
+				query: $(this).find('.query').val()
+			};
+			$("#events").children().hide();
+			$.getJSON(url, data, function(data) {
+				for (var i in data['id']) {
+					$("#events").children('#event-' + data['id'][i]).show();
+				}
+			});
+		});
+
+		$(document).ready(function() {
+			var url = '<?php echo $app->urlFor('student_event'); ?>';
+			$.getJSON(url, function(data) {
+				for (var i in data['id']) {
+					$('#event-' + data['id'][i]).find('a.book-btn').hide();
+					$('#event-' + data['id'][i]).find('a.booked-btn').show();
+				}
+			});
+		});
+
 	</script>
   </body>
 </html>
