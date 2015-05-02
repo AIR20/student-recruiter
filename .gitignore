@@ -6,6 +6,9 @@ Makefile
 # Ignore temporary file
 tmp/*
 
+# Ignore upload folder
+upload/*
+
 # Ignore everything in db/
 db/*
 !db/schema.sql

@@ -22,6 +22,11 @@ $app->group(
 			'',
 			'StudentController:store'
 		)->name('student_store');
+
+		$app->get(
+			'/events',
+			'StudentController:listEvent'
+		)->name('student_event');
 	}
 );
 
@@ -52,12 +57,12 @@ $app->group(
 			'/add_registered_student',
 			'TeacherController:addRegisteredStudent'
 		)->name('teacher_add_registered_student');
-		
+
 		$app->post(
 			'/store_registered_student',
 			'TeacherController:storeRegisteredStudent'
 		)->name('teacher_store_registered_student');
-		
+
 		$app->post(
 			'/store_student',
 			'TeacherController:storeStudent'
@@ -78,7 +83,7 @@ $app->group(
 			'/users',
 			'AdminController:user_list'
 		)->name('user_list');
-		
+
 		$app->get(
 			'/add_room',
 			'AdminController:add_room'
@@ -98,7 +103,7 @@ $app->group(
 			'',
 			'AdminController:create_staff'
 		)->name('create_staff');
-		
+
 		$app->post(
 			'',
 			'StaffController:store'
@@ -174,11 +179,16 @@ $app->group(
 			'EventController:create'
 		)->name('create_event');
 
+		$app->get(
+			'/search',
+			'EventController:search'
+		)->name('search_event');
+
 		$app->post(
 			'',
 			'EventController:store'
 		)->name('event_store');
-		
+
 		$app->get(
 			'/pending',
 			'EventController:pending'
@@ -228,6 +238,11 @@ $app->group(
 			'/:id/cancel',
 			'EventController:cancel'
 		)->name('cancel_event');
+
+		$app->get(
+			'/:id/tweet',
+			'EventController:tweet'
+		)->name('tweet_event');
 	}
 
 );
@@ -256,3 +271,8 @@ $app->post(
 	'/authenticate',
 	'SessionController:authenticate'
 )->name('auth');
+
+$app->post(
+	'/api/upload',
+	'UploadController:upload'
+)->name('upload');

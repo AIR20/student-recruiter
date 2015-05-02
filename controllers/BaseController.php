@@ -28,6 +28,7 @@ class BaseController
 			'debug'    => array(),
 		);
 		/** base dir for asset file */
+		$this->data['baseUrl'] = $this->baseUrl();
 		$this->data['assetUrl'] = $this->baseUrl() . '/assets/';
 		/** user object **/
 
@@ -238,4 +239,33 @@ class BaseController
 		$this->loadCss("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css", array('location' => 'external'));
 		$this->loadJs("//api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js", array('location' => 'external'));
 	}
+
+	/**
+	 * Load dropzone
+	 */
+	protected function loadDropzone() {
+		$this->loadCss("dropzone.min.css", array('position' => 'before:application.css'));
+		$this->loadJs("dropzone.min.js");
+	}
+
+	protected function requireValidStudent() {
+		if (isset($this->user) && $this->user->isStudent()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidTeacher() {
+		if (isset($this->user) && $this->user->isTeacher()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidStaff() {
+		if (isset($this->user) && $this->user->isStaff()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
+	protected function requireValidAdmin() {
+		if (isset($this->user) && $this->user->isAdmin()) return;
+		throw new Exception('Forbidden Area.');
+	}
+
 }

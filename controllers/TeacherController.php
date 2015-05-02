@@ -104,9 +104,4 @@ class TeacherController extends BaseController {
         throw new Exception('Not implemented.');
     }
 
-    private function requireValidTeacher() {
-        if (isset($this->user) && $this->user->isTeacher()) return;
-        throw new Exception('Forbidden Area.');
-    }
-
 }

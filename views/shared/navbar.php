@@ -97,7 +97,10 @@
 				</li>
 				<?php else: ?>
 				<li>
-					<a href="<?php echo $app->urlFor('account'); ?>"><?php echo $user->firstname . ' ('; if($user->isStudent()): echo 'Student'; elseif($user->isStaff()): echo 'Staff'; elseif($user->isTeacher()): echo 'Teacher'; elseif($user->isAdmin()): echo 'Admin'; endif; echo ')'; ?></a>
+					<a href="<?php echo $app->urlFor('account'); ?>">
+					<?php if (isset($user->avatar)): ?>
+					<img class="avatar img-rounded" src="<?php echo $user->avatar; ?>">
+					<?php endif; ?> <?php echo $user->firstname . ' ('; if($user->isStudent()): echo 'Student'; elseif($user->isStaff()): echo 'Staff'; elseif($user->isTeacher()): echo 'Teacher'; elseif($user->isAdmin()): echo 'Admin'; endif; echo ')'; ?></a>
 				</li>
 				<li>
 					<a href="<?php echo $app->urlFor('logout'); ?>">Logout</a>
