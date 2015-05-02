@@ -50,15 +50,15 @@
             <h3 class="panel-title">Location</h3>
           </div>
           <div class="panel-body">
-            <?php if (isset($building->longitude) && isset($building->latitude)): ?>
+            <?php if ($location): ?>
             <div id="small-map">
             </div>
             <script type="text/javascript">
               L.mapbox.accessToken = 'pk.eyJ1IjoiYXliY2hhbiIsImEiOiJaNlV1dlBVIn0.PtSa8Vmur7aYb0jxUfANgA';
-              var map = L.mapbox.map('large-map', 'aybchan.lmmiljek');
-              var location = [<?php echo $building->latitude; ?>, <?php echo $building->longitude ?>];
-              map.setView(location, 25);
-              marker = L.marker(e.latlng, {
+              var map = L.mapbox.map('small-map', 'aybchan.lmmiljek');
+              var initView = [<?php echo $location['lat']; ?>, <?php echo $location['lon']; ?>];
+              map.setView(initView, 25);
+              marker = L.marker(initView, {
                 icon: L.mapbox.marker.icon({
                   'marker-size': 'large',
                   'marker-symbol': 'building',

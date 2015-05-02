@@ -175,8 +175,12 @@ class Event extends Model {
 	}
 
 	public function getRoomSize() {
+		if ($this->room_id) {
 			$rm = Room::getRoomById($this->room_id);
 			return $rm->size;
+		} else {
+			return null;
+		}
 	}
 
 	public function getBuildingName() {
@@ -186,5 +190,17 @@ class Event extends Model {
 		} else {
 			return 'TBD';
 		}
+	}
+
+	public function getLocation() {
+		if ($this->room_id) {
+			$rm = Room::getRoomById($this->room_id);
+			if ($rm->building_id) {
+				$bd = Building::getBuildingById($rm->building_id);
+				return $bd->getLocation();
+			}
+			return null;
+		}
+		return null;
 	}
 }

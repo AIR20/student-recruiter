@@ -36,7 +36,7 @@ class Building extends Model {
 
 	public static function getBuildingById($id) {
 		$result = Building::$db->query(
-			"SELECT `id`, `name`, `map_no` FROM `buildings` WHERE id = $id LIMIT 1"
+			"SELECT `id`, `name`, `map_no`, `longitude`, `latitude` FROM `buildings` WHERE id = $id LIMIT 1"
 		);
 
 		$building = $result->fetch_object('Building');
@@ -51,7 +51,7 @@ class Building extends Model {
 	public static function getBuildingList() {
 		Building::db_init();
 		$result = Building::$db->query(
-			"SELECT `id`, `name`, `map_no` FROM `buildings` ORDER BY `name`"
+			"SELECT `id`, `name`, `map_no`, `longitude`, `latitude` FROM `buildings` ORDER BY `name`"
 		);
 
 		$buildings = array();
@@ -60,5 +60,13 @@ class Building extends Model {
 			$buildings[] = $building;
 		}
 		return $buildings;
+	}
+
+	public function getLocation() {
+		if ($this->longitude && $this->latitude) {
+			return array('lat' => $this->latitude, 'lon' => $this->longitude);
+		} else {
+			return null;
+		}
 	}
 }

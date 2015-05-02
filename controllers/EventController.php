@@ -13,6 +13,8 @@ class EventController extends BaseController
 	public function view($id)
 	{
 		$this->data['event'] = Event::getEventById($id);
+		$this->data['location'] = $this->data['event']->getLocation();
+		if ($this->data['location']) $this->loadMap();
 		$this->app->render('event_details.php', $this->data);
 	}
 
