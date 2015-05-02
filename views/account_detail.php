@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
 <?php require 'shared/head.php';?>
-
   <body>
     <?php require 'shared/navbar.php';?>
-
-
-	
     <div class="container">
 	  <?php require 'shared/notice.php';?>
       <div class="well col-md-9 col-md-offset-1">
@@ -15,13 +11,12 @@
         
 
         <div class="panel panel-default">
-          <div class="panel-body">
-            
+          <div class="panel-body">       
             <p><big><b>Name : </b><?php echo $user->firstname;?> <?php echo $user->lastname;?></big> </p>
-			<p><big><b>Email : </b> <?php echo $user->email;?> </big> </p>
-			<p><big><b>DOB : </b> <?php echo $user->dob;?> </big> </p>
-			<p><big><b>Gender : </b> <?php if($user->gender == 0) echo "Male"; else echo "Female";?> </big> </p>
-			<p><big><b>Registered Date : </b> <?php echo $user->registered_at?> </big> </p>
+			      <p><big><b>Email : </b> <?php echo $user->email;?> </big> </p>
+            <p><big><b>DOB : </b> <?php echo $user->dob;?> </big> </p>
+            <p><big><b>Gender : </b> <?php if($user->gender == 0) echo "Male"; else echo "Female";?> </big> </p>
+	         	<p><big><b>Registered Date : </b> <?php echo $user->registered_at?> </big> </p>
           </div>
         </div>
 
@@ -33,10 +28,12 @@
             <ul>
             <?php foreach ($events as $event): ?>
               <li><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title;?></a>
-			  <div style="float:right">
-				<a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-danger btn-xs">Cancel Booking</a> 
-			  </div></li>
-			  </br></br>
+        			  <div style="float:right">
+        				<a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-danger btn-xs"><i class="fa fa-close fa-lg fa-fw"></i>Cancel Booking</a> 
+        			  </div>
+              </li>
+      			  </br>
+              </br>
             <?php endforeach; ?>
             </ul>
           </div>
@@ -47,15 +44,10 @@
             <h3 class="panel-title">DELETE ACCOUNT</h3>
           </div>
           <div class="panel-body">
-            </div>
+          </div>
         </div>
-
-
       </div>
-
     </div>
-
-	
   </body>
 </html>
 

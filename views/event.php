@@ -48,7 +48,12 @@
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
 										
 										<?php if(!(isset($user)) || !($user->isTeacher())) : ?>
-										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
+											<?php if(!($event->isBooked($user->id, $event->id))) :  ?>
+											<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
+											<?php else : ?>	
+											<a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-warning"><i class="fa fa-close fa-lg fa-fw"></i> Cancel Booking</a>
+											<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
+											<?php endif; ?>
 										<?php endif; ?>
 
 										<?php if(isset($user) && ($user->isTeacher())) : ?>

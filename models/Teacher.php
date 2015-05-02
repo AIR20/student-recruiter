@@ -77,7 +77,10 @@ class Teacher extends User {
 		Student::db_init();
 		$result = Student::$db->query("SELECT COUNT(`user_id`) FROM `students` WHERE `teacher_id`=$id");
 		$obj = $result->fetch_row();
-		return $obj[0];
-		
+		return $obj[0];	
+	}
+
+	public function getEventList() {
+		return Event::getBookedEventList($this->id);
 	}
 }

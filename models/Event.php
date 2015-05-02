@@ -91,6 +91,14 @@ class Event extends Model {
 		return $obj[0];
 	}
 
+	public static function isBooked($student_id, $event_id)
+	{
+		Event::db_init();
+		$result = Event::$db->query("SELECT COUNT(id) FROM `applications` WHERE `student_id` = $student_id AND `event_id` = $event_id AND`status`='reserved'");
+		$obj = $result->fetch_row();
+		return $obj[0];
+	}
+
 	public static function getEventById($id) {
 		Event::db_init();
 		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `id` = $id LIMIT 1");

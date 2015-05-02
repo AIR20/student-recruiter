@@ -9,18 +9,7 @@ class EventController extends BaseController {
 	
 	# GET /event/1
 	public function view($id) {
-		if (isset($this->user) && $this->user->isStudent()) {
-			$booked_events = $this->user->getEventList();
-			$booked = false;
-			foreach ($booked_events as $event) {
-				if ($event->id == $id) {
-					$booked = true;
-					break;
-				}
-			}
-		}
 		$this->data['event'] = Event::getEventById($id);
-		$this->data['event']->booked = $booked;
 		$this->app->render('event_details.php', $this->data);
 	}
 

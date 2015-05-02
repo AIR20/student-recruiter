@@ -78,5 +78,9 @@ class Staff extends User {
 			return "N/A";
 		}
 	}
+
+	public function getEventList() {
+		return Event::getBookedEventList($this->id);
+	}
 		
 }
