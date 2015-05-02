@@ -76,7 +76,7 @@
         <?php if ($event->booked): ?>
             <button class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Booked</button>
         <?php else: ?>
-            <a href="#" class="btn btn-primary">Book this event</a>
+            <a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-primary">Book this event</a>
         <?php endif; ?>
       </div>
     </div>

@@ -102,6 +102,18 @@
 			e.preventDefault();
 		});
 
+
+		$(document).ready(function() {
+			var url = '<?php echo $app->urlFor('student_event'); ?>';
+			$.getJSON(url, function(data) {
+				console.log(data);
+				for (var i in data['id']) {
+					$('#event-' + data['id'][i]).find('a.book-btn').hide();
+					$('#event-' + data['id'][i]).find('a.booked-btn').show();
+				}
+			});
+		});
+
 	</script>
   </body>
 </html>

@@ -10,9 +10,22 @@ class StudentController extends BaseController {
 		$this->app->render('student_register.php', $this->data);
 	}
 
-	function event() {
-		$this->app->render('event.php', $this->data);
-  }
+	# GET /student/events
+	function listEvent() {
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (isset($this->user) && $this->user->isStudent()) {
+			$ret = array(
+				'id' => array()
+			);
+			$events = $this->user->getEventList();
+			foreach ($events as $e) {
+				$ret['id'][] = $e->id;
+			}
+			echo json_encode($ret);
+		} else {
+			$this->app->response->setStatus(400);
+		}
+	}
 
 	# POST /student
 	function store() {
