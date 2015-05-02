@@ -57,7 +57,7 @@
 										<?php endif; ?>
 
 										<?php if(isset($user) && ($user->isTeacher())) : ?>
-										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Class book</a>
+										<a href="<?php echo $app->urlFor('classbook_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Class book</a>
 										</a>
 										<?php endif; ?>
 								</div>

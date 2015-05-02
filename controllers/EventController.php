@@ -94,7 +94,7 @@ class EventController extends BaseController
 		$event = Event::getEventById($id);
 
 		foreach($students as $student){
-			$result = $event->bookEvent($student->id);
+			$result = $event->bookEvent($student);
 		}
 
 		if ($result == 1) {
