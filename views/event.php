@@ -34,7 +34,7 @@
 				</div>
 				<div class="content col-sm-9">
 					<?php foreach($events as $event) : ?>
-						<div class="panel panel-default">
+						<div id="event-<?php echo $event->id; ?>" class="event panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>
@@ -52,7 +52,8 @@
 								</br>
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
-										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
+										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book</a>
+										<a href="#" class="booked-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Booked</a>
 								</div>
 							</div>
 						</div>
@@ -79,6 +80,28 @@
 				$(this).children('i').addClass('fa-times');
 			}
 		});
+
+		$("a.book-btn").on('click', function(e) {
+			e.preventDefault();
+			var url = $(this).attr('href');
+			$(this).children('i').attr('class', 'fa fa-spinner fa-spin fa-lg fa-fw');
+			var btn = $(this);
+			$.getJSON(url, function(data) {
+				btn.hide();
+				btn.parents('.event').find('.booked-btn').show();
+			})
+				.fail(function( jqxhr, textStatus, error ) {
+
+				})
+				.always(function() {
+					btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg fa-fw');
+				});
+		});
+
+		$("a.booked-btn").on('click', function(e) {
+			e.preventDefault();
+		});
+
 	</script>
   </body>
 </html>

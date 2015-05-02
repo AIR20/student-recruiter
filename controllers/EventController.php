@@ -85,18 +85,23 @@ class EventController extends BaseController {
 
 	public function book($id){
 		$e = Event::getEventById($id);
-		if (!isset($this->data['user'])) {
-			$this->app->flash('error', 'Please login first');
-			$this->app->redirect($this->app->urlFor('home'));
-		} else if (!$this->data['user']->isStudent()) {
-			$this->app->flash('error', 'You must be a student');
-			$this->app->redirect($this->app->urlFor('home'));
-		}
+		$this->requireValidStudent();
 		$result = $e->bookEvent($this->data['user']->id);
 		if ($result == 1) {
+			if ($this->app->request->isXhr()) {
+				$ret = array('id' => $id);
+				$this->app->response->headers->set('Content-Type', 'application/json');
+				echo json_encode($ret);
+				return;
+			}
 			$this->app->flash('info', 'Successfully Booked Event.');
 			$this->app->redirect($this->app->urlFor('list_event'));
 		} else {
+			if ($this->app->request->isXhr()) {
+				$this->app->response->setStatus(400);
+				$this->app->response->headers->set('Content-Type', 'application/json');
+				return;
+			}
 			$this->app->flash('error', 'Booking UNSUCCESSFUL.');
 			$this->app->redirect($this->app->urlFor('list_event'));
 		}
@@ -104,18 +109,23 @@ class EventController extends BaseController {
 
 	public function unbook($id){
 		$e = Event::getEventById($id);
-		if (!isset($this->data['user'])) {
-			$this->app->flash('error', 'Please login first');
-			$this->app->redirect($this->app->urlFor('home'));
-		} else if (!$this->data['user']->isStudent()) {
-			$this->app->flash('error', 'You must be a student');
-			$this->app->redirect($this->app->urlFor('home'));
-		}
+		$this->requireValidStudent();
 		$result = $e->unbookEvent($this->data['user']->id);
 		if ($result == 1) {
+			if ($this->app->request->isXhr()) {
+				$ret = array('id' => $id);
+				$this->app->response->headers->set('Content-Type', 'application/json');
+				echo json_encode($ret);
+				return;
+			}
 			$this->app->flash('info', 'Successfully Cancelled Booking.');
 			$this->app->redirect($this->app->urlFor('account'));
 		} else {
+			if ($this->app->request->isXhr()) {
+				$this->app->response->setStatus(400);
+				$this->app->response->headers->set('Content-Type', 'application/json');
+				return;
+			}
 			$this->app->flash('error', 'Booking Cancel UNSUCCESSFUL.');
 			$this->app->redirect($this->app->urlFor('account'));
 		}
