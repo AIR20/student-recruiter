@@ -150,4 +150,32 @@ class EventController extends BaseController {
 		echo json_encode($ret);
 	}
 
+	# GET /event/:id/tweet
+	public function tweet($id) {
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		
+		$e = Event::getEventById($id);
+		if ($e->twitter_link) {
+			$this->app->response->setStatus(400); // Bad request
+			$ret = array(
+				'error' => 'Already tweeted.'
+			);
+			echo json_encode($ret);
+		} else {
+			$url = $this->app->request->getUrl() . $this->app->urlFor('view_event', array('id' => $id));
+			$title = substr($e->title, 0, 50);
+			$msg = 'We are hosting event "'.$title . '". More detail: '. $url;
+			$ret = TwitterHelper::tweet($msg);
+			$message = json_decode($ret, true);
+			if (isset($message['id_str'])) {
+				$id_str = $message['id_str'];
+				$twitter_link = "https://twitter.com/StdntRecruiter/status/$id_str";
+				$e->twitter_link = $twitter_link;
+				$e->save();
+			}
+			echo $ret;
+		}
+
+	}
+
 }

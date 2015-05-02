@@ -213,6 +213,11 @@ $app->group(
 			'/:id/remove',
 			'EventController:remove'
 		)->name('remove_event');
+
+		$app->get(
+			'/:id/tweet',
+			'EventController:tweet'
+		)->name('tweet_event');
 	}
 
 );
