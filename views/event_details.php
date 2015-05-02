@@ -73,11 +73,13 @@
           </div>
 
         </div>
+        <?php if (isset($user) && $user->isStudent()): ?>
         <?php if ($event->isBooked($user->id, $event->id)): ?>
           <a href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>" class="btn btn-warning"><i class="fa fa-close fa-lg fa-fw"></i> Cancel Booking</a>
           <button class="btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</button>
         <?php else: ?>
           <a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
+        <?php endif; ?>
         <?php endif; ?>
       </div>
     </div>
