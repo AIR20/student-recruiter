@@ -136,23 +136,6 @@ class EventController extends BaseController
 	public function unbook($id)
 	{
 		$e = Event::getEventById($id);
-		if (!isset($this->data['user'])) 
-		{
-			$this->app->flash('error', 'Please login first');
-			$this->app->redirect($this->app->urlFor('login'));
-		} else if (!$this->data['user']->isStudent()) 
-		{
-			$this->app->flash('error', 'You must be a student');
-			$this->app->redirect($this->app->urlFor('events_list'));
-		}
-		$result = $e->unbookEvent($this->data['user']->id);
-		if ($result == 1) 
-		{
-			$this->app->flash('info', 'Booking successfully cancelled');
-			$this->app->redirect($this->app->urlFor('events_list'));
-		} else 
-		{
-			$this->app->flash('error', 'Booking was not cancelled.');
 		$this->requireValidStudent();
 		$result = $e->unbookEvent($this->data['user']->id);
 		if ($result == 1) {
@@ -175,8 +158,8 @@ class EventController extends BaseController
 		}
 	}
 
-	public function classUnbook()
-	{//TODO
+	public function classUnbook(){
+	//TODO
 	}
 	# GET /event/search
 	public function search() {
