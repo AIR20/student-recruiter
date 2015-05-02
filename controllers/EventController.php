@@ -4,7 +4,7 @@ class EventController extends BaseController {
 
 	public function index() {
 		$this->data['events'] = Event::getEventList();
-		$this->app->render('event.php', $this->data);
+		$this->app->render('event_list.php', $this->data);
 	}
 	
 	# GET /event/1
@@ -77,15 +77,15 @@ class EventController extends BaseController {
 			$this->app->redirect($this->app->urlFor('login'));
 		} else if (!$this->data['user']->isStudent()) {
 			$this->app->flash('error', 'You must be a student');
-			$this->app->redirect($this->app->urlFor('home'));
+			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 		$result = $e->bookEvent($this->data['user']->id);
 		if ($result == 1) {
-			$this->app->flash('info', 'Successfully Booked Event.');
-			$this->app->redirect($this->app->urlFor('list_event'));
+			$this->app->flash('info', 'Event successfully booked');
+			$this->app->redirect($this->app->urlFor('events_list'));
 		} else {
-			$this->app->flash('error', 'Booking UNSUCCESSFUL.');
-			$this->app->redirect($this->app->urlFor('list_event'));
+			$this->app->flash('error', 'Event booking was not succesful');
+			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 	}
 
@@ -93,18 +93,18 @@ class EventController extends BaseController {
 		$e = Event::getEventById($id);
 		if (!isset($this->data['user'])) {
 			$this->app->flash('error', 'Please login first');
-			$this->app->redirect($this->app->urlFor('home'));
+			$this->app->redirect($this->app->urlFor('login'));
 		} else if (!$this->data['user']->isStudent()) {
 			$this->app->flash('error', 'You must be a student');
-			$this->app->redirect($this->app->urlFor('home'));
+			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 		$result = $e->unbookEvent($this->data['user']->id);
 		if ($result == 1) {
-			$this->app->flash('info', 'Successfully Cancelled Booking.');
-			$this->app->redirect($this->app->urlFor('account'));
+			$this->app->flash('info', 'Booking successfully cancelled');
+			$this->app->redirect($this->app->urlFor('events_list'));
 		} else {
-			$this->app->flash('error', 'Booking Cancel UNSUCCESSFUL.');
-			$this->app->redirect($this->app->urlFor('account'));
+			$this->app->flash('error', 'Booking was not cancelled.');
+			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 	}
 

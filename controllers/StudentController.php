@@ -9,7 +9,7 @@ class StudentController extends BaseController {
 	}
 
 	function event() {
-		$this->app->render('event.php', $this->data);
+		$this->app->render('event_list.php', $this->data);
   }
 
 	# POST /student

@@ -167,7 +167,7 @@ $app->group(
 		$app->get(
 			'/list',
 			'EventController:index'
-		)->name('list_event');
+		)->name('events_list');
 
 		$app->get(
 			'/create',
@@ -210,9 +210,9 @@ $app->group(
 		)->name('reject_event');
 
 		$app->get(
-			'/:id/remove',
-			'EventController:remove'
-		)->name('remove_event');
+			'/:id/cancel',
+			'EventController:cancel'
+		)->name('cancel_event');
 	}
 
 );

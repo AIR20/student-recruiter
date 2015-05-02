@@ -16,9 +16,9 @@
 				</li>
 
 				<li class="dropdown">
-					<a href="<?php echo $app->urlFor('list_event'); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events<span class="caret"></span></a>
+					<a href="<?php echo $app->urlFor('events_list'); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo $app->urlFor('list_event');?>">All events</a></li>
+						<li><a href="<?php echo $app->urlFor('events_list');?>">All events</a></li>
 
 						<?php if(isset($user)): ?>
 							<li class="divider"></li>
