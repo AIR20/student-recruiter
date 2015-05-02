@@ -210,6 +210,21 @@ $app->group(
 		)->name('unbook_event');
 
 		$app->get(
+			'/:id/classbook',
+			'EventController:classBook'
+		)->name('classbook_event');
+
+		$app->post(
+			'/:id/classbook/',
+			'EventController:storeClassBook'
+		)->name('store_classbook_event');
+
+		$app->get(
+			'/:id/classunbook',
+			'EventController:classunbook'
+		)->name('classunbook_event');
+
+		$app->get(
 			'/:id/approve',
 			'EventController:approve'
 		)->name('approve_event');
