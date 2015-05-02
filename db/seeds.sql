@@ -1,6 +1,6 @@
 -- Date: 2015-04-02 14:36
 
-USE `u3ac`;
+USE `srs`;
 SET NAMES utf8;
 
 -- Schools
