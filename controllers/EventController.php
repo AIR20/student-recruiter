@@ -1,48 +1,65 @@
 <?php
 
-class EventController extends BaseController {
+class EventController extends BaseController
+{
 
-	public function index() {
+	public function index()
+	{
 		$this->data['events'] = Event::getEventList();
 		$this->app->render('event_list.php', $this->data);
 	}
 	
 	# GET /event/1
-	public function view($id) {
+	public function view($id)
+	{
 		$this->data['event'] = Event::getEventById($id);
 		$this->app->render('event_details.php', $this->data);
 	}
 
 	# GET /event/create
-	public function create() {
+	public function create()
+	{
         $this->data['rooms'] = Room::getRoomList();
 		$this->app->render('create_event.php', $this->data);
 	}
 
 	# GET /event/pending
-	public function pending() {
+	public function pending()
+	{
 		$this->data['pending_events'] = Event::getPendingEventList();
 		$this->app->render('pending_events.php', $this->data);
 	}
 
 	# GET /event/:id/approve
-	public function approve() {
+	public function approve()
+	{
 		$this->app->render('approve_event.php', $this->data);
 	}
 
 	# GET /event/:id/reject
-	public function reject() {
+	public function reject()
+	{
 		$this->app->render('reject_event.php', $this->data);
 	}
 
 	# GET /event/:id/remove
-	public function remove() {
+	public function remove()
+	{
 		$this->app->render('remove_event.php', $this->data);
 	}
 
+	# GET /event/:id/classbook
+	public function classBook($id)
+	{
+		$this->data['event'] = Event::getEventById($id);
+		$this->data['students'] = Student::getStudentListByTeacherId($this->user->id);
+		$this->data['schoolID'] = Student::getSchool($this->user->id);
+		$this->app->render('class_book_event.php', $this->data);
+	}
 
 	# POST /event
-	public function store(){
+	public function store()
+	{
 		$app = $this->app;
 		$params = $this->getParams();
 
@@ -70,7 +87,30 @@ class EventController extends BaseController {
 		}
 	}
 
-	public function book($id){
+	#POST event/:id/classbook
+	public function storeClassBook($id) {
+        $params = $this->getParams();
+		$students = $params['list'];
+		$event = Event::getEventById($id);
+
+		foreach($students as $student){
+			$result = $event->bookEvent($student->id);
+		}
+
+		if ($result == 1) {
+			$this->app->flash('info', 'Event successfully booked');
+			$this->app->redirect($this->app->urlFor('events_list'));
+		} else {
+			foreach($students as $student){
+				$i += $student->id;
+			}			
+			$this->app->flash('error', 'Event booking was not succesful' . $i);
+			$this->app->redirect($this->app->urlFor('events_list'));
+		}
+	}
+
+	public function book($id)
+	{
 		$e = Event::getEventById($id);
 		if (!isset($this->data['user'])) {
 			$this->app->flash('error', 'Please login first');
@@ -88,24 +128,34 @@ class EventController extends BaseController {
 			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 	}
-
-	public function unbook($id){
+	
+	public function unbook($id)
+	{
 		$e = Event::getEventById($id);
-		if (!isset($this->data['user'])) {
+		if (!isset($this->data['user'])) 
+		{
 			$this->app->flash('error', 'Please login first');
 			$this->app->redirect($this->app->urlFor('login'));
-		} else if (!$this->data['user']->isStudent()) {
+		} else if (!$this->data['user']->isStudent()) 
+		{
 			$this->app->flash('error', 'You must be a student');
 			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 		$result = $e->unbookEvent($this->data['user']->id);
-		if ($result == 1) {
+		if ($result == 1) 
+		{
 			$this->app->flash('info', 'Booking successfully cancelled');
 			$this->app->redirect($this->app->urlFor('events_list'));
-		} else {
+		} else 
+		{
 			$this->app->flash('error', 'Booking was not cancelled.');
 			$this->app->redirect($this->app->urlFor('events_list'));
 		}
+	}
+
+	public function classUnbook()
+	{
+
 	}
 
 }
