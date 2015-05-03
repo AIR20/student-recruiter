@@ -12,19 +12,8 @@ class StudentController extends BaseController {
 
 	# GET /student/events
 	function listEvent() {
-		$this->app->response->headers->set('Content-Type', 'application/json');
-		if (isset($this->user) && $this->user->isStudent()) {
-			$ret = array(
-				'id' => array()
-			);
-			$events = $this->user->getEventList();
-			foreach ($events as $e) {
-				$ret['id'][] = $e->id;
-			}
-			echo json_encode($ret);
-		} else {
-			$this->app->response->setStatus(400);
-		}
+		$this->data['events'] = Event::getEventList();
+		$this->app->render('student_events.php', $this->data);
 	}
 
 	# POST /student

@@ -25,8 +25,8 @@
 							<?php if($user->isAdmin()): ?>
 							<li><a href="<?php echo $app->urlFor('pending_events');?>">Pending Events &nbsp<span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
 							<?php endif; ?>
-							<?php if($user->isTeacher() || $user->isStudent()): ?>
-							<li><a href=#>My Events<span class="badge"></span></a></li>
+							<?php if($user->isStudent()): ?>
+							<li><a href="<?php echo $app->urlFor('student_event');?>">My Events<span class="badge"></span></a></li>
 							<?php endif; ?>
 							<?php if($user->isStaff()): ?>
 							<li><a href=#>My Events<span class="badge"></span></a></li>
