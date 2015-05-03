@@ -1,16 +1,27 @@
 <?php
 
 Class StaffController extends BaseController {
-  function create_event(){
-
-    $this->app->render('create_event.php', $this->data);
+	# GET /event/create
+	function create_event()
+	{
+    	$this->app->render('create_event.php', $this->data);
 	}
 
-	function register(){
+	# GET /admin/create_staff
+	function register()
+	{
 		$this->app->render('create_staff.php', $this->data);
 	}
 
-	function store() {
+	# GET /staff/events
+	function listEvents()
+	{
+		$this->data['events'] = $this->data['user']->getEventList();
+		$this->app->render('staff_events.php', $this->data);
+	}
+
+	function store()
+	{
 		$app = $this->app;
 		$params = $this->getParams();
 
