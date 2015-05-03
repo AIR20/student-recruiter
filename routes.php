@@ -25,7 +25,7 @@ $app->group(
 
 		$app->get(
 			'/events',
-			'StudentController:listEvent'
+			'StudentController:listEvents'
 		)->name('student_event');
 	}
 );
@@ -43,6 +43,11 @@ $app->group(
 			'TeacherController:store'
 		)->name('teacher_store');
 
+		$app->get(
+			'/events',
+			'TeacherController:listEvents'
+		)->name('teacher_event');
+		
 		$app->get(
 			'/class',
 			'TeacherController:viewClass'
@@ -72,6 +77,16 @@ $app->group(
 			'/edit_student/:id',
 			'TeacherController:editStudent'
 		)->name('teacher_edit_student');
+	}
+);
+
+$app->group(
+	'/staff',
+	function() use($app){
+		$app->get(
+			'/events',
+			'StaffController:listEvents'
+		)->name('staff_event');
 	}
 );
 
