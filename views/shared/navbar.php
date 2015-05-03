@@ -58,7 +58,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Uni Staff<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href=#>Manage my events</a></li>
+						<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events</a></li>
 						<li><a href=#>View feedback</a></li>
 						<li><a href=#>View statistics</a></li>
 						<li class="divider"></li>
