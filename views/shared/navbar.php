@@ -28,7 +28,7 @@
 							<li><a href="<?php echo $app->urlFor('student_event');?>">My Events<span class="badge"></span></a></li>
 						<?php endif; ?>
 						<?php if($user->isStaff()): ?>
-							<li><a href=#>My Events<span class="badge"></span></a></li>
+							<li><a href="<?php echo $app->urlFor('staff_event');?>">My events<span class="badge"></span></a></li>
 						<?php endif; ?>
 					</ul>
  				</li>

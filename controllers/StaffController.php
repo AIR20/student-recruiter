@@ -16,7 +16,7 @@ Class StaffController extends BaseController {
 	# GET /staff/events
 	function listEvents()
 	{
-		$this->data['events'] = $this->data['user']->getEventList();
+		$this->data['events'] = Event::getAllEventList();
 		$this->app->render('staff_events.php', $this->data);
 	}
 
