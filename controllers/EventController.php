@@ -74,7 +74,7 @@ class EventController extends BaseController
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
 		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
 		$event->proposed_at = $params['proposed_at'];
-		$event->proposed_by = $params['proposed_by'];
+		$event->proposed_by = $this->user->id; 
 		$event->approved_at = $params['approved_at'];
 		$event->approved_by = $params['approved_by'];
 		$event->status = 'pending'; 

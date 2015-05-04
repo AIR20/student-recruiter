@@ -108,7 +108,7 @@
 						</select>
 					</div>
 				</div>
-
+				<?php $proposed_by=$user->id; ?>
 				<!--submit form-->
 				<div class="col-sm-offset-2">
 					<button type="reset" class="btn btn-default">Reset</button>
