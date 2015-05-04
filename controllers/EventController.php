@@ -110,6 +110,42 @@ class EventController extends BaseController
 		}
 	}
 
+	public function storeRejection($eventId)
+	{
+		$app = $this->app;
+		
+		$event = Event::getEventById($eventId);
+		$event->status = "rejected";
+		$event->approved_at = date("Y-m-d h:i:s", time());
+		$event->approved_by = $approved_by;
+
+		if($event->save()){
+			$app->flash('info', 'Event rejected');
+			$app->redirect($app->urlFor('pending_events'));
+		} else {
+			$app->flash('warning', 'There was a problem');
+			$app->redirect($app->urlFor('pending_events'));
+		}
+	}
+
+	public function storeCancellation($eventId)
+	{
+		$app = $this->app;
+		
+		$event = Event::getEventById($eventId);
+		$event->status = "cancelled";
+		$event->approved_at = date("Y-m-d h:i:s", time());
+		$event->approved_by = $approved_by;
+
+		if($event->save()){
+			$app->flash('info', 'Event cancelled');
+			$app->redirect($app->urlFor('pending_events'));
+		} else {
+			$app->flash('warning', 'There was a problem');
+			$app->redirect($app->urlFor('pending_events'));
+		}
+	}
+
 
 	#POST event/:id/classbook
 	public function storeClassBook($id) {

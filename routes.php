@@ -254,10 +254,20 @@ $app->group(
 			'EventController:reject'
 		)->name('reject_event');
 
+		$app->post(
+			'/:id/reject',
+			'EventController:storeRejection'
+		)->name('store_reject_event');
+
 		$app->get(
 			'/:id/cancel',
 			'EventController:cancel'
 		)->name('cancel_event');
+
+		$app->post(
+			'/:id/cancel',
+			'EventController:storeCancellation'
+		)->name('store_cancel_event');
 
 		$app->get(
 			'/:id/tweet',
