@@ -229,6 +229,11 @@ $app->group(
 			'EventController:approve'
 		)->name('approve_event');
 
+		$app->post(
+			'/:id/approve',
+			'EventController:storeApproval'
+		)->name('store_approve_event');
+
 		$app->get(
 			'/:id/reject',
 			'EventController:reject'

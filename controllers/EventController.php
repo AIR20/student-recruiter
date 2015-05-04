@@ -33,21 +33,24 @@ class EventController extends BaseController
 	}
 
 	# GET /event/:id/approve
-	public function approve()
+	public function approve($id)
 	{
+		$this->data['event'] = Event::getEventById($id);
 		$this->app->render('approve_event.php', $this->data);
 	}
 
 	# GET /event/:id/reject
-	public function reject()
+	public function reject($id)
 	{
+		$this->data['event'] = Event::getEventById($id);
 		$this->app->render('reject_event.php', $this->data);
 	}
 
-	# GET /event/:id/remove
-	public function remove()
+	# GET /event/:id/cancel
+	public function cancel($id)
 	{
-		$this->app->render('remove_event.php', $this->data);
+		$this->data['event'] = Event::getEventById($id);
+		$this->app->render('cancel_event.php', $this->data);
 	}
 
 	# GET /event/:id/classbook
@@ -88,6 +91,25 @@ class EventController extends BaseController
 			$app->redirect($app->urlFor('home'));
 		}
 	}
+
+	public function storeApproval($eventId)
+	{
+		$app = $this->app;
+		
+		$event = Event::getEventById($eventId);
+		$event->status = "approved";
+		$event->approved_at = date("Y-m-d h:i:s", time());
+		$event->approved_by = $approved_by;
+
+		if($event->save()){
+			$app->flash('info', 'Event approved');
+			$app->redirect($app->urlFor('pending_events'));
+		} else {
+			$app->flash('warning', 'There was a problem');
+			$app->redirect($app->urlFor('pending_events'));
+		}
+	}
+
 
 	#POST event/:id/classbook
 	public function storeClassBook($id) {
