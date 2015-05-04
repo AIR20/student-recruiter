@@ -215,3 +215,7 @@ img.avatar {
 	height: 25px;
 	width: 25px;
 }
+
+img.eventdetail {
+	max-width: 100%;
+}
