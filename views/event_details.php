@@ -54,6 +54,9 @@
               </div>
 
               <div class="panel-body">
+							<?php if(isset($user) && ($user->isAdmin() || $user->isStaff())): ?>
+								<span class="label label-danger"><?php echo ucwords($event->status) . ' ' . date('j M Y', strtotime($event->approved_at)); ?></span>
+							<?php endif; ?>
 								<span class="label label-success"><?php	echo $event->type; ?></span>
 								<span class="label label-primary"><?php	echo ucwords($event->tags); ?></span>
                 <h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . '—'; ?><i><?php echo $event->getRoomName(); ?></i></h5>
