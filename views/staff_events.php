@@ -57,7 +57,7 @@ CTYPE html>
 										<td><?php echo $event->getRoomName();?></td>
 										<td><?php echo $event->status;?></td>
 										<td><?php echo $event->applicants;?></td>
-										<td><a href="<?php echo $app->urlFor('staff_event', array('id' => $event->id)); ?>" class="btn btn-danger btn-xs"><i class="fa fa-close fa-lg fa-fw"></i>Cancel Event</a> </td>
+										<td><?php if(!($event->status=="cancelled")) : ?><a href="<?php echo $app->urlFor('cancel_event', array('id' => $event->id)); ?>" class="btn btn-danger btn-xs"><i class="fa fa-close fa-lg fa-fw"></i>Cancel Event</a><?php endif; ?> </td>
 									</tr>
 		              <?php endif; endforeach; ?>
 								</tbody>
