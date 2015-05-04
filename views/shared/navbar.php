@@ -15,26 +15,29 @@
 					<a href="<?php echo $app->urlFor('home'); ?>">Home</a>
 				</li>
 
+				<?php if(isset($user)): ?>
 				<li class="dropdown">
 					<a href="<?php echo $app->urlFor('events_list'); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo $app->urlFor('events_list');?>">All events</a></li>
-
-						<?php if(isset($user)): ?>
-							<li class="divider"></li>
-							<?php if($user->isAdmin()): ?>
+						<li class="divider"></li>
+						<?php if($user->isAdmin()): ?>
 							<li><a href="<?php echo $app->urlFor('pending_events');?>">Pending Events &nbsp<span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
-							<?php endif; ?>
-							<?php if($user->isStudent()): ?>
-							<li><a href="<?php echo $app->urlFor('student_event');?>">My Events<span class="badge"></span></a></li>
-							<?php endif; ?>
-							<?php if($user->isStaff()): ?>
-							<li><a href=#>My Events<span class="badge"></span></a></li>
-							<?php endif; ?>
 						<?php endif; ?>
-
+						<?php if($user->isStudent()): ?>
+							<li><a href="<?php echo $app->urlFor('student_event');?>">My Events<span class="badge"></span></a></li>
+						<?php endif; ?>
+						<?php if($user->isStaff()): ?>
+							<li><a href="<?php echo $app->urlFor('staff_event');?>">My events<span class="badge"></span></a></li>
+						<?php endif; ?>
 					</ul>
-		 		</li>
+ 				</li>
+				<?php else : ?>
+				<li>
+					<a href="<?php echo $app->urlFor('events_list'); ?>">Events</a>
+				</li>
+				<?php endif; ?>
+					
 
 
 				<li>
@@ -55,7 +58,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Uni Staff<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href=#>Manage my events</a></li>
+						<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events</a></li>
 						<li><a href=#>View feedback</a></li>
 						<li><a href=#>View statistics</a></li>
 						<li class="divider"></li>

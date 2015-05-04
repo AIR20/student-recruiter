@@ -11,8 +11,8 @@ class StudentController extends BaseController {
 	}
 
 	# GET /student/events
-	function listEvent() {
-		$this->data['events'] = Event::getEventList();
+	function listEvents() {
+		$this->data['events'] = $this->data['user']->getEventList();
 		$this->app->render('student_events.php', $this->data);
 	}
 
