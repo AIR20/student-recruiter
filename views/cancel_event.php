@@ -8,30 +8,27 @@
 	<div class="row">
 		<div class="main col-md-12">
 
-			<!-- page start -->
-			<h1 class="page-header">Reject event</h1>
+			<h1 class="page-header">Cancel event</h1>
 
-			<!-- Request form -->
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="<?php echo $app->urlFor('event_store');?>" method="post" class="form-horizontal">
+			<form action="<?php echo $app->urlFor('store_cancel_event', array('id' => $event->id));?>" method="post" class="form-horizontal">
 
-				<!--Reason-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
-						Reason for rejection:
+						Reason for cancellation:
 					</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" rows="4" id=description type="comment" name="description"></textarea>
 					</div>
 				</div>
-
+				<?php	$approved_by=$user->id; ?>
 				<div class="col-sm-offset-2">
-					<button type="reset" class="btn btn-default">Reset</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button class="btn btn-default">Cancel</button>
+					<button type="submit" class="btn btn-danger"><i class="fa fa-cross fa-lg fa-fw"></i> Cancel</button>
 				</div>			
 
-			</form><!-- end of event form -->
-			</div><!-- page end -->
+			</form>
+			</div>
 		</div>
 	</div>
 	</div>

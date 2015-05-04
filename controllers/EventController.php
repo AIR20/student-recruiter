@@ -53,6 +53,14 @@ class EventController extends BaseController
 		$this->app->render('cancel_event.php', $this->data);
 	}
 
+	# GET /event/:id/move
+	public function move($id)
+	{
+	    $this->data['rooms'] = Room::getRoomList();
+		$this->data['event'] = Event::getEventById($id);
+		$this->app->render('move_event.php', $this->data);
+	}
+
 	# GET /event/:id/classbook
 	public function classBook($id)
 	{
@@ -84,7 +92,7 @@ class EventController extends BaseController
 		$event->twitter_link = $params['twitter_link'];
 
 		if($event->save()){
-			$app->flash('info', 'Request sent.');
+			$app->flash('info', 'Event request was sent to admin');
 			$app->redirect($app->urlFor('home'));
 		} else {
 			$app->flash('warning', 'There was an error with the request');
@@ -120,7 +128,7 @@ class EventController extends BaseController
 		$event->approved_by = $approved_by;
 
 		if($event->save()){
-			$app->flash('info', 'Event rejected');
+			$app->flash('info', 'Event rejected successfully');
 			$app->redirect($app->urlFor('pending_events'));
 		} else {
 			$app->flash('warning', 'There was a problem');
@@ -138,7 +146,26 @@ class EventController extends BaseController
 		$event->approved_by = $approved_by;
 
 		if($event->save()){
-			$app->flash('info', 'Event cancelled');
+			$app->flash('info', 'Event cancelled successfully');
+			$app->redirect($app->urlFor('pending_events'));
+		} else {
+			$app->flash('warning', 'There was a problem');
+			$app->redirect($app->urlFor('pending_events'));
+		}
+	}
+
+	public function storeMove($eventId)
+	{
+		$app = $this->app;
+		$params = $this->getParams();
+		$event = Event::getEventById($eventId);
+
+		$event->room_id = $params['room_id'];
+		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
+		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
+		
+		if($event->save()){
+			$app->flash('info', 'Event updated successfully');
 			$app->redirect($app->urlFor('pending_events'));
 		} else {
 			$app->flash('warning', 'There was a problem');

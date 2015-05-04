@@ -270,6 +270,16 @@ $app->group(
 		)->name('store_cancel_event');
 
 		$app->get(
+			'/:id/move',
+			'EventController:move'
+		)->name('move_event');
+
+		$app->post(
+			'/:id/move',
+			'EventController:storeMove'
+		)->name('store_move_event');
+
+		$app->get(
 			'/:id/tweet',
 			'EventController:tweet'
 		)->name('tweet_event');
