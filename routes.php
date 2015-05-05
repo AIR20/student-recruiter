@@ -280,6 +280,16 @@ $app->group(
 		)->name('store_move_event');
 
 		$app->get(
+			'/:id/feedback',
+			'FeedbackController:giveFeedback'
+		)->name('give_feedback');
+
+		$app->post(
+			'/:id/feedback',
+			'FeedbackController:storeFeedback'
+		)->name('store_feedback');
+		
+		$app->get(
 			'/:id/tweet',
 			'EventController:tweet'
 		)->name('tweet_event');

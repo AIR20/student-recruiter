@@ -4,7 +4,7 @@
   <body>
     <?php require 'shared/navbar.php';?>
   <div class="container">
-    <h1 class="page-header">Event detail</h1>
+		<h1 class="page-header"><?php echo $event->title ?></h1>
     <?php require 'shared/notice.php'; ?>
     <div class="row">
       <div class="main col-sm-12">
@@ -68,12 +68,17 @@
 
                 </br>
                 <div>
-                  <a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
+
+									<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
                     
-                  <?php if(!(isset($user)) || $user->isStudent()) : ?>
-                    <a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
+                  <?php if(!(isset($user)) || ( isset($user) && $user->isStudent())) : ?>
+
+										<a href="<?php echo $app->urlFor('give_feedback', array('id' =>$event->id)); ?>" class="btn btn btn-success"><i class="fa fa-comments fa-lg fa-fw"></i> Give Feedback</a>
+
+										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
                     <a href="#" class="booked-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
-                  <?php endif; ?>
+
+									<?php endif; ?>
 
                   <?php if(isset($user) && ($user->isTeacher())) : ?>
                     <a href="<?php echo $app->urlFor('classbook_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Class book</a>

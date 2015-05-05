@@ -65,8 +65,7 @@
 
 				<!-- Reset and submit buttons -->
 				<div class="col-sm-offset-2">
-					<button type="reset" class="btn btn-default">Reset</button>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<a href="<?php echo $app->urlFor('store_feedback', array('id' =>$event->id)); ?>" class="btn btn btn-success"><i class="fa fa-comments fa-lg fa-fw"></i> Sumbit Feedback</a>
 				</div>
 			</form>
 	</div>
