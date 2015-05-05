@@ -93,7 +93,6 @@ $app->group(
 $app->group(
 	'/admin',
 	function () use($app){
-
 		$app->get(
 			'/users',
 			'AdminController:user_list'
@@ -297,6 +296,11 @@ $app->group(
 
 );
 
+		$app->get(
+			'/statistics',
+			'StatisticsController:dashboard'
+		)->name('stats_dash');
+		
 $app->get(
 	'/account',
 	'AccountController:display'

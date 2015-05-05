@@ -129,5 +129,20 @@ class User extends Model {
 		$obj = $result->fetch_row();
 		return $obj[0];
 	}
+
+
+	public static function stats_users()
+	{
+		User::db_init();
+		$result = User::$db->query("SELECT CONCAT('01-', date_format(registered_at, '%b'), '-', date_format(registered_at, '%y')) as date, COUNT(id) as users FROM users GROUP BY month(registered_at) ORDER BY registered_at;");
 	
+		$data = array();
+
+		for($x=0; $x<mysqli_num_rows($result); $x++)
+    {
+	    $data[] = mysqli_fetch_assoc($result);
+	  }
+    echo json_encode($data);
+	}
+
 }
