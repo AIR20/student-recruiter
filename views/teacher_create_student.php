@@ -99,33 +99,6 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-sm-2 control-label">
-						DOB:
-					</label>
-					<div class="col-sm-4">
-						<input type="text" class="datepicker form-control" name="dob" placeholder="DD/MM/YYYY">
-						<script>
-							$('.datepicker').datepicker({
-								autoclose: true,
-								format: "d M yyyy",
-								startView: 2,
-								defaultViewDate: {
-								year: 1985,
-								month: 1,
-								day: 1
-								}
-							});
-						</script>
-					</div>
-					<div class="col-sm-4">
-						<select class="form-control" name="gender">
-							<option value="0">Male</option>
-							<option value="1">Female</option>
-						</select>
-					</div>
-				</div>
-
 					<div class="col-sm-offset-2">
 						<button type="reset" class="btn btn-default">Reset</button>
 						<button type="submit" class="btn btn-primary">Submit</button>
