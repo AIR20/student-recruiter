@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <body>
+	<?php include 'shared/head.php'; ?>
+	<body>
+	<?php include 'shared/navbar.php'; ?>
   <div class="container">
     <h1 class="page-header">Statistics</h1>
     <div class="row">
@@ -24,7 +26,8 @@
             <div class="panel-body">
 							<?php include 'graphs/users.php'; ?>
 						</div>
-          </div>
+					</div>
+				</div>
       </div>
 		</div>
   </body>
