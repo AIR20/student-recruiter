@@ -20,14 +20,16 @@
 					<a href="<?php echo $app->urlFor('events_list'); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo $app->urlFor('events_list');?>">Events listing</a></li>
-						<li class="divider"></li>
 						<?php if($user->isAdmin()): ?>
+							<li class="divider"></li>
 							<li><a href="<?php echo $app->urlFor('pending_events');?>">Pending events &nbsp<span class="badge"><?php echo Event::countPendingEvents(); ?></span></a></li>
 						<?php endif; ?>
 						<?php if($user->isStudent()): ?>
+							<li class="divider"></li>
 							<li><a href="<?php echo $app->urlFor('student_event');?>">My events<span class="badge"></span></a></li>
 						<?php endif; ?>
 						<?php if($user->isStaff()): ?>
+							<li class="divider"></li>
 							<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events<span class="badge"></span></a></li>
 						<?php endif; ?>
 					</ul>
