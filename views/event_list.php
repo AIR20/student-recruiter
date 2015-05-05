@@ -95,6 +95,7 @@
 											$capacity = ($event->applicants / $event->getRoomSize())*100; ?>
 								<div class="panel-footer">
 									<small><i class="fa fa-line-chart fa-fw"></i> Capacity: <?php echo $event->applicants . '/' . $event->getRoomSize(); ?></small>
+										<a style="float:right;" href="<?php echo $app->urlFor('event_attendants', array('id' => $event->id)); ?>">Applicant list</a>
 									<div class="content col-sm-6"><div class="progress">
 										<div class="progress-bar progress-bar-<?php if($capacity<60) : echo "success"; else : if($capacity<80) : echo "warning"; else: echo "danger"; endif; endif;?>" style="width: <?php echo $capacity; ?>%"></div>
 									</div>
