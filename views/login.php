@@ -35,6 +35,7 @@
 						<div class="form-group">
 							<div class="col-md-10 col-md-offset-2">
 								<input class="btn btn-primary" type="submit" name="submit" value="login" />
+								<input class="btn btn-primary" type="forgotPass" name="forgotPass" value="forgot password " />
 							</div>
 						</div>
 					</fieldset>
