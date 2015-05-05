@@ -14,20 +14,20 @@
 					<h3>Event Type</h3>
 					<ul class="nav nav-pills nav-stacked">
 						<li role="presentation" class="active"><a href="#">All</a></li>
-						<li role="presentation"><a href="#">Openday</a></li>
-						<li role="presentation"><a href="#">Day Trip</a></li>
-						<li role="presentation"><a href="#">Coming Soon</a></li>
+						<li role="presentation"><a href="#">Open day</a></li>
+						<li role="presentation"><a href="#">Day trip</a></li>
+						<li role="presentation"><a href="#">Public lecture</a></li>
 					</ul>
 				</div>
 
 				<div id="tags-filter">
 					<h3>Tags Filter</h3>
 					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation" class="active"><a href="#"><i class="fa fa-times fa-lg fa-fw"></i> Music</a></li>
-						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Science</a></li>
-						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Hot tub</a></li>
-						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Sci-Fi</a></li>
-						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Bullshit</a></li>
+						<li role="presentation" class="active"><a href="#"><i class="fa fa-times fa-lg fa-fw"></i> Art</a></li>
+						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Biology</a></li>
+						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Careers</a></li>
+						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Computer Science</a></li>
+						<li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Engineering</a></li>
 					</ul>
 				</div>
 
