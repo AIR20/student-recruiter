@@ -70,6 +70,14 @@ class EventController extends BaseController
 		$this->app->render('class_book_event.php', $this->data);
 	}
 
+	# GET /event/:id/attendants
+	public function attendants($id)
+	{
+		$this->data['event'] = Event::getEventById($id);
+		$this->data['students'] = Student::getStudentList();
+		$this->app->render('event_attendants_list.php', $this->data);
+	}
+
 	# POST /event
 	public function store()
 	{

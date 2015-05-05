@@ -110,6 +110,19 @@ class Student extends User {
 		return $students;
 	}
 
+	public static function getStudentListByEventId($id) {
+		Student::db_init();
+		$result = Student::$db->query(
+			"SELECT `student_id` FROM `applications` WHERE `event_id` = $id ORDER BY `created_at`"
+		);
+
+		$students = array();
+		while ($tmp = $result->fetch_object()) {
+			$students[] = Student::getStudentById($tmp->user_id);
+		}
+		return $students;
+	}
+
 	public function updateTeacher($teacherID){
 
 		$result = Student::$db->query(

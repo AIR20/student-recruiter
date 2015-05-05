@@ -289,6 +289,11 @@ $app->group(
 		)->name('store_feedback');
 		
 		$app->get(
+			'/:id/attendants',
+			'EventController:attendants'
+		)->name('event_attendants');
+
+		$app->get(
 			'/:id/tweet',
 			'EventController:tweet'
 		)->name('tweet_event');
