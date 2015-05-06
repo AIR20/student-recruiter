@@ -1,4 +1,4 @@
-CTYPE html>
+<!DOCTYPE html>
 <html>
   <?php require 'shared/head.php';?>
   <body>
