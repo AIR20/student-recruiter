@@ -56,7 +56,7 @@
 						Tags:
 					</label>
 					<div class="col-sm-8">
-						<input id="tags-input" class="form-control" type="text" name="tags" placeholder="eg. Science,Music">
+						<input id="tags-input" class="form-control" type="text" name="tags" placeholder="eg. Science, Music">
 					</div>
 					<script type="text/javascript">
 					$('#tags-input').selectize({
@@ -108,6 +108,7 @@
 	                        var d = new Date();
 	                        $('.datepicker').datepicker({
 							  autoclose: true,
+							  todayHighlight: true,
 	                          format:"d M yyyy",
 	                          defaultViewDate: {
 	                              year: d.getFullYear(),
@@ -137,11 +138,16 @@
 						Room:
 				  	</label>
 					<div class="col-sm-8">
-						<select class="form-control" name="room_id">
+						<select id="select-room" class="form-control" name="room_id">
 							<?php foreach($rooms as $room) : ?>
 							<option value="<?php echo $room->id?>"><?php echo $room->getBuildingName() . '—' . $room->name; ?></option>
 							<?php endforeach; ?>
 						</select>
+						<script type="text/javascript">
+							$('#select-room').selectize({
+								sortField: 'text'
+							});
+						</script>
 					</div>
 				</div>
 				<?php $proposed_by=$user->id; ?>
