@@ -21,9 +21,6 @@ path {
 </style>
 <body>
 
-<!-- load the d3.js library -->    
-<script src="../student-recruiter/assets/js/d3.min.js"></script>
-
 <script>
 
 // Set the dimensions of the canvas / graph

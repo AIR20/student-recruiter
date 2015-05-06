@@ -83,7 +83,7 @@ class EventController extends BaseController
 	public function attendants($id)
 	{
 		$this->data['event'] = Event::getEventById($id);
-		$this->data['students'] = Student::getStudentList();
+		$this->data['students'] = Student::getStudentListByEventId($id);
 		$this->app->render('event_attendants_list.php', $this->data);
 	}
 
