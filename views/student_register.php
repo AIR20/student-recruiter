@@ -78,6 +78,7 @@
 						<script>
 							$('.datepicker').datepicker({
 								autoclose: true,
+								orientation: 'top',
 								format: "d M yyyy",
 								startView: 2,
 								defaultViewDate: {

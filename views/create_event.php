@@ -108,6 +108,7 @@
 	                        var d = new Date();
 	                        $('.datepicker').datepicker({
 							  autoclose: true,
+							  orientation: 'top',
 							  todayHighlight: true,
 	                          format:"d M yyyy",
 	                          defaultViewDate: {
