@@ -53,19 +53,19 @@
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
 							</div>
 							<div class="panel-body">
-             	<?php if(isset($user) && ($user->isAdmin() || $user->isStaff())): ?>
+							<?php if(isset($user) && ($user->isAdmin() || $user->isStaff())): ?>
 								<span class="label label-danger"><?php echo ucwords($event->status) . ' ' . date('j M Y', strtotime($event->approved_at)); ?></span>
 							<?php endif; ?>
-								<span class="label label-success"><?php echo $event->type; ?></span>
-               	<span class="label label-primary"><?php echo ucwords($event->tags); ?></span>
+								<span class="label label-success type-<?php echo preg_replace("/[\s_]/", "-", strtolower($event->type)); ?>"><?php echo $event->type; ?></span>
+								<span class="label label-primary"><?php echo ucwords($event->tags); ?></span>
 								<h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . '—'; ?><i><?php echo $event->getRoomName(); ?></i></h5>
 								<h5><i class="fa fa-calendar-o fa-fw"></i> <?php echo date('l jS F, Y', strtotime($event->start_time));?> &nbsp <i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?></h5>
 								<p><?php echo $event->description ?></p>
-							
+
 								</br>
 								<div class="pull-right">
 										<a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>" class="btn btn-info"><i class="fa fa-info-circle fa-lg fa-fw"></i> See detail</a>
-										
+
 										<?php if(!(isset($user)) || $user->isStudent()) : ?>
 											<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
 											<a href="#" class="booked-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
@@ -101,7 +101,7 @@
 									</div>
 								</div>
 							</div>
-							<?php endif; ?> 					  	
+							<?php endif; ?>
 						</div>
 					<?php endif; endforeach; ?>
 				</div>
@@ -113,6 +113,13 @@
 		$("#event-type a").click(function() {
 			$('#event-type li').removeClass('active');
 			$(this).parent().addClass('active');
+			if ($(this).html() == 'All') {
+				console.log($(this).html());
+				$("#events").children().show();
+			} else {
+				$("#events").children().hide();
+				$("#events").children().has("span.type-" + $(this).html().replace(/\s+/g, '-').toLowerCase()).show();
+			}
 		});
 
 		$("#tags-filter a").click(function() {
