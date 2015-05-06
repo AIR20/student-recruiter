@@ -12,7 +12,7 @@
 			<h1 class="page-header">Create event</h1>
 
 			<div class="well col-md-8 col-md-offset-2">
-			<form action="<?php echo $app->urlFor('event_store');?>" method="post" class="form-horizontal">
+			<form action="<?php echo $app->urlFor('event_store');?>" method="post" class="form-horizontal" data-toggle="validator">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">
 						Type:
@@ -36,7 +36,7 @@
 						Event title:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="title" placeholder="eg. Computer Science taster classes">
+						<input class="form-control" type="text" name="title" placeholder="eg. Computer Science taster classes" required>
 					</div>
 				</div>
 
@@ -46,7 +46,7 @@
 						Event description:
 					</label>
 					<div class="col-sm-8">
-						<textarea class="form-control" rows="4" id=description type="text" name="description" placeholder="Give a detailed description of what this event will involve."></textarea>
+						<textarea class="form-control" rows="4" id=description type="text" name="description" placeholder="Give a detailed description of what this event will involve." required></textarea>
 					</div>
 				</div>
 
@@ -121,13 +121,13 @@
 						From:
 					</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="start_time" placeholder="HH:MM">
+						<input class="form-control" type="text" name="start_time" placeholder="HH:MM" pattern="[0-2][0-9]:[0-5][0-9]" required>
 					</div>
 					<label class="col-sm-1 control-label">
 						to
 					</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="end_time" placeholder="HH:MM">
+						<input class="form-control" type="text" name="end_time" placeholder="HH:MM" pattern="[0-2][0-9]:[0-5][0-9]" required>
 					</div>
 				</div>
 

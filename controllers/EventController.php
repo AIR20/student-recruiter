@@ -29,6 +29,7 @@ class EventController extends BaseController
 	{
 		$this->loadDropzone();
 		$this->loadSelectize();
+		$this->loadJs('validator.min.js');
         $this->data['rooms'] = Room::getRoomList();
 		$this->app->render('create_event.php', $this->data);
 	}
