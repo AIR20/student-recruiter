@@ -6,7 +6,7 @@ class StaffTest extends PHPUnit_Framework_TestCase {
 		$st->firstname = "Alan";
 		$st->lastname = "Dominik";
 		$st->hashed_password = "123456";
-		$st->email = "dominik@example.com";
+		$st->email = "dominik132@example.com";
 		$st->gender = 0;
 		$st->dob = '1999-09-21';
 		$st->department_id = 1;

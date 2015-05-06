@@ -6,7 +6,7 @@ class StudentTest extends PHPUnit_Framework_TestCase {
 		$st->firstname = "Alan";
 		$st->lastname = "Turing";
 		$st->hashed_password = "123456";
-		$st->email = "alan@example.com";
+		$st->email = "alan1122@example.com";
 		$st->gender = 0;
 		$st->dob = '1999-09-21';
 		$st->address_line1 = 'Ashton St';
