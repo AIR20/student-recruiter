@@ -50,6 +50,28 @@
 					</div>
 				</div>
 
+				<!--Event tags-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">
+						Tags:
+					</label>
+					<div class="col-sm-8">
+						<input id="tags-input" class="form-control" type="text" name="tags" placeholder="eg. Science,Music">
+					</div>
+					<script type="text/javascript">
+					$('#tags-input').selectize({
+						delimiter: ',',
+							persist: false,
+							create: function(input) {
+								return {
+									value: input,
+									text: input
+								}
+							}
+					});
+					</script>
+				</div>
+
 
 				<!--Event image url-->
 				<div class="form-group">
@@ -57,8 +79,22 @@
 						Image url:
 					</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="image_url">
+						<input id="image-url" type="hidden" name="image_url">
+						<div id="event-img" class="dropzone"></div>
 					</div>
+					<script type="text/javascript">
+					Dropzone.options.eventImg = {
+						url: '<?php echo $app->urlFor('upload') ?>',
+						paramName: "file", // The name that will be used to transfer the file
+						maxFilesize: 2,
+						maxFiles: 1,
+						init: function() {
+							this.on("success", function(file, response) {
+								$('#image-url').val(response.url);
+							});
+						}
+					};
+					</script>
 				</div>
 
 				<!--date of event-->

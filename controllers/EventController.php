@@ -27,6 +27,8 @@ class EventController extends BaseController
 	# GET /event/create
 	public function create()
 	{
+		$this->loadDropzone();
+		$this->loadSelectize();
         $this->data['rooms'] = Room::getRoomList();
 		$this->app->render('create_event.php', $this->data);
 	}

@@ -247,6 +247,14 @@ class BaseController
 		$this->loadCss("dropzone.min.css", array('position' => 'before:application.css'));
 		$this->loadJs("dropzone.min.js");
 	}
+	
+	/**
+	 * Load selectize
+	 */
+	protected function loadSelectize() {
+		$this->loadCss("selectize.css", array('position' => 'before:application.css'));
+		$this->loadJs("selectize.min.js");
+	}
 
 	protected function requireValidStudent() {
 		if (isset($this->user) && $this->user->isStudent()) return;

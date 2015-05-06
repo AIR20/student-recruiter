@@ -53,7 +53,7 @@
 						<div id="avatar" class="dropzone"></div>
 						<script type="text/javascript">
 							Dropzone.options.avatar = {
-								url: '<?php echo $app->urlFor('upload') ?>',
+								url: '<?php echo $app->urlFor('upload'); ?>',
 								paramName: "file", // The name that will be used to transfer the file
 								maxFilesize: 2,
 								maxFiles: 1,
