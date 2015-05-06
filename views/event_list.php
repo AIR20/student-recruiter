@@ -115,7 +115,6 @@
 			$('#event-type li').removeClass('active');
 			$(this).parent().addClass('active');
 			if ($(this).html() == 'All') {
-				console.log($(this).html());
 				$("#events").children().show();
 			} else {
 				$("#events").children().hide();
