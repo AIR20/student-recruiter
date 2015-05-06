@@ -6,9 +6,14 @@ class EventController extends BaseController
 	public function index()
 	{
 		$this->data['events'] = Event::getEventList();
+		$tags = array();
+		foreach ($this->data['events'] as $e) {
+			$tags = array_merge(explode(",", $e->tags), $tags);
+		}
+		$this->data['tags'] = array_unique($tags);
 		$this->app->render('event_list.php', $this->data);
 	}
-	
+
 	# GET /event/1
 	public function view($id)
 	{
@@ -93,10 +98,10 @@ class EventController extends BaseController
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
 		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
 		$event->proposed_at = $params['proposed_at'];
-		$event->proposed_by = $this->user->id; 
+		$event->proposed_by = $this->user->id;
 		$event->approved_at = $params['approved_at'];
 		$event->approved_by = $params['approved_by'];
-		$event->status = 'pending'; 
+		$event->status = 'pending';
 		$event->twitter_link = $params['twitter_link'];
 
 		if($event->save()){
@@ -111,7 +116,7 @@ class EventController extends BaseController
 	public function storeApproval($eventId)
 	{
 		$app = $this->app;
-		
+
 		$event = Event::getEventById($eventId);
 		$event->status = "approved";
 		$event->approved_at = date("Y-m-d h:i:s", time());
@@ -129,7 +134,7 @@ class EventController extends BaseController
 	public function storeRejection($eventId)
 	{
 		$app = $this->app;
-		
+
 		$event = Event::getEventById($eventId);
 		$event->status = "rejected";
 		$event->approved_at = date("Y-m-d h:i:s", time());
@@ -147,7 +152,7 @@ class EventController extends BaseController
 	public function storeCancellation($eventId)
 	{
 		$app = $this->app;
-		
+
 		$event = Event::getEventById($eventId);
 		$event->status = "cancelled";
 		$event->approved_at = date("Y-m-d h:i:s", time());
@@ -171,7 +176,7 @@ class EventController extends BaseController
 		$event->room_id = $params['room_id'];
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
 		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
-		
+
 		if($event->save()){
 			$app->flash('info', 'Event updated successfully');
 			$app->redirect($app->urlFor('pending_events'));
@@ -225,7 +230,7 @@ class EventController extends BaseController
 			$this->app->redirect($this->app->urlFor('events_list'));
 		}
 	}
-	
+
 	public function unbook($id)
 	{
 		$e = Event::getEventById($id);
@@ -258,7 +263,7 @@ class EventController extends BaseController
 	public function search() {
 		$this->app->response->headers->set('Content-Type', 'application/json');
 		$params = $this->app->request->get();
-		$events = 
+		$events =
 			Event::getFilteredEventList(array(
 				'query' => $params['query'],
 				'type'  => $params['type'],
@@ -276,7 +281,7 @@ class EventController extends BaseController
 	# GET /event/:id/tweet
 	public function tweet($id) {
 		$this->app->response->headers->set('Content-Type', 'application/json');
-		
+
 		$e = Event::getEventById($id);
 		if ($e->twitter_link) {
 			$this->app->response->setStatus(400); // Bad request
