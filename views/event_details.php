@@ -9,30 +9,67 @@
     <div class="row">
       <div class="main col-sm-12">
         <div class="sidebar col-sm-3">
-            <div class="book-panel">
-              <h3>Book it now</h3>
-              <?php if (isset($user) && $user->isStudent() && $event->isBooked($user->id, $event->id)): ?>
-              <a class="booked-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>">
-              <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
-              <?php else: ?>
-                <a class="book-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>">
-                <i class="fa fa-thumb-tack fa-lg pull-left"></i> Book Event</a>
-                <a class="booked-btn btn btn-lg btn-success btn-huge" href="#" style="display:none;">
-                <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
-              <?php endif; ?>
+          <div class="event panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Book it now</h3>
             </div>
+            <div class="panel-body">
+              <div class="book-panel">
+                <?php if (isset($user) && $user->isStudent() && $event->isBooked($user->id, $event->id)): ?>
+                <a class="booked-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>">
+                <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
+                <?php else: ?>
+                  <a class="book-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>">
+                  <i class="fa fa-thumb-tack fa-lg pull-left"></i> Book Event</a>
+                  <a class="booked-btn btn btn-lg btn-success btn-huge" href="#" style="display:none;">
+                  <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
 
-            <div>
-              <h3>Tags</h3>
+          <div class="event panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tags</h3>
+            </div>
+            <div class="panel-body">
               <?php foreach(explode(',', $event->tags) as $tag): ?>
                 <span class="label label-primary tag-<?php echo preg_replace("/[\s_]/", "-", strtolower($tag)); ?>"><?php echo ucwords($tag); ?></span>
               <?php endforeach; ?>
             </div>
+          </div>
 
-            <div>
-              <h3>You might also like</h3>
+          <div class="event panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Info</h3>
+            </div>
+            <div class="panel-body">
+
+              <div class="row">
+                  <h5 class="col-sm-3"><i class="fa fa-building-o fa-2x"></i></h5> <h5 class="col-sm-9"><?php echo $event->getBuildingName() . '—'; ?><i><?php echo $event->getRoomName(); ?></i></h5>
+              </div>
+
+              <div class="row">
+                  <h5 class="col-sm-3"><i class="fa fa-calendar-o fa-2x"></i></h5>  <h5 class="col-sm-9"><?php echo date('l jS F, Y', strtotime($event->start_time));?></h5>
+              </div>
+
+              <div class="row">
+                <div class="">
+                  <h5 class="col-sm-3"><i class="fa fa-clock-o fa-2x"></i></h5>  <h5 class="col-sm-9"><?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?></h5>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          <div class="event panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">You might also like</h3>
+            </div>
+            <div class="panel-body">  
+            </div>
+          </div>
+        </div>
           <!-- end of sidebar -->
         <div id="events" class="content col-sm-9">
 
