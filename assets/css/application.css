@@ -220,6 +220,11 @@ img.eventdetail {
 	max-width: 100%;
 }
 
+img.emoji {
+	height: 30px;
+	width: 30px;
+}
+
 .sidebar .label {
 	font-size: 110%;
 }

@@ -63,6 +63,32 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label class="col-sm-2 contro-label">
+					Emoji:	
+					</label>
+					<div class="col-sm-8">	
+						<img class="emoji" src="../../assets/img/emoji/701.png"/>
+						<img class="emoji" src="../../assets/img/emoji/702.png"/>
+						<img class="emoji" src="../../assets/img/emoji/703.png"/>
+						<img class="emoji" src="../../assets/img/emoji/704.png"/>
+						<img class="emoji" src="../../assets/img/emoji/705.png"/>
+						<img class="emoji" src="../../assets/img/emoji/706.png"/>
+						<img class="emoji" src="../../assets/img/emoji/707.png"/>
+						<img class="emoji" src="../../assets/img/emoji/711.png"/>
+						<img class="emoji" src="../../assets/img/emoji/714.png"/>
+						<img class="emoji" src="../../assets/img/emoji/717.png"/>
+						<img class="emoji" src="../../assets/img/emoji/719.png"/>
+						<img class="emoji" src="../../assets/img/emoji/720.png"/>
+						<img class="emoji" src="../../assets/img/emoji/722.png"/>
+						<img class="emoji" src="../../assets/img/emoji/738.png"/>
+						<img class="emoji" src="../../assets/img/emoji/731.png"/>
+						<img class="emoji" src="../../assets/img/emoji/732.png"/>
+						<img class="emoji" src="../../assets/img/emoji/733.png"/>
+						<img class="emoji" src="../../assets/img/emoji/734.png"/>
+					</div>
+				</div>
+
 				<!-- Reset and submit buttons -->
 				<div class="col-sm-offset-2">
 					<a href="<?php echo $app->urlFor('store_feedback', array('id' =>$event->id)); ?>" class="btn btn btn-success"><i class="fa fa-comments fa-lg fa-fw"></i> Sumbit Feedback</a>
