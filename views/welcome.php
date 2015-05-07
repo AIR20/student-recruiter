@@ -79,7 +79,7 @@
 					diversity and the oldest Chinese community in Europe.</p>
 				</div>
 				<div class="col-lg-5 col-sm-pull-6  col-sm-6">
-					<img class="img-responsive" src="assets/img/city_1.jpg" alt="Liverpool skyline at night">
+					<img class="img-responsive" src="assets/img/atnight.jpg" alt="Liverpool skyline at night">
 				</div>
 			</div>
 
