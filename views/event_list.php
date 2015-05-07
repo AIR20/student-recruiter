@@ -28,9 +28,9 @@
 					<h3>Event Type</h3>
 					<ul class="nav nav-pills nav-stacked">
 						<li role="presentation" class="active"><a href="#">All</a></li>
-						<li role="presentation"><a href="#">Open day</a></li>
-						<li role="presentation"><a href="#">Day trip</a></li>
-						<li role="presentation"><a href="#">Public lecture</a></li>
+						<?php foreach($types as $type): ?>
+						<li role="presentation"><a href="#"><?php echo $type; ?></a></li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 
@@ -139,6 +139,7 @@
 			}
 		});
 
+		<?php if (isset($user) && $user->isStudent()): ?>
 		$("a.book-btn").on('click', function(e) {
 			e.preventDefault();
 			var url = $(this).attr('href');
@@ -155,6 +156,7 @@
 					btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg fa-fw');
 				});
 		});
+		<?php endif; ?>
 
 		$("a.tweet-btn").on('click', function(e) {
 			e.preventDefault();

@@ -6,11 +6,19 @@ class EventController extends BaseController
 	public function index()
 	{
 		$this->data['events'] = Event::getEventList();
+
 		$tags = array();
 		foreach ($this->data['events'] as $e) {
 			$tags = array_merge(explode(",", $e->tags), $tags);
 		}
 		$this->data['tags'] = array_unique($tags);
+
+		$types = array();
+		foreach ($this->data['events'] as $e) {
+			$types[] = $e->type;
+		}
+		$this->data['types'] = array_unique($types);
+
 		$this->app->render('event_list.php', $this->data);
 	}
 
