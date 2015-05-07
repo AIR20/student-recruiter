@@ -216,6 +216,10 @@ img.avatar {
 	width: 25px;
 }
 
+img.large-avatar {
+	max-width: 100%;
+}
+
 img.eventdetail {
 	max-width: 100%;
 }

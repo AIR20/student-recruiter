@@ -171,7 +171,7 @@
     								icon: L.mapbox.marker.icon({
     									'marker-size': 'large',
     									'marker-symbol': 'building',
-    									'marker-color': '#158cba'
+    									'marker-color': '#F7D14A'
     								})
     							});
     						  marker.addTo(map);
@@ -193,6 +193,7 @@
   </div>
   <?php require('shared/footer.php') ?>
   <script type="text/javascript">
+    <?php if (isset($user) && $user->isStudent()): ?>
     $("a.book-btn").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('href');
@@ -209,6 +210,7 @@
           btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg pull-left');
         });
     });
+    <?php endif; ?>
 
     $("a.tweet-btn").on('click', function(e) {
       e.preventDefault();

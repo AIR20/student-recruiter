@@ -15,6 +15,11 @@
 							<h3 class="panel-title">Personal details</h3>
 						</div>
 						<div class="panel-body">
+							<?php if (isset($user->avatar)): ?>
+							<div class="large-avatar">
+								<img class="large-avatar img-circle" src="<?php echo $user->avatar; ?>" alt="avatar">
+							</div>
+							<?php endif ?>
 							<p><big><i class="fa fa-user"></i> Name:  <?php echo $user->firstname;?> <?php echo $user->lastname;?></big> </p>
 							<p><big><i class="fa fa-envelope"></i> Email:  <?php echo $user->email;?> </big> </p>
               <p><big><i class="fa fa-calendar"></i> DOB: <?php echo $user->dob;?> </big> </p>

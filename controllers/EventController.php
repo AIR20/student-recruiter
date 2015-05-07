@@ -261,7 +261,7 @@ class EventController extends BaseController
 				return;
 			}
 			$this->app->flash('info', 'Booking successfully cancelled');
-			$this->app->redirect($this->app->urlFor('events_list'));
+			$this->app->redirect($this->app->urlFor('student_event'));
 		} else {
 			if ($this->app->request->isXhr()) {
 				$this->app->response->setStatus(400);
@@ -269,7 +269,7 @@ class EventController extends BaseController
 				return;
 			}
 			$this->app->flash('error', 'Booking was not cancelled');
-			$this->app->redirect($this->app->urlFor('events_list'));
+			$this->app->redirect($this->app->urlFor('student_event'));
 		}
 	}
 
