@@ -28,7 +28,7 @@ class Event extends Model {
 		if ($this->new_record) {
 			$this->proposed_at = $this->current_time();
 			$stmt = Event::$db->prepare(
-				"INSERT INTO `events` (`title`, `description`, `type`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+				"INSERT INTO `events` (`title`, `description`, `type`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
 				$stmt->bind_param("sssssisssisissiis", $this->title, $this->description, $this->type, $this->tags, $this->image, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->comment, $this->applicants, $this->attendees, $this->twitter_link);
