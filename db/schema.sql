@@ -241,6 +241,9 @@ CREATE TABLE IF NOT EXISTS `srs`.`events` (
   `applicants` INT(11) NOT NULL DEFAULT 0,
   `facebook_link` VARCHAR(180) NULL,
   `twitter_link` VARCHAR(180) NULL,
+  `attendees` INT(11) NULL,
+  `image` VARCHAR(180) NULL,
+  `comment` TEXT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_events_room_id`
     FOREIGN KEY (`room_id`)
