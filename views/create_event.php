@@ -79,7 +79,7 @@
 						Image url:
 					</label>
 					<div class="col-sm-8">
-						<input id="image-url" type="hidden" name="image_url">
+						<input id="image-url" type="hidden" name="image">
 						<div id="event-img" class="dropzone"></div>
 					</div>
 					<script type="text/javascript">
