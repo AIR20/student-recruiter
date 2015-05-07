@@ -230,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `u3ac`.`events` (
   `description` TEXT NOT NULL,
   `type` VARCHAR(80) NULL,
   `tags` VARCHAR(180) NULL,
+  `image` VARCHAR(180) NULL,
   `room_id` INT(11) NULL,
   `start_time` DATETIME NULL,
   `end_time` DATETIME NULL,
@@ -238,7 +239,9 @@ CREATE TABLE IF NOT EXISTS `u3ac`.`events` (
   `approved_at` DATETIME NULL,
   `approved_by` INT(11) NULL,
   `status` VARCHAR(45) NULL DEFAULT 'pending',
+  `comment` TEXT NULL,
   `applicants` INT(11) NOT NULL DEFAULT 0,
+  `attendees` INT(11) NULL DEFAULT 0,
   `twitter_link` VARCHAR(180) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_events_room_id`
