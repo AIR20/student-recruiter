@@ -43,7 +43,7 @@ class Event extends Model {
 				"UPDATE `events` SET `title` = ?, `description` = ?, `type` = ?, `tags` = ?, `image` = ?, `room_id` = ?, `start_time` = ?, `end_time` = ?, `proposed_at` = ?, `proposed_by` = ?, `approved_at` = ?, `approved_by` = ?, `status` = ?, `comment` = ?,`applicants` = ?, `attendees` = ?, `twitter_link` = ? WHERE `id` = ?"
 			);
 			if ($stmt) {
-				$stmt->bind_param("sssssisssisissiis", $this->title, $this->description, $this->type, $this->tags, $this->image, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->comment, $this->applicants, $this->attendees, $this->twitter_link);
+				$stmt->bind_param("sssssisssisissiisi", $this->title, $this->description, $this->type, $this->tags, $this->image, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->comment, $this->applicants, $this->attendees, $this->twitter_link, $this->id);
 				if (!$stmt->execute()) return false;
 				return true;
 			}
