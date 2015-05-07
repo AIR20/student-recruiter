@@ -30,6 +30,7 @@
 						<?php endif; ?>
 						<?php if($user->isStaff()): ?>
 							<li class="divider"></li>
+							<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
 							<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events<span class="badge"></span></a></li>
 						<?php endif; ?>
 					</ul>
@@ -63,11 +64,11 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Uni Staff<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events</a></li>
 						<li><a href=#>View feedback</a></li>
 						<li><a href="<?php echo $app->urlFor('stats_dash'); ?>">View statistics</a></li>
 						<li class="divider"></li>
 						<li><a href="<?php echo $app->urlFor('create_event');?>">Propose new event</a></li>
+						<li><a href="<?php echo $app->urlFor('staff_event');?>">Manage my events</a></li>
 					</ul>
 				</li>
 				<?php endif; ?>

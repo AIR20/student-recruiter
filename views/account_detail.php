@@ -60,7 +60,9 @@
 							</table>
             </div>
           </div>
+				</div>
       </div>
+		</div>
 		</div>
 		<?php include 'shared/footer.php' ?>
   </body>
