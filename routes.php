@@ -91,6 +91,23 @@ $app->group(
 );
 
 $app->group(
+	'/about',
+	function() use($app){
+		$app->get(
+			'/faq',
+			'FeedbackController:faq'
+		)->name('faq');
+		
+		$app->get(
+			'/contact',
+			'FeedbackController:contact'
+		)->name('contact');
+	
+	
+	}
+);
+
+$app->group(
 	'/admin',
 	function () use($app){
 		$app->get(
@@ -279,7 +296,7 @@ $app->group(
 		)->name('store_move_event');
 
 		$app->get(
-			'/:id/feedback',
+			'/:id/	',
 			'FeedbackController:giveFeedback'
 		)->name('give_feedback');
 

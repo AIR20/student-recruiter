@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="#" class="navbar-brand">Student Recruiter System</a>
+			<a href="<?php echo $app->urlFor('home'); ?>" class="navbar-brand">Student Recruiter System</a>
 			<!-- for small devices -->
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
 				<span class="icon-bar"></span>
