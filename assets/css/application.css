@@ -219,3 +219,14 @@ img.avatar {
 img.eventdetail {
 	max-width: 100%;
 }
+
+.sidebar .label {
+	font-size: 110%;
+}
+
+.sidebar .btn-huge {
+	line-height: 14px;
+	min-width: 100%;
+	font-size: 16px;
+	/*font-weight: normal !important;*/
+}

@@ -20,7 +20,7 @@ class EventController extends BaseController
 		$this->data['event'] = Event::getEventById($id);
 		$this->data['location'] = $this->data['event']->getLocation();
 		if ($this->data['location']) $this->loadMap();
-		if ($this->data['event']->status != 'approved') $this->app->notFound();
+		if ($this->data['event']->status == 'cancelled' || $this->data['event']->status == 'rejected') $this->app->notFound();
 		$this->app->render('event_details.php', $this->data);
 	}
 

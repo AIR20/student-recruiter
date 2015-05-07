@@ -9,43 +9,31 @@
     <div class="row">
       <div class="main col-sm-12">
         <div class="sidebar col-sm-3">
-
-        <div id="search-bar">
-          <h3>Search</h3>
-          <form id="search" class="search">
-            <div class="form-group">
-              <div class="input-group">
-              <input type="text" class="query form-control" name="query">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="fa fa-search fa-fw fa-lg"></i></button>
-              </span>
-              </div>
+            <div class="book-panel">
+              <h3>Book it now</h3>
+              <?php if (isset($user) && $user->isStudent() && $event->isBooked($user->id, $event->id)): ?>
+              <a class="booked-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('unbook_event', array('id' => $event->id)); ?>">
+              <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
+              <?php else: ?>
+                <a class="book-btn btn btn-lg btn-success btn-huge" href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>">
+                <i class="fa fa-thumb-tack fa-lg pull-left"></i> Book Event</a>
+                <a class="booked-btn btn btn-lg btn-success btn-huge" href="#" style="display:none;">
+                <i class="fa fa-check fa-lg pull-left"></i> Event Booked</a>
+              <?php endif; ?>
             </div>
-          </form>
-        </div>
 
-        <div id="event-type">
-          <h3>Event Type</h3>
-          <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a href="#">All</a></li>
-            <li role="presentation"><a href="#">Open day</a></li>
-            <li role="presentation"><a href="#">Day trip</a></li>
-            <li role="presentation"><a href="#">Public lecture</a></li>
-          </ul>
-        </div>
+            <div>
+              <h3>Tags</h3>
+              <?php foreach(explode(',', $event->tags) as $tag): ?>
+                <span class="label label-primary tag-<?php echo preg_replace("/[\s_]/", "-", strtolower($tag)); ?>"><?php echo ucwords($tag); ?></span>
+              <?php endforeach; ?>
+            </div>
 
-        <div id="tags-filter">
-          <h3>Tags Filter</h3>
-          <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a href="#"><i class="fa fa-times fa-lg fa-fw"></i> Art</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Biology</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Careers</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Computer science</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-circle-o fa-lg fa-fw"></i> Engineering</a></li>
-          </ul>
-        </div>
-
-        </div>
+            <div>
+              <h3>You might also like</h3>
+            </div>
+          </div>
+          <!-- end of sidebar -->
         <div id="events" class="content col-sm-9">
 
             <div id="event-<?php echo $event->id; ?>" class="event panel panel-default">
@@ -57,8 +45,9 @@
 							<?php if(isset($user) && ($user->isAdmin() || $user->isStaff())): ?>
 								<span class="label label-danger"><?php echo ucwords($event->status) . ' ' . date('j M Y', strtotime($event->approved_at)); ?></span>
 							<?php endif; ?>
-								<span class="label label-success"><?php	echo $event->type; ?></span>
-								<span class="label label-primary"><?php	echo ucwords($event->tags); ?></span>
+              <?php foreach(explode(',', $event->tags) as $tag): ?>
+                <span class="label label-primary tag-<?php echo preg_replace("/[\s_]/", "-", strtolower($tag)); ?>"><?php echo ucwords($tag); ?></span>
+              <?php endforeach; ?>
                 <h5><i class="fa fa-building-o fa-fw"></i> <?php echo $event->getBuildingName() . '—'; ?><i><?php echo $event->getRoomName(); ?></i></h5>
                 <h5><i class="fa fa-calendar-o fa-fw"></i> <?php echo date('l jS F, Y', strtotime($event->start_time));?> &nbsp <i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?></h5>
 
@@ -74,9 +63,6 @@
                   <?php if(!(isset($user)) || ( isset($user) && $user->isStudent())) : ?>
 
 										<a href="<?php echo $app->urlFor('give_feedback', array('id' =>$event->id)); ?>" class="btn btn btn-success"><i class="fa fa-comments fa-lg fa-fw"></i> Give Feedback</a>
-
-										<a href="<?php echo $app->urlFor('book_event', array('id' => $event->id)); ?>" class="book-btn btn btn-danger"><i class="fa fa-thumb-tack fa-lg fa-fw"></i> Book Event</a>
-                    <a href="#" class="booked-btn btn btn-success" style="display:none;"><i class="fa fa-check fa-lg fa-fw"></i> Event Booked</a>
 
 									<?php endif; ?>
 
@@ -156,43 +142,30 @@
   					  </div>
             </div>
           </div>
+          <!-- end of events -->
+
+          
+
         </div>
       </div>
     </div>
   </div>
   <?php require('shared/footer.php') ?>
   <script type="text/javascript">
-    $("#event-type a").click(function() {
-      $('#event-type li').removeClass('active');
-      $(this).parent().addClass('active');
-    });
-
-    $("#tags-filter a").click(function() {
-      if ($(this).parent().hasClass('active')) {
-        $(this).parent().removeClass('active');
-        $(this).children('i').removeClass('fa-times');
-        $(this).children('i').addClass('fa-circle-o');
-      } else {
-        $(this).parent().addClass('active');
-        $(this).children('i').removeClass('fa-circle-o');
-        $(this).children('i').addClass('fa-times');
-      }
-    });
-
     $("a.book-btn").on('click', function(e) {
       e.preventDefault();
       var url = $(this).attr('href');
-      $(this).children('i').attr('class', 'fa fa-spinner fa-spin fa-lg fa-fw');
+      $(this).children('i').attr('class', 'fa fa-spinner fa-spin fa-lg pull-left');
       var btn = $(this);
       $.getJSON(url, function(data) {
         btn.hide();
-        btn.parents('.event').find('.booked-btn').show();
+        btn.parents('.book-panel').find('.booked-btn').show();
       })
         .fail(function( jqxhr, textStatus, error ) {
 
         })
         .always(function() {
-          btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg fa-fw');
+          btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg pull-left');
         });
     });
 
@@ -219,30 +192,6 @@
 
     $("a.tweeted-btn").on('click', function(e) {
       e.preventDefault();
-    });
-
-    $("#search-bar #search").submit(function(e) {
-      e.preventDefault();
-      var url = '<?php echo $app->urlFor('search_event') ?>';
-      var data = {
-        query: $(this).find('.query').val()
-      };
-      $("#events").children().hide();
-      $.getJSON(url, data, function(data) {
-        for (var i in data['id']) {
-          $("#events").children('#event-' + data['id'][i]).show();
-        }
-      });
-    });
-
-    $(document).ready(function() {
-      var url = '<?php echo $app->urlFor('student_event'); ?>';
-      $.getJSON(url, function(data) {
-        for (var i in data['id']) {
-          $('#event-' + data['id'][i]).find('a.book-btn').hide();
-          $('#event-' + data['id'][i]).find('a.booked-btn').show();
-        }
-      });
     });
 
   </script>
