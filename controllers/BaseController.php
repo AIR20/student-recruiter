@@ -258,7 +258,8 @@ class BaseController
 
 	protected function requireValidStudent() {
 		if (isset($this->user) && $this->user->isStudent()) return;
-		throw new Exception('Forbidden Area.');
+		$this->app->flash('warning', 'You must register or login to continue.');
+		$this->app->redirect($this->app->urlFor('student_register'));
 	}
 
 	protected function requireValidTeacher() {

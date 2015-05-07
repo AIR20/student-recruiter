@@ -139,6 +139,7 @@
 			}
 		});
 
+		<?php if (isset($user) && $user->isStudent()): ?>
 		$("a.book-btn").on('click', function(e) {
 			e.preventDefault();
 			var url = $(this).attr('href');
@@ -155,6 +156,7 @@
 					btn.children('i').attr('class', 'fa fa-thumb-tack fa-lg fa-fw');
 				});
 		});
+		<?php endif; ?>
 
 		$("a.tweet-btn").on('click', function(e) {
 			e.preventDefault();
