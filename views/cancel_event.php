@@ -18,13 +18,13 @@
 						Reason for cancellation:
 					</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="4" id=description type="comment" name="description"></textarea>
+						<textarea class="form-control" rows="4" id=comment type="comment" name="comment"></textarea>
 					</div>
 				</div>
 				<?php	$approved_by=$user->id; ?>
 				<div class="col-sm-offset-2">
 					<button class="btn btn-default">Cancel</button>
-					<button type="submit" class="btn btn-danger"><i class="fa fa-cross fa-lg fa-fw"></i> Cancel</button>
+					<button type="submit" class="btn btn-danger"><i class="fa fa-close fa-lg fa-fw"></i> Cancel</button>
 				</div>			
 
 			</form>

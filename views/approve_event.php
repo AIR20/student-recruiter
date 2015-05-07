@@ -21,7 +21,7 @@
 						Comments:
 					</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" rows="4" id=description type="comment" name="description"></textarea>
+						<textarea class="form-control" rows="4" id=comment type="comment" name="comment"></textarea>
 					</div>
 				</div>
 				<?php	$approved_by=$user->id; ?>
