@@ -43,16 +43,16 @@
 				<div class="col-lg-5 col-sm-6">
 					<hr class="section-heading-spacer">
 					<div class="clearfix"></div>
-					<h2 class="section-heading">Experience Liverpool Univeristy<br>Tours, Events, Lectures</h2>
-					<p class="lead">With countless opportunities to experience Liverpool University at its
-					best, students and teachers alike from across the country can visit and enjoy any
-					number of events and activites scheduled on our system. It is important that students get
-					a proper feel for the Univeristy they chose, considering how much time will be spent there.
-					The events proposed on the Student Recruiter System will give all students the ability to
-					experience Liverpool Univeristy properly and help them make what is a very difficult decision.</p>
+					<h2 class="section-heading">Featured Event : May 2015<br>Anthropology Lecture</h2>
+					<p class="lead">This lecture readdresses classic anthropological concerns, among them 
+					the nature of time and, as befits the Radcliffe-Brown Lecture, of social relations. 
+					The lecture indicates how doing anthropology through music can revitalize these 
+					fundamental concerns, opening up new conceptual directions, while reshaping what 
+					has been called an anthropology of the contemporary.</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
-					<img class="img-responsive" src="assets/img/liverpool_uni.jpg" alt="Liverpool Univeristy">
+					<div><br></div>
+					<img class="img-responsive" src="assets/img/anthra.jpg" alt="Liverpool Univeristy">
 				</div>
 			</div>
 
@@ -79,6 +79,8 @@
 					diversity and the oldest Chinese community in Europe.</p>
 				</div>
 				<div class="col-lg-5 col-sm-pull-6  col-sm-6">
+					<div><br></div>
+					<div><br></div>
 					<img class="img-responsive" src="assets/img/atnight.jpg" alt="Liverpool skyline at night">
 				</div>
 			</div>
@@ -97,17 +99,19 @@
 				<div class="col-lg-5 col-sm-6">
 					<hr class="section-heading-spacer">
 					<div class="clearfix"></div>
-					<h2 class="section-heading">Featured Event :<br>Example Event Title !!!</h2>
-					<p class="lead">Fill in this with an example of a featured event on our system.
-					Was thinking about a sports centre tour or something.
-					Fill in description once decided and take photo of gym tomorrow
-					<br>!?!?!?<br>
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<h2 class="section-heading">Experience Liverpool Univeristy<br>Tours, Events, Lectures</h2>
+					<p class="lead">With countless opportunities to experience Liverpool University at its
+					best, students and teachers alike from across the country can visit and enjoy any
+					number of events and activites scheduled on our system. It is important that students get
+					a proper feel for the Univeristy they chose, considering how much time will be spent there.
+					The events proposed on the Student Recruiter System will give all students the ability to
+					experience Liverpool Univeristy properly and help them make what is a very difficult decision.</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
-					<img class="img-responsive" src="http://placehold.it/900x800" alt="">
+					<div><br></div>
+					<div><br></div>
+					<div><br></div>
+					<img class="img-responsive" src="assets/img/liverpool_uni.jpg" alt="Liverpool University">
 				</div>
 			</div>
 
