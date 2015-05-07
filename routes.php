@@ -287,7 +287,12 @@ $app->group(
 			'/:id/feedback',
 			'FeedbackController:storeFeedback'
 		)->name('store_feedback');
-		
+
+		$app->get(
+				'/:id/feedback/view',
+				'FeedbackController:viewFeedback'
+			)->name('view_feedback');
+
 		$app->get(
 			'/:id/attendants',
 			'EventController:attendants'

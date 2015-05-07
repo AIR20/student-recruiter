@@ -9,6 +9,13 @@ Class FeedbackController extends BaseController {
 		$this->app->render('feedback_form.php', $this->data);
 	}
 
+	function viewFeedback($id)
+	{
+		$this->data['event'] = Event::getEventById($id);
+		$this->app->render('feedback_list.php', $this->data);
+	}
+	
+
 	function faq(){
 		$this->app->render('faq.php', $this->data);
 	}
