@@ -143,6 +143,16 @@ class Event extends Model {
 		return $events;
 	}
 
+	public static function getFutureEventList() {
+		$events = Event::getEventList();
+		$ret = array();
+		foreach ($events as $event) {
+			if ($event->start_time > date('Y-m-d H:i:s', time()))
+				$ret[] = $event;
+		}
+		return $ret;
+	}
+
 	public static function getPendingEventList(){
 		Event::db_init();
 		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `status`='pending' ORDER BY `start_time`");

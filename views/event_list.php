@@ -45,7 +45,7 @@
 
 				</div>
 				<div id="events" class="content col-sm-9">
-					<?php foreach($events as $event) : if($event->start_time>date('Y-m-d H:i:s', time())):?>
+					<?php foreach($events as $event) :?>
 						<div id="event-<?php echo $event->id; ?>" class="event panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title"><a href="<?php echo $app->urlFor('view_event', array('id' => $event->id)); ?>"><?php echo $event->title ?></a></h3>
@@ -105,7 +105,7 @@
 							</div>
 							<?php endif; ?>
 						</div>
-					<?php endif; endforeach; ?>
+					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>

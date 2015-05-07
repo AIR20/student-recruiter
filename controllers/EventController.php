@@ -5,17 +5,19 @@ class EventController extends BaseController
 
 	public function index()
 	{
-		$this->data['events'] = Event::getEventList();
+		$this->data['events'] = Event::getFutureEventList();
 
 		$tags = array();
 		foreach ($this->data['events'] as $e) {
-			$tags = array_merge(explode(",", $e->tags), $tags);
+			if ($e->tags)
+				$tags = array_merge(explode(",", $e->tags), $tags);
 		}
 		$this->data['tags'] = array_unique($tags);
 
 		$types = array();
 		foreach ($this->data['events'] as $e) {
-			$types[] = $e->type;
+			if ($e->type)
+				$types[] = $e->type;
 		}
 		$this->data['types'] = array_unique($types);
 
@@ -46,6 +48,21 @@ class EventController extends BaseController
 	public function pending()
 	{
 		$this->data['pending_events'] = Event::getPendingEventList();
+
+		$tags = array();
+		foreach ($this->data['pending_events'] as $e) {
+			if ($e->tags)
+				$tags = array_merge(explode(",", $e->tags), $tags);
+		}
+		$this->data['tags'] = array_unique($tags);
+
+		$types = array();
+		foreach ($this->data['pending_events'] as $e) {
+			if ($e->type)
+				$types[] = $e->type;
+		}
+		$this->data['types'] = array_unique($types);
+
 		$this->app->render('pending_events.php', $this->data);
 	}
 
