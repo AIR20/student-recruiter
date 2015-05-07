@@ -314,6 +314,7 @@ class EventController extends BaseController
 
 	# GET /event/:id/tweet
 	public function tweet($id) {
+		$this->requireValidAdmin();
 		$this->app->response->headers->set('Content-Type', 'application/json');
 
 		$e = Event::getEventById($id);
@@ -339,4 +340,47 @@ class EventController extends BaseController
 		}
 	}
 
+	# GET /event/:id/recommend
+	public function recommend($id) {
+		$event = Event::getEventById($id);
+		$s = $this->tokenize($event->description);
+		$events = Event::getFutureEventList();
+
+		$pq = new SplPriorityQueue();
+
+		foreach ($events as $e) {
+			if ($e->id == $event->id) continue;
+			$pq->insert($e, $this->similarity($s, $this->tokenize($e->description)));
+		}
+
+		$pq->setExtractFlags(SplPriorityQueue::EXTR_DATA);
+		$ret = array();
+		for ($i=0; $i < 4 && !$pq->isEmpty(); $i++) { 
+			$tmp = $pq->extract();
+			$ret[] = array(
+				"id" => $tmp->id,
+				"title" => $tmp->title,
+				"url" => $this->app->urlFor('view_event', array("id" => $tmp->id))
+			);
+		}
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		echo json_encode($ret);
+	}
+
+	// quick and dirty...
+	private function similarity(&$A, &$B) {
+		$a = array_fill_keys($A,1);
+		$b = array_fill_keys($B,1);
+
+		$intersect = count(array_intersect_key($a,$b));
+		$union = count(array_fill_keys(array_merge($A,$B),1));
+
+		return $intersect/$union;
+	}
+
+	public function tokenize($str) {
+		$arr = array();
+
+		return preg_split('/[\pZ\pC]+/u',$str,null,PREG_SPLIT_NO_EMPTY);
+	}
 }

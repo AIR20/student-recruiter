@@ -66,7 +66,22 @@
             <div class="panel-heading">
                 <h3 class="panel-title">You might also like</h3>
             </div>
-            <div class="panel-body">  
+            <div class="panel-body"> 
+              <div id="recommender" class="list-group">
+                <i class="fa fa-spinner fa-pulse"></i>
+              </div>
+              <script type="text/javascript">
+                $(document).ready(function() {
+                  var url = '<?php echo $app->urlFor('recommend_event', array("id" => $event->id)); ?>';
+                  $.getJSON(url, function(data) {
+                    var items = [];
+                    for (var i in data) {
+                      items.push('<a href="' + data[i]['url'] + '" class="list-group-item"><h5 class="list-group-item-heading">' + data[i]['title'] + '</h5></a>');
+                    }
+                    $('#recommender').html(items.join(""));
+                  });
+                });
+              </script>
             </div>
           </div>
         </div>

@@ -319,6 +319,11 @@ $app->group(
 			'/:id/tweet',
 			'EventController:tweet'
 		)->name('tweet_event');
+
+		$app->get(
+			'/:id/recommend',
+			'EventController:recommend'
+		)->name('recommend_event');
 	}
 
 );
