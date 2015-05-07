@@ -30,6 +30,8 @@
 				</div>
       </div>
 		</div>
+		</div>
+		<?php require 'shared/footer.php'; ?>
   </body>
 </html>
 
