@@ -5,11 +5,11 @@
 			<div class="col-lg-12">
 				<ul class="list-inline">
 					<li>
-						<a href="#">Home</a>
+						<a href="<?php echo $app->urlFor('home'); ?>">Home</a>
 					</li>
 					<li class="footer-menu-divider">&sdot;</li>
 					<li>
-						<a href="#">About</a>
+						<a href="<?php echo $app->urlFor('faq'); ?>">About</a>
 					</li>
 					<li class="footer-menu-divider">&sdot;</li>
 					<li>
