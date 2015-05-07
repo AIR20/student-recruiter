@@ -28,9 +28,9 @@
 					<h3>Event Type</h3>
 					<ul class="nav nav-pills nav-stacked">
 						<li role="presentation" class="active"><a href="#">All</a></li>
-						<li role="presentation"><a href="#">Open day</a></li>
-						<li role="presentation"><a href="#">Day trip</a></li>
-						<li role="presentation"><a href="#">Public lecture</a></li>
+						<?php foreach($types as $type): ?>
+						<li role="presentation"><a href="#"><?php echo $type; ?></a></li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 

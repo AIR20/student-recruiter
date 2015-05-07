@@ -89,7 +89,11 @@
                 <h5><i class="fa fa-calendar-o fa-fw"></i> <?php echo date('l jS F, Y', strtotime($event->start_time));?> &nbsp <i class="fa fa-clock-o fa-fw"></i> <?php echo date('g:ia', strtotime($event->start_time)) . ' - ' . date('g:ia', strtotime($event->end_time)); ?></h5>
 
                 <div>
+                  <?php if ($event->image): ?>
+                  <img class="eventdetail" src="<?php echo $event->image; ?>">
+                  <?php else: ?>
                   <img class="eventdetail" src="http://i.telegraph.co.uk/multimedia/archive/03288/potd-caiman_3288559k.jpg">
+                  <?php endif; ?>
                 </div>
 
                 </br>
