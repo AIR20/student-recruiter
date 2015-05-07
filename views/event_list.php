@@ -84,9 +84,11 @@
 											<a href="#" class="tweeted-btn btn btn-success"><i class="fa fa-check fa-lg fa-fw"></i> Event Tweeted</a>
 										<?php endif; ?>
 
-										<?php if(isset($user) && ($user->isStaff || $user->isAdmin())) : ?>
+										<?php if(isset($user) && ($user->isStaff() || $user->isAdmin())) : ?>
 											<a href="<?php echo $app->urlFor('cancel_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-close fa-lg fa-fw"></i> Cancel Event</a>
 											<a href="<?php echo $app->urlFor('move_event', array('id' => $event->id)); ?>" class="btn btn-danger"><i class="fa fa-location-arrow fa-lg fa-fw"></i> Move Event</a>
+											
+											<a href="<?php echo $app->urlFor('view_feedback', array('id' => $event->id)); ?>" class="btn btn-success"><i class="fa fa-comments fa-lg fa-fw"></i> View Feedback</a>
 										<?php endif; ?>
 										<?php endif; ?>
 								</div>

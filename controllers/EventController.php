@@ -98,6 +98,7 @@ class EventController extends BaseController
 		$event->description = $params['description'];
 		$event->type = $params['type'];
 		$event->tags = $params['tags'];
+		$event->image = $params['image'];
 		$event->room_id = $params['room_id'];
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
 		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
@@ -125,6 +126,7 @@ class EventController extends BaseController
 		$event->status = "approved";
 		$event->approved_at = date("Y-m-d h:i:s", time());
 		$event->approved_by = $approved_by;
+		$event->comment = $comment;
 
 		if($event->save()){
 			$app->flash('info', 'Event approved');
@@ -143,6 +145,7 @@ class EventController extends BaseController
 		$event->status = "rejected";
 		$event->approved_at = date("Y-m-d h:i:s", time());
 		$event->approved_by = $approved_by;
+		$event->comment = $comment;
 
 		if($event->save()){
 			$app->flash('info', 'Event rejected successfully');
@@ -161,6 +164,7 @@ class EventController extends BaseController
 		$event->status = "cancelled";
 		$event->approved_at = date("Y-m-d h:i:s", time());
 		$event->approved_by = $approved_by;
+		$event->comment = $comment;
 
 		if($event->save()){
 			$app->flash('info', 'Event cancelled successfully');
@@ -180,6 +184,7 @@ class EventController extends BaseController
 		$event->room_id = $params['room_id'];
 		$event->start_time = $this->convertDate($params['date']) . ' ' . $params['start_time'] . ':00';
 		$event->end_time = $this->convertDate($params['date']) . ' ' . $params['end_time'] . ':00';
+		$event->comment = $comment;
 
 		if($event->save()){
 			$app->flash('info', 'Event updated successfully');

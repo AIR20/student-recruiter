@@ -7,6 +7,7 @@ class Event extends Model {
 	public $description;
 	public $type;
 	public $tags;
+	public $image;
 	public $room_id;
 	public $date;
 	public $start_time;
@@ -16,7 +17,9 @@ class Event extends Model {
 	public $approved_at;
 	public $approved_by;
 	public $status; 
+	public $comment; 
 	public $applicants = 0;
+	public $attendees = 0;
 	public $twitter_link;
 
 	public function save() {
@@ -25,10 +28,10 @@ class Event extends Model {
 		if ($this->new_record) {
 			$this->proposed_at = $this->current_time();
 			$stmt = Event::$db->prepare(
-				"INSERT INTO `events` (`title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+				"INSERT INTO `events` (`title`, `description`, `type`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 			);
 			if ($stmt) {
-				$stmt->bind_param("ssssisssisisis", $this->title, $this->description, $this->type, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->twitter_link);
+				$stmt->bind_param("sssssisssisissiis", $this->title, $this->description, $this->type, $this->tags, $this->image, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->comment, $this->applicants, $this->attendees, $this->twitter_link);
 				if (!$stmt->execute()) return false;
 				$this->id = $stmt->insert_id;
 				return true;
@@ -37,10 +40,10 @@ class Event extends Model {
 		}
 		else {
 			$stmt = Event::$db->prepare(
-				"UPDATE `events` SET `title` = ?, `description` = ?, `type` = ?, `tags` = ?, `room_id` = ?, `start_time` = ?, `end_time` = ?, `proposed_at` = ?, `proposed_by` = ?, `approved_at` = ?, `approved_by` = ?, `status` = ?, `applicants` = ?, `twitter_link` = ? WHERE `id` = ?"
+				"UPDATE `events` SET `title` = ?, `description` = ?, `type` = ?, `tags` = ?, `image` = ?, `room_id` = ?, `start_time` = ?, `end_time` = ?, `proposed_at` = ?, `proposed_by` = ?, `approved_at` = ?, `approved_by` = ?, `status` = ?, `comment` = ?,`applicants` = ?, `attendees` = ?, `twitter_link` = ? WHERE `id` = ?"
 			);
 			if ($stmt) {
-				$stmt->bind_param("ssssisssisisisi", $this->title, $this->description, $this->type, $this->tags, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->applicants, $this->twitter_link, $this->id);
+				$stmt->bind_param("sssssisssisissiis", $this->title, $this->description, $this->type, $this->tags, $this->image, $this->room_id, $this->start_time, $this->end_time, $this->proposed_at, $this->proposed_by, $this->approved_at, $this->approved_by, $this->status, $this->comment, $this->applicants, $this->attendees, $this->twitter_link);
 				if (!$stmt->execute()) return false;
 				return true;
 			}
@@ -77,6 +80,7 @@ class Event extends Model {
 	}
 
 		// 1 = success 0 = query fail 
+
 	public function unbookEvent($student_id){
 		Event::db_init();
 		$id = $this->id;
@@ -107,7 +111,7 @@ class Event extends Model {
 
 	public static function getEventById($id) {
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `id` = $id LIMIT 1");
+		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `id` = $id LIMIT 1");
 		if ($result->num_rows == 0) {
 			throw new Exception('No such event.');
 		}
@@ -118,7 +122,7 @@ class Event extends Model {
 
 	public static function getAllEventList(){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` ORDER BY `start_time`");
+		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` ORDER BY `start_time`");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
@@ -127,10 +131,10 @@ class Event extends Model {
 		}
 		return $events;
 	}
+
 	public static function getEventList(){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `status`='approved' ORDER BY `start_time`");
-
+		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `status`='approved' ORDER BY `start_time`");
 		$events = array();
 		while($event = $result->fetch_object('Event')){
 			$event->new_record = false;
@@ -141,8 +145,7 @@ class Event extends Model {
 
 	public static function getPendingEventList(){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `status`='pending' ORDER BY `start_time`");
-
+		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `status`='pending' ORDER BY `start_time`");
 		$events = array();
 		while($event = $result->fetch_object('Event')){
 			$event->new_record = false;
@@ -153,7 +156,7 @@ class Event extends Model {
 
 	public static function getBookedEventList($student_id){
 		Event::db_init();
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id) ORDER BY `start_time`");
+		$result = Event::$db->query("SELECT `id`, `type`, `title`, `description`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `id` IN (SELECT `event_id` FROM `applications` WHERE `student_id` = $student_id) ORDER BY `start_time`");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
@@ -166,7 +169,7 @@ class Event extends Model {
 	public static function getFilteredEventList($options) {
 		Event::db_init();
 		$query = $options['query'];
-		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `applicants`, `twitter_link` FROM `events` WHERE `description` LIKE '%$query%'");
+		$result = Event::$db->query("SELECT `id`, `title`, `description`, `type`, `tags`, `image`, `room_id`, `start_time`, `end_time`, `proposed_at`, `proposed_by`, `approved_at`, `approved_by`, `status`, `comment`, `applicants`, `attendees`, `twitter_link` FROM `events` WHERE `description` LIKE '%$query%'");
 
 		$events = array();
 		while($event = $result->fetch_object('Event')){
