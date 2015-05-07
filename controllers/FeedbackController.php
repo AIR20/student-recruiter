@@ -19,6 +19,12 @@ Class FeedbackController extends BaseController {
 	function faq(){
 		$this->app->render('faq.php', $this->data);
 	}
+	
+	function contact(){
+		$this->app->render('contact.php', $this->data);
+	}
+	
+	
 
 	function storeFeedback()
 	{

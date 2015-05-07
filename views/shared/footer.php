@@ -17,7 +17,7 @@
 					</li>
 					<li class="footer-menu-divider">&sdot;</li>
 					<li>
-						<a href="#">Contact</a>
+						<a href="<?php echo $app->urlFor('contact'); ?>">Contact</a>
 					</li>
 				</ul>
 				<p class="copyright text-muted small">Copyright &copy; Student Recruiter 2015. All Rights Reserved</p>
