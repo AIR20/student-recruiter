@@ -45,10 +45,9 @@
 					<div class="clearfix"></div>
 					<h2 class="section-heading">Featured Event : May 2015<br>Anthropology Lecture</h2>
 					<p class="lead">This lecture readdresses classic anthropological concerns, among them 
-					the nature of time and, as befits the Radcliffe-Brown Lecture, of social relations. 
-					The lecture indicates how doing anthropology through music can revitalize these 
-					fundamental concerns, opening up new conceptual directions, while reshaping what 
-					has been called an anthropology of the contemporary.</p>
+					the nature of time and social relations. The lecture indicates how doing anthropology 
+					through music can revitalize these fundamental concerns, opening up new conceptual 
+					directions, while reshaping what has been called an anthropology of the contemporary.</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
 					<div><br></div>
