@@ -20,7 +20,7 @@
 								<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 							</li>
 							<li>
-								<a target="blank" href="https://www.facebook.com/profile.php?id=100009541990057&ref=br_rs" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+								<a target="blank" href="https://www.facebook.com/student.recruter.liv" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
 							</li>
 							<li>
 								<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
@@ -134,7 +134,7 @@
 							<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 						</li>
 						<li>
-							<a target="blank" href="https://www.facebook.com/profile.php?id=100009541990057&ref=br_rs" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+							<a target="blank" href="https://www.facebook.com/student.recruter.liv" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
 						</li>
 						<li>
 							<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
