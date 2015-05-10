@@ -20,7 +20,7 @@
 								<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 							</li>
 							<li>
-								<a target="blank" href="https://www.facebook.com/profile.php?id=100009541990057&ref=br_rs" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+								<a target="blank" href="https://www.facebook.com/student.recruter.liv" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
 							</li>
 							<li>
 								<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
@@ -45,10 +45,9 @@
 					<div class="clearfix"></div>
 					<h2 class="section-heading">Featured Event : May 2015<br>Anthropology Lecture</h2>
 					<p class="lead">This lecture readdresses classic anthropological concerns, among them 
-					the nature of time and, as befits the Radcliffe-Brown Lecture, of social relations. 
-					The lecture indicates how doing anthropology through music can revitalize these 
-					fundamental concerns, opening up new conceptual directions, while reshaping what 
-					has been called an anthropology of the contemporary.</p>
+					the nature of time and social relations. The lecture indicates how doing anthropology 
+					through music can revitalize these fundamental concerns, opening up new conceptual 
+					directions, while reshaping what has been called an anthropology of the contemporary.</p>
 				</div>
 				<div class="col-lg-5 col-lg-offset-2 col-sm-6">
 					<div><br></div>
@@ -134,7 +133,7 @@
 							<a target="blank" href="https://twitter.com/intent/user?screen_name=StdntRecruiter" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
 						</li>
 						<li>
-							<a target="blank" href="https://www.facebook.com/profile.php?id=100009541990057&ref=br_rs" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+							<a target="blank" href="https://www.facebook.com/student.recruter.liv" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
 						</li>
 						<li>
 							<a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
