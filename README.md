@@ -6,37 +6,32 @@ The stakeholders involved include: University Administrators, Academic Departmen
 
 The SRS will provide facilities to enable the co-ordination of events organised by Academic Departments, from general university open days, large introductory sessions, individual department visits, and career services, to receptions, public lectures, speeches, and concerts. Centralising the organisation of all university events into a single system will make it easier for the university to manage and track what is happening on campus. It will also make it easier for prospective Students and Teachers who wish to attend events.
 
-# Installation
+# Installation Guide
 
-1. Import SQL schema file `db/schema.sql` to your MySQL server.
+## Requirement
+
+- PHP 5.3.13 or above
+- MySQL
+
+## Steps
+
+1. Import SQL schemas and sample data to MySQL server.
 
 	```shell
-	mysql -h [hostname] -u [username] -p < db/schema.sql
+    $ make
 	```
-2. Import sample data from `db/seeds.sql`.
+1. Copy `default.config.php` to `config.php` and modify the configuration.
 
-	```shell
-	mysql -h [hostname] -u [username] -p < db/seeds.sql
-	```
-2. Copy all the PHP files and assets files to your web root directory.
-
-3. Copy `default.config.php` to `config.php` and modify the database configuration.
-
-4. Copy `default.htaccess` to `.htaccess` to enable URL rewrite on Apache.
-
-	Note: To enable URL rewrite on department server, uncomment the line with `RewriteBase` and change it to the base URL after the hostname `cgi.csc.liv.ac.uk`.
-	
-	```htaccess
-	RewriteBase /~username/student-recruiter/
-	```
-    
-    And ensure you have correct permission for `.htaccess` file.
     ```shell
-    chmod 755 .htaccess
+    $ cp default.config.php config.php
+    ```
+1. Make sure `upload` folder has correct permission.
+
+    ```shell
+    $ chmod 777 upload
     ```
 
-5. Make a folder `tmp` with 777 permission if you are using department server.
+# Contribution
 
-	```shell
-	mkdir -m 777 tmp
-	```
+Contributions and bug reports are welcome!
+

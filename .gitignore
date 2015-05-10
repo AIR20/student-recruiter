@@ -6,6 +6,7 @@ tmp/*
 
 # Ignore upload folder
 upload/*
+!upload/.keep
 
 # Ignore everything in db/
 db/*
