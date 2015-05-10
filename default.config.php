@@ -9,10 +9,9 @@ define('MODEL_PATH', __DIR__.'/models/');
 define('VIEW_PATH', __DIR__.'/views/');
 define('TEST_PATH', __DIR__.'/test/');
 define('SESSION_PATH', __DIR__.'/tmp/');
-// define('LOG_PATH', __DIR__.'/log/');
 
 // Set this to true if you are on a department server.
-define('DEPARTMENT_SERVER', true);
+define('DEPARTMENT_SERVER', false);
 
 // Load Slim framework
 
@@ -44,7 +43,7 @@ $config['slim'] = array(
 	// Application
 	'mode'          => 'development',
 	// Debugging
-	'debug'         => true,
+	'debug'         => false,
 	// Logging
 	'log.writer'    => null,
 	'log.level'     => \Slim\Log::DEBUG,
@@ -85,3 +84,4 @@ $config['mailgun'] = array(
 );
 
 date_default_timezone_set('Europe/London');
+

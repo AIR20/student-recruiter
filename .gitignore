@@ -1,7 +1,5 @@
 # Ignore the configuration file
 config.php
-.htaccess
-Makefile
 
 # Ignore temporary file
 tmp/*
@@ -13,4 +11,3 @@ upload/*
 db/*
 !db/schema.sql
 !db/seeds.sql
-!db/buildings.geojson
