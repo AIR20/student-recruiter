@@ -1,4 +1,4 @@
-all: db_init
+all: db_init db_seed
 test: db_reset db_seed
 #	Run unit tests, code coverage, and linters
 	phpunit --bootstrap test/bootstrap.php test/
